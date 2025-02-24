@@ -10,10 +10,10 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { UserService } from '../../services/user/user.service.js';
+import { UserService } from '../../../services/user/user.service.js';
 
-import { User } from '../../interfaces/users.js';
-import { ProgressBarComponent } from "../shared/progress-bar/progress-bar.component";
+import { User } from '../../../interfaces/users.js';
+import { ProgressBarComponent } from "../../shared/progress-bar/progress-bar.component.js";
 import { ToastrService } from 'ngx-toastr';
 import { AddUserComponent } from '../add-user/add-user.component';
 

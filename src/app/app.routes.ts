@@ -12,9 +12,9 @@ export const routes: Routes = [
         path: 'admin', 
         component: AdminLayoutComponent, 
         children:[
-            {path: 'admin/data', component: HomeComponent},
-            {path: 'admin/mapa', component: MapaComponent},
-            {path: 'admin/calendar', component: FullCalendarComponent},
+            {path: 'data', component: HomeComponent},
+            {path: 'mapa', component: MapaComponent},
+            {path: 'calendar', component: FullCalendarComponent},
         ]
     },
     {

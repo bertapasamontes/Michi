@@ -2,10 +2,10 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { User } from '../../interfaces/users';
-import { UserService } from '../../services/user/user.service';
+import { UserService } from '../../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { ProgressBarComponent } from "../shared/progress-bar/progress-bar.component";
+import { ProgressBarComponent } from "../../shared/progress-bar/progress-bar.component";
+import { User } from '../../../interfaces/users';
 
 @Component({
   selector: 'app-add-user',

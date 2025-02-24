@@ -1,7 +1,18 @@
-.nav-link:hover{
-    color: rgb(195, 135, 25) !important;
-}
-
 .navbar{
     height: 100lvh;
+}
+
+.navbar-nav{
+    display: flex;
+    justify-content:start;
+}
+
+.nav-link{
+    color: #686665;
+}
+
+.nav-item:hover{
+    background-color: #f0ece8;
+    color: #0a0807;
+    border-radius: 10px;
 }
