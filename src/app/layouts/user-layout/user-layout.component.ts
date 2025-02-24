@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MobileNavbarComponent } from "../../components/shared/mobile-navbar/mobile-navbar.component";
 
 @Component({
   selector: 'app-user-layout',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MobileNavbarComponent],
   templateUrl: './user-layout.component.html',
   styleUrl: './user-layout.component.scss'
 })

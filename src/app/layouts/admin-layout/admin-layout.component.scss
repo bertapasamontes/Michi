@@ -1,21 +1,21 @@
 .content{
-    background-color: #f7f5f4;
+    // background-color: #f7f5f4;
     overflow:hidden;
-    display: flex;
     height: 100lvh;
 
     display: grid;
-  grid-template-columns: 280px auto;
+    grid-template-columns: 280px auto;
 }
 
 .nav-content{
     background-color: #f7f5f4;
+    border: solid 2px #dcdad8;
+    border-radius: 10px;
 }
 
 
 .main-content{
-    border: solid 2px #dcdad8;
-    border-radius: 10px;
+    
     background-color: white;
     overflow-y: auto;
 
