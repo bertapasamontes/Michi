@@ -1,0 +1,17 @@
+.pointer{
+    cursor: pointer;
+    width: 250px;
+}
+
+.list-group{
+    // margin: 1px;
+    padding: 5px;
+}
+
+.list-group-item-action:hover{
+    background-color: #dadada;
+}
+
+.list-group.active{
+    background-color: rgb(255, 216, 172);
+}

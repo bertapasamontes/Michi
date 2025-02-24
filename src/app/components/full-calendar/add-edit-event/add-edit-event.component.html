@@ -1,0 +1,98 @@
+<!-- @if(loading){
+    <app-progress-bar></app-progress-bar>
+    <p>Cargando datos...</p>
+    }
+    @if(!loading){ -->
+    <div class="col-lg-4">
+        <div class="card mb-3">
+            <div class="card-header">{{operacion}} evento</div>
+            <div class="card-body">
+                <form class="row g-3" [formGroup]='formEditEvent' (ngSubmit)="addEvent()">
+    
+                    <div class="col-md-6">
+                        <label for="title">Title*</label>
+                        <input formControlName="title" type="text" class="form-control" placeholder="Cumpleaños de Marta">
+                        @if(formEditEvent.get('title')?.hasError('required') && formEditEvent.get('title')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+    
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label for="description">Description (opcional)</label>
+                        <input formControlName="description" type="text" class="form-control" placeholder="Felicitarla a las 00h">
+                    </div>
+    
+                    <!-- <div class="col-12">
+                        <label for="start">Fecha de inicio*</label>
+                        <input matInput [matDatepicker]="picker" formControlName="start">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        @if(formEditEvent.get('start')?.hasError('required') && formEditEvent.get('start')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div> -->
+                    <div class="col-12">
+                        <mat-form-field>
+                            <mat-label>Enter a date range</mat-label>
+                            <mat-date-range-input [rangePicker]="picker">
+                              <input matStartDate formControlName="start" placeholder="Start date">
+                              <input matEndDate formControlName="end" placeholder="End date">
+                            </mat-date-range-input>
+                            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                          </mat-form-field>
+                          @if(formEditEvent.get('start')?.hasError('required') && formEditEvent.get('start')?.touched){
+                            <span>Este campo es requerido</span>
+                            }
+                    </div>
+    
+    
+                    <!-- <div class="col-md-6">
+                        <label for="username">Username*</label>
+                        <input formControlName="username" type="text" class="form-control" placeholder="@pedropascual"
+                            autocomplete="username">
+                        @if(formEditEvent.get('username')?.hasError('required') && formEditEvent.get('username')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div> -->
+                    <!-- <div class="col-md-6">
+                        <label for="password">Password*</label>
+                        <input formControlName="password" type="password" class="form-control" placeholder="****"
+                            autocomplete="new-password">
+                        @if(formEditEvent.get('password')?.hasError('required') && formEditEvent.get('password')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div> -->
+    
+    
+    
+                    <div class="col-12">
+                        <div class="row mt-2">
+                            <div class="col-lg-6">
+                                <button routerLink="/" type="button" class="btn btn-secondary d-flex align-items-center"
+                                    (click)="volver()"><mat-icon>arrow_back</mat-icon>Volver</button>
+                            </div>
+                            <div class="col-lg-6 d-flex">
+                                <button type="button" class="btn btn-danger" (click)="deleteEvent()"><mat-icon>delete</mat-icon></button>
+                                @if(operacion == 'Añadir nuevo'){
+                                <button [disabled]="formEditEvent.invalid" type="submit"
+                                    class="btn btn-primary d-flex align-items-center"><mat-icon>add</mat-icon>Crear nuevo
+                                    user</button>
+                                }
+                                @if(operacion == 'Editar'){
+                                    <button [disabled]="formEditEvent.invalid" type="submit"
+                                    class="btn btn-warning d-flex align-items-center"><mat-icon>save</mat-icon>Guardar cambios</button>
+                                }
+    
+                            </div>
+                        </div>
+                    </div>
+    
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- } -->

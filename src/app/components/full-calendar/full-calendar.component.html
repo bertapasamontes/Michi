@@ -1,0 +1,14 @@
+<div class="container">
+
+  <div class="botones d-flex justify-content-between mb-3">
+    @if(calendarOptions.weekends){
+    <button (click)="toggleWeekends()" class="btn btn-outline-primary">Ocultar finde</button>
+    }
+    @if (!calendarOptions.weekends) {
+    <button (click)="toggleWeekends()" class="btn btn-outline-primary">Ver finde</button>
+    }
+    <button type="button" class="btn btn-primary d-flex" (click)="abrirAddEvent()"><mat-icon>add</mat-icon> Añadir evento</button>
+  </div>
+  <full-calendar #calendario [options]="calendarOptions">
+  </full-calendar>
+</div>

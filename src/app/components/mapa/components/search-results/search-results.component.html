@@ -1,0 +1,31 @@
+@if(isLoadingPlaces){
+<div class="alert alert mt-2">
+    <h6>Cargando...</h6>
+    <span>Un momento, por favor</span>
+</div>
+}
+@if (places.length>0) {
+<ul class="list-group">
+    @for(sitio of places; track sitio.properties.mapbox_id){
+        @if(sitio.properties.name && sitio.properties.context?.address?.name){
+            <li class="list-group list-group-item-action pointer" [class.active]="sitio.properties.mapbox_id===selectedId"
+        (click)="flyTo(sitio)">
+        <h6>{{sitio.properties.name}}</h6>
+        <p>{{sitio.properties.context?.address?.name}}</p>
+        <div class="row">
+            <div class="col">
+                <button type="submit" (click)="addPlace(sitio)" class="btn btn-sm" [ngClass]="(sitio.properties.mapbox_id === selectedId) ? 'btn-secondary':'btn-outline-secondary'" >Guardar</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-sm"
+                    [ngClass]="(sitio.properties.mapbox_id === selectedId) ? 'btn-primary':'btn-outline-primary' ">Direcciones
+                </button>
+            </div>
+        </div>
+
+    </li>
+        }
+    
+    }
+</ul>
+}

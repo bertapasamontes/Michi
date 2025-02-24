@@ -1,0 +1,51 @@
+@if(loading){
+<app-progress-bar></app-progress-bar>
+}
+@if(!loading){
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <h2>Usuarios registrados</h2>
+        <button type="button" class="btn btn-primary d-flex align-items-center" mat-raised-button (click)="abrirNuevoUser()"><mat-icon>add</mat-icon> Añadir
+            usuario</button>
+    </div>
+    @if(usuariosEnMichi.length > 0){
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- <th scope="col">id</th> -->
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of usuariosEnMichi; track item._id) {
+            <tr>
+                <!-- <th scope="row">{{item._id}}</th> -->
+                <td>{{item.name}}</td>
+                <td>{{item.surname}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.email}}</td>
+                <td class="d-inline-flex">
+                    <!-- <button routerLink="/edit/{{item._id}}" type="button"
+                        class="btn btn-warning btn-sm d-flex align-items-center mx-2"><mat-icon>edit</mat-icon>
+                        Edit</button> -->
+                    <button mat-raised-button (click)="abrirEdit(item._id!)" class="mx-2"><mat-icon>edit</mat-icon></button>
+                    <button type="button" (click)="deleteUser(item._id!)"
+                        class="btn btn-danger btn-sm d-flex align-items-center mx-2"><mat-icon>delete</mat-icon>
+                        </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    }
+    @if(usuariosEnMichi.length == 0){
+        <p>No hay users en la base de datos. Añade, anda ;)</p>
+    }
+
+</div>
+
+}

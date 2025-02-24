@@ -1,0 +1,9 @@
+<button type="submit" (click)="getLocation()" class="btn btn-warning btn-location">Get my location to see the map</button>
+@if(!isUserLocationReady){
+    <app-progress-bar></app-progress-bar>
+}
+@if(isUserLocationReady){
+    <app-btn-my-location></app-btn-my-location>
+    <app-search-bar></app-search-bar>
+    <app-map-view></app-map-view>
+}

@@ -1,0 +1,52 @@
+<!-- @if(loading){
+<app-progress-bar></app-progress-bar>
+} -->
+@if(!loading){
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h2>Sitios registrados</h2>
+    </div>
+    @if(placesEnMichi.length > 0){
+    <table class="table">
+        <thead>
+            <tr>
+                <!-- <th scope="col">id</th> -->
+                <th scope="col">Nombre Local</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of placesEnMichi; track item._id) {
+            <tr>
+                <!-- <th scope="row">{{item._id}}</th> -->
+                <td>{{item.name}}</td>
+                <td>{{item.short_direction}}</td>
+                <td>
+                    @for(categoria of item.category; track categoria){
+                        <span class="categoria d-inline-flex" [ngClass]="getClassByCategory(categoria)">
+                            <mat-icon>{{getIconByCategory(categoria)}}</mat-icon>{{categoria}}</span>
+                    }
+                    <!-- {{item.category}}</td> -->
+                <td class="d-inline-flex">
+                    <!-- <button routerLink="/edit/{{item._id}}" type="button"
+                            class="btn btn-warning btn-sm d-flex align-items-center mx-2"><mat-icon>edit</mat-icon>
+                            Edit</button> -->
+                    
+                    <button type="button" (click)="deletePlace(item._id!)"
+                        class="btn btn-danger btn-sm d-flex align-items-center mx-2"><mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    }
+    @if(placesEnMichi.length == 0){
+    <p>No hay users en la base de datos. Añade, anda ;)</p>
+    }
+
+</div>
+
+}

@@ -1,0 +1,10 @@
+<div class="filtro d-flex flex-column">
+    @for (categoria of categorias; track categoria){
+
+    <label><input type="checkbox" [checked]="categoriasSeleccionadas.includes(categoria)"
+            (change)="toggleCategoria(categoria)" />
+        {{ categoria }}
+    </label>
+
+    }
+</div>
