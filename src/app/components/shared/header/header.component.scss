@@ -1,18 +1,66 @@
+.logo{
+    max-width: 25px;
+}
+
 .navbar{
-    height: 100lvh;
+    min-width: 220px;
+    height:100lvh;
+    // border: solid 2px #686665;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+    align-content: start;
+    background-color: #f7f5f4;
+    padding: 20px;
+}
+
+a.navbar-brand, .navbar-brand{
+    margin: 0px !important;
+}
+
+.navbar-brand{
+    grid-row: 1; 
+}
+
+.row.navbar-nav{
+    display: grid !important;
 }
 
 .navbar-nav{
-    display: flex;
-    justify-content:start;
+    // display: flex;
+    // justify-content:start;
+    display: grid !important;
+    grid-row: 2;
+    align-self: start;
 }
 
+.nav-item{
+    width: 230px !important;
+    margin-left: 10px;
+}
 .nav-link{
-    color: #686665;
+    color: #686665 !important;
+    margin: 2px;
+    // padding: 10px 15px;  
 }
 
 .nav-item:hover{
     background-color: #f0ece8;
-    color: #0a0807;
+
+    .nav-link{
+    color: #0a0807 !important;
+    }
     border-radius: 10px;
 }
+
+.nav-link.active{
+    background-color: #f0ece8;
+    color: #0a0807 !important;
+    border-radius: 10px;
+}
+
+// .button-outline{
+//     border: 2px solid #686665;
+//     border-radius: 10px;
+//   }
+  

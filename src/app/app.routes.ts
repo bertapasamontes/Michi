@@ -15,6 +15,7 @@ export const routes: Routes = [
             {path: 'data', component: HomeComponent},
             {path: 'mapa', component: MapaComponent},
             {path: 'calendar', component: FullCalendarComponent},
+            // {path: 'charts', component: ChartsComponent},
         ]
     },
     {

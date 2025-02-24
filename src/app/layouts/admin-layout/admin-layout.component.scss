@@ -1,8 +1,22 @@
+.content{
+    background-color: #f7f5f4;
+    overflow:hidden;
+    display: flex;
+    height: 100lvh;
+
+    display: grid;
+  grid-template-columns: 280px auto;
+}
+
 .nav-content{
     background-color: #f7f5f4;
 }
 
+
 .main-content{
     border: solid 2px #dcdad8;
-    border-radius: 10px
+    border-radius: 10px;
+    background-color: white;
+    overflow-y: auto;
+
 }

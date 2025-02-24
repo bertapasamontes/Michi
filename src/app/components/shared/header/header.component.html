@@ -1,33 +1,43 @@
-<nav class="navbar d-flex flex-column">
-    <div class="container">
-        <a class="navbar-brand" routerLink="data">Michi's Dashboard</a>
-    </div>
-    <div class="">
+<nav class="navbar container-fluid">
+    <a class="navbar-brand" routerLink="data"><img src="../../../../assets/img/logo_v02.png" alt="logo-michi"
+            class="img-fluid logo"> Michi's Dashboard</a>
+
+
+
+    <div class="row">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  routerLink="data">Data</a>
-              </li>
+                <a class="nav-link active d-flex" aria-current="page" routerLinkActive="active">
+                    <mat-icon class="mx-2">exit_to_app</mat-icon>Ver Michi App</a>
+            </li>
+            <hr>
+            <br>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page"  routerLink="mapa">Mapa</a>
+                <a class="nav-link active d-flex" aria-current="page" routerLink="data"
+                    routerLinkActive="active"><mat-icon class="mx-2">table</mat-icon> Data</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  routerLink="calendar">Calendar</a>
+                <a class="nav-link active d-flex" aria-current="page" routerLink="mapa"
+                    routerLinkActive="active"><mat-icon class="mx-2">map</mat-icon>Mapa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active d-flex" aria-current="page" routerLink="calendar"
+                    routerLinkActive="active"><mat-icon class="mx-2">event</mat-icon>Calendar</a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link active" aria-current="page"  routerLink="charts">Charts</a>
-              </li> -->
+            </li> -->
         </ul>
     </div>
-    <div class="">
+    <div class="row">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page">Ver Michi App</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page">Cerrar sesión</a>
+                <a class="nav-link active d-flex button-outline" aria-current="page" routerLinkActive="active"><mat-icon
+                        class="mx-2">logout</mat-icon>Cerrar sesión</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page">Configuraciones</a>
+                <a class="nav-link active d-flex" aria-current="page" routerLinkActive="active"><mat-icon
+                        class="mx-2">settings</mat-icon>Configuración</a>
             </li>
         </ul>
     </div>
