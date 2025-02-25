@@ -1,3 +1,4 @@
+@use '../../../../assets/_variables.scss' as *;
 .nav-item{
     margin: 15px;
     font-size: small;
@@ -5,7 +6,12 @@
 .navbar{
     display: flex;
     justify-content: center;
+    z-index: 10;
 }
 .navbar-nav{
     justify-content: space-around;
+}
+
+.nav-link.active{
+    color: $primary;
 }

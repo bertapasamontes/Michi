@@ -6,6 +6,7 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { FullCalendarComponent } from './components/full-calendar/full-calendar.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { DescubrirComponent } from './components/app-mobile/descubrir/descubrir.component';
 
 export const routes: Routes = [
     {
@@ -15,14 +16,21 @@ export const routes: Routes = [
             {path: 'data', component: HomeComponent},
             {path: 'mapa', component: MapaComponent},
             {path: 'calendar', component: FullCalendarComponent},
-            {path: 'modo-user', component: UserLayoutComponent},
+            {path: 'modo-user', component: UserLayoutComponent, children:[
+                {path: 'descubrir', component: DescubrirComponent},
+                {path: 'mapa', component: MapaComponent},
+
+            ]},
             // {path: 'charts', component: ChartsComponent},
         ]
     },
     {
         path: 'user',
         component: UserLayoutComponent,
-        children:[] //falta
+        children:[
+            {path: 'descubrir', component: DescubrirComponent},
+            {path: 'mapa', component: MapaComponent},
+        ] //falta
     },
     { path: '', redirectTo: 'admin/data', pathMatch: 'full'}, //hay que cambiarlo a que se vaya la app. pero que apse antes por un inicio de sesión
     { path: '**', redirectTo:"", pathMatch:'full', component:AdminLayoutComponent}
