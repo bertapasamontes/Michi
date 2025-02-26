@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, input, Input, Pipe, Signal } from '@angular/core';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, input, Input, Pipe, Signal } from '@angular/core';
 import { BtnEditarComponent } from "../../atomos/btn-editar/btn-editar.component";
 import { TitleCasePipe } from '@angular/common';
 
@@ -19,20 +19,27 @@ export class TablaDatosComponent {
   // }
 
 
-  get selectedColumns(): string[] {
-    return Object.keys(this.columnMapping[this.tipo] || {}); 
-  }
+  // get selectedColumns(): string[] {
+  //   return Object.keys(this.columnMapping[this.tipo] || {}); 
+  // }
 
-  get filteredData(): any[] {
+  selectedColumns = computed(()=> Object.keys(this.columnMapping[this.tipo] || {}))
+
+  filteredData = computed(() => {
     return this.datos().map(row => {
-      let filteredRow: { [key: string]: any } = {};
-      for (let column of this.selectedColumns) {
-        const key = this.columnMapping[this.tipo][column]; // Obtenemos la clave real del JSON
-        filteredRow[column] = row[key] ?? 'N/A'; // Si falta, mostramos 'N/A'
+      let filteredRow: { id: number; [key: string]: any } = { id: row.id }; // Aseguramos que tenga id
+  
+      for (let column of this.selectedColumns()) {
+        const key = this.columnMapping[this.tipo][column];
+        filteredRow[column] = row[key] ?? 'N/A';
       }
+  
       return filteredRow;
     });
-  }
+  });
+  
+    
+  
 
 
   private columnMapping: { [key: string]: { [key: string]: string } } = {

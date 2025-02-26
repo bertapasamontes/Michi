@@ -8,7 +8,7 @@
             <th scope="col">Acciones</th>
         </tr> -->
         <tr>
-            @for(column of selectedColumns; track column){
+            @for(column of selectedColumns(); track column){
                 <th scope="col">{{ column | titlecase }}</th>
             }
         </tr>
@@ -33,8 +33,8 @@
         </tr>
         } -->
         
-            @for (row of filteredData; track row) {<tr>
-                @for(column of selectedColumns; track column){
+            @for (row of filteredData(); track row) {<tr>
+                @for(column of selectedColumns(); track column){
                     <td>{{ row[column] }}</td>
                 }
 

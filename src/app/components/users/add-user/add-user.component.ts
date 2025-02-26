@@ -18,6 +18,8 @@ export class AddUserComponent {
   loading: Boolean = false;
   operacion: string = 'Añadir nuevo'
 
+
+
   constructor(
       public _matDialogRef: MatDialogRef<AddUserComponent>,
       @Inject(MAT_DIALOG_DATA) public data:any, //recibir data
