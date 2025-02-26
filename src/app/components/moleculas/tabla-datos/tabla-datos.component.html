@@ -1,0 +1,54 @@
+<table class="table">
+    <thead>
+        <!-- <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Acciones</th>
+        </tr> -->
+        <tr>
+            @for(column of selectedColumns; track column){
+                <th scope="col">{{ column | titlecase }}</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <!-- @for (item of datos(); track item._id) {
+        <tr> -->
+            <!-- <th scope="row">{{item._id}}</th> -->
+            <!-- <td>{{item.name}}</td>
+            <td>{{item.surname}}</td>
+            <td>username/categoria</td>
+            <td>correo/productos</td>
+            <td class="d-inline-flex">
+                <app-btn-editar [item] = 'item'></app-btn-editar> -->
+                <!-- <button routerLink="/edit/{{item._id}}" type="button"
+        class="btn btn-warning btn-sm d-flex align-items-center mx-2"><mat-icon>edit</mat-icon>
+        Edit</button> -->
+                <!-- <button type="button" (click)="deleteUser(item._id!)"
+                    class="btn btn-danger btn-sm d-flex align-items-center mx-2"><mat-icon>delete</mat-icon>
+                </button> -->
+            <!-- </td>
+        </tr>
+        } -->
+        
+            @for (row of filteredData; track row) {<tr>
+                @for(column of selectedColumns; track column){
+                    <td>{{ row[column] }}</td>
+                }
+
+              <td class="d-inline-flex">
+                <app-btn-editar [item] = 'row'></app-btn-editar>
+                <!-- <button routerLink="/edit/{{item._id}}" type="button"
+        class="btn btn-warning btn-sm d-flex align-items-center mx-2"><mat-icon>edit</mat-icon>
+        Edit</button> -->
+                <!-- <button type="button" (click)="deleteUser(item._id!)"
+                    class="btn btn-danger btn-sm d-flex align-items-center mx-2"><mat-icon>delete</mat-icon>
+                </button> -->
+            </td></tr>
+        }
+        
+
+    </tbody>
+</table>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MobileNavbarComponent } from "../../components/shared/mobile-navbar/mobile-navbar.component";
+import { MobileNavbarComponent } from "../../shared/mobile-navbar/mobile-navbar.component";
 
 @Component({
   selector: 'app-user-layout',

@@ -17,7 +17,7 @@ class Database{
     constructor(){
         this.app = express();
 
-        this.port = environment.PORT || '3000';
+        this.port = environment.PORT || '3001';
         this.listen();
 
         this.midlewares(); //siempre antes de los routes, si no, no funciona. Sin esto, hacer posts de users no funciona

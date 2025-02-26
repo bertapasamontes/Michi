@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { navbarComponent } from "../../components/shared/dashboard-navbar/navbar.component";
+import { navbarComponent } from "../../shared/dashboard-navbar/navbar.component";
 import { RouterOutlet } from '@angular/router';
-import { DashboardHeaderComponent } from "../../components/shared/dashboard-header/dashboard-header.component";
+import { DashboardHeaderComponent } from "../../shared/dashboard-header/dashboard-header.component";
 
 @Component({
   selector: 'app-admin-layout',

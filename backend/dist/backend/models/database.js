@@ -14,7 +14,7 @@ const eventsRoutes_1 = __importDefault(require("../routes/eventsRoutes"));
 class Database {
     constructor() {
         this.app = (0, express_1.default)();
-        this.port = env_1.environment.PORT || '3000';
+        this.port = env_1.environment.PORT || '3001';
         this.listen();
         this.midlewares(); //siempre antes de los routes, si no, no funciona. Sin esto, hacer posts de users no funciona
         this.routes();

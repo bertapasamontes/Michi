@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/organismos/home/home.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { FullCalendarComponent } from './components/full-calendar/full-calendar.component';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
+import { UserLayoutComponent } from './components/layouts/user-layout/user-layout.component';
 import { DescubrirComponent } from './components/app-mobile/descubrir/descubrir.component';
 
 export const routes: Routes = [
