@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, Output, output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { AddUserComponent } from '../../users/add-user/add-user.component';
@@ -15,28 +15,28 @@ export class BtnEditarComponent {
      private _matDialog: MatDialog,
   ){}
   
-  @Input() item!:  { id: number } & Record<string, any>;
+  @Input() item!:number;
+  @Output() updateData = new EventEmitter<void>();
   
   abrirEdit(id:number):void{
-      
-    
-      const dialogo = this._matDialog.open(AddUserComponent, {
-        width: '900px',
-        data: {
-          id: id,
-          // info: this.usuariosEnMichi.findIndex()
-          // name: this.usuariosEnMichi[0].name
-        }
-      });
-  
-      dialogo.afterClosed().subscribe((result)=>{
-        console.log('dialogo cerrado');
-        if(result){
-          console.log("va bieeen");
-          // this.getListUsers();
-        }else{
-          console.log('somethign is wrong')
-        }
-      })
-    }
+    const dialogo = this._matDialog.open(AddUserComponent, {
+      width: '900px',
+      data: {
+        id: id,
+      }
+    });
+
+    console.log('item: ', this.item);
+
+    dialogo.afterClosed().subscribe((result)=>{
+      console.log('dialogo cerrado');
+      if(result){
+        console.log("va bieeen");
+        // this.getListUsers();
+        this.updateData.emit();
+      }else{
+        console.log('somethign is wrong')
+      }
+    })
+  }
 }
