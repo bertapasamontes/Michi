@@ -1,16 +1,10 @@
-<nav class="navbar container-fluid">
+<nav class="navbar container-fluid pt-4">
     <a class="navbar-brand" routerLink="data"><img src="../../../../assets/img/logo_v02.png" alt="logo-michi"
             class="img-fluid logo"> Michi's Dashboard</a>
 
-
-
     <div class="row">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active d-flex" aria-current="page" routerLinkActive="active" routerLink="modo-user">
-                    <mat-icon class="mx-2">exit_to_app</mat-icon>Ver Michi App</a>
-            </li>
-            <hr>
+            
             <br>
             <li class="nav-item">
                 <a class="nav-link active d-flex" aria-current="page" routerLink="data"
@@ -27,6 +21,17 @@
             <!-- <li class="nav-item">
                 <a class="nav-link active" aria-current="page"  routerLink="charts">Charts</a>
             </li> -->
+        </ul>
+        
+        <ul class="navbar-nav mt-5">
+            <li class="nav-item">
+                <a class="nav-link active d-flex" aria-current="page" routerLinkActive="active" routerLink="modo-user">
+                    <mat-icon class="mx-2">exit_to_app</mat-icon>Ver Michi App</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active d-flex" aria-current="page" routerLinkActive="active" target="_blank" href="https://cloud.mongodb.com/v2/67adc8392eab433bf0efa47b#/metrics/replicaSet/67adc98aa1777c57966612b4/explorer/DatabaseMichi/sitiosdemichis/find">
+                    <mat-icon class="mx-2">table_eye</mat-icon>Ver MongoDB</a>
+            </li>
         </ul>
     </div>
     <div class="row">

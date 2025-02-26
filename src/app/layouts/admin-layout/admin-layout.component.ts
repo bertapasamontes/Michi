@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from "../../components/shared/header/header.component";
+import { navbarComponent } from "../../components/shared/dashboard-navbar/navbar.component";
 import { RouterOutlet } from '@angular/router';
+import { DashboardHeaderComponent } from "../../components/shared/dashboard-header/dashboard-header.component";
 
 @Component({
   selector: 'app-admin-layout',
-  imports: [HeaderComponent, RouterOutlet],
+  imports: [navbarComponent, RouterOutlet, DashboardHeaderComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.scss'
 })
