@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, input, Input, Pipe, Signal } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, EventEmitter, input, Input, Output, Pipe, Signal } from '@angular/core';
 import { BtnEditarComponent } from "../../atomos/btn-editar/btn-editar.component";
 import { TitleCasePipe } from '@angular/common';
+import { BtnDeleteComponent } from "../../atomos/btn-delete/btn-delete.component";
 
 @Component({
   selector: 'app-tabla-datos',
-  imports: [BtnEditarComponent, TitleCasePipe],
+  imports: [BtnEditarComponent, TitleCasePipe, BtnDeleteComponent],
   templateUrl: './tabla-datos.component.html',
   styleUrl: './tabla-datos.component.scss',
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
@@ -12,6 +13,7 @@ import { TitleCasePipe } from '@angular/common';
 export class TablaDatosComponent {
   @Input() datos!: Signal<any[]>;
   @Input() tipo!:  'usuarios' | 'locales';
+  @Output() deleteItem = new EventEmitter<{ id: number; tipo: 'usuarios' | 'locales' }>();
 
   selectedColumns = computed(()=> Object.keys(this.columnMapping[this.tipo] || {}))
 
@@ -34,6 +36,11 @@ export class TablaDatosComponent {
 
   refreshData(): void {
     location.reload();
+  }
+
+  onDeleteItem(id: number, tipo: 'usuarios' | 'locales'): void {
+    console.log(`📢 Notificando a home para eliminar ${tipo} con ID: ${id}`);
+    this.deleteItem.emit({ id, tipo }); // 🔥 Enviamos el evento a home
   }
 
 

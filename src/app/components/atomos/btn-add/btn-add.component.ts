@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../../users/add-user/add-user.component';
 import { MatIcon } from '@angular/material/icon';
@@ -10,6 +10,7 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './btn-add.component.scss'
 })
 export class BtnAddComponent {
+  @Output() updateData = new EventEmitter<void>();
 
   constructor(
     private _matDialog: MatDialog
@@ -27,7 +28,7 @@ export class BtnAddComponent {
         console.log('dialogo cerrado');
         if(result){
           console.log("va bieeen");
-          // this.getListUsers();
+          this.updateData.emit();
         }else{
           console.log('somethign is wrong')
         }

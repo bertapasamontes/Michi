@@ -32,7 +32,6 @@ export class BtnEditarComponent {
       console.log('dialogo cerrado');
       if(result){
         console.log("va bieeen");
-        // this.getListUsers();
         this.updateData.emit();
       }else{
         console.log('somethign is wrong')

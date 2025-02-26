@@ -19,6 +19,7 @@ export class DataSignalService {
   usuariosEnMichiSignal = signal<any[]>([]);
   sitiosEnMichiSignal = signal<any[]>([]);
 
+
   getListUsersSignal(){
     try{
     this._userService.getListUsers().subscribe((data:User[])=>{

@@ -2,13 +2,13 @@
     <div class="users mt-5">
         <div class="d-flex justify-content-between">
             <h2>Usuarios registrados en Michi:</h2>
-            <app-btn-add></app-btn-add>
+            <app-btn-add (updateData)="refreshData()"></app-btn-add>
         </div>
-        <app-tabla-datos [datos]="dataUsers" tipo="usuarios"></app-tabla-datos>
+        <app-tabla-datos [datos]="dataUsers" tipo="usuarios" (deleteItem)="deleteItem($event)"></app-tabla-datos>
     </div>
     <div class="locales mt-5">
         <h2>Locales guardados:</h2>
-        <app-tabla-datos [datos]="dataPlaces" tipo="locales"></app-tabla-datos>
+        <app-tabla-datos [datos]="dataPlaces" tipo="locales" (deleteItem)="deleteItem($event)"></app-tabla-datos>
     </div>
 </div>
 

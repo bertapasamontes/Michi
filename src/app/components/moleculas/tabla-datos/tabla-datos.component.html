@@ -51,6 +51,7 @@
                 <!-- <button type="button" (click)="deleteUser(item._id!)"
                     class="btn btn-danger btn-sm d-flex align-items-center mx-2"><mat-icon>delete</mat-icon>
                 </button> -->
+                <app-btn-delete (removeItem)="onDeleteItem($event['id'], $event['tipo'])" [item]="row['id']" [tipo]="tipo"></app-btn-delete>
             </td>
         </tr>
         }
