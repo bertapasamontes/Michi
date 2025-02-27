@@ -7,6 +7,8 @@ import { FullCalendarComponent } from './components/full-calendar/full-calendar.
 import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './components/layouts/user-layout/user-layout.component';
 import { DescubrirComponent } from './components/app-mobile/descubrir/descubrir.component';
+import { MapaMobileComponent } from './components/app-mobile/mapa-mobile/mapa-mobile.component';
+import { MichiBotComponent } from './components/app-mobile/michi-bot/michi-bot.component';
 
 export const routes: Routes = [
     {
@@ -18,7 +20,8 @@ export const routes: Routes = [
             {path: 'calendar', component: FullCalendarComponent},
             {path: 'modo-user', component: UserLayoutComponent, children:[
                 {path: 'descubrir', component: DescubrirComponent},
-                {path: 'mapa', component: MapaComponent},
+                {path: 'mapa', component: MapaMobileComponent},
+                {path: 'michibot', component: MichiBotComponent},
 
             ]},
             // {path: 'charts', component: ChartsComponent},
@@ -29,7 +32,7 @@ export const routes: Routes = [
         component: UserLayoutComponent,
         children:[
             {path: 'descubrir', component: DescubrirComponent},
-            {path: 'mapa', component: MapaComponent},
+            {path: 'mapa', component: MapaMobileComponent},
         ] //falta
     },
     { path: '', redirectTo: 'admin/data', pathMatch: 'full'}, //hay que cambiarlo a que se vaya la app. pero que apse antes por un inicio de sesión
