@@ -41,7 +41,7 @@
             }
 
             <td class="d-inline-flex">
-                @if (tipo === 'usuarios' && "row['id']" !== undefined) {
+                @if (tipo === 'usuarios' && row['id'] !== undefined) {
                 <app-btn-editar [item]="row['id']" (updateData)="refreshData()"></app-btn-editar>
                 }
 

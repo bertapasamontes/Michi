@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, computed, CUSTOM_ELEMENTS_SCHEMA, effect, EventEmitter, input, Input, Output, Pipe, Signal } from '@angular/core';
 import { BtnEditarComponent } from "../../atomos/btn-editar/btn-editar.component";
-import { TitleCasePipe } from '@angular/common';
+import { NgClass, TitleCasePipe } from '@angular/common';
 import { BtnDeleteComponent } from "../../atomos/btn-delete/btn-delete.component";
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-tabla-datos',
@@ -44,4 +45,54 @@ export class TablaDatosComponent {
   }
 
 
-}
+
+
+  getClassForColumn(column: string, value: string): string {
+    if (column === 'rol') {
+      return this.getRoleClass(value);
+    }
+    if (column === 'categoria') {
+      return this.getCategoryClass(value);
+    }
+    return '';
+  }
+  
+  getRoleClass(role: string): string {
+    const roleClasses: { [key: string]: string } = {
+      'admin': 'tag-admin',
+      'usuario': 'tag-user',
+      'moderador': 'tag-moderator',
+    };
+    return roleClasses[role?.toLowerCase()] || 'tag-default';
+  }
+  
+  getCategoryClass(category: string): string {
+    const categoryClasses: { [key: string]: string } = {
+      'café': 'tag-cafe',
+      'cafetería': 'tag-cafe',
+      'comida y bebida': 'tag-drink-food',
+      'restaurant': 'tag-restaurant',
+      'panadería': 'tag-bakery',
+    };
+    return categoryClasses[category?.toLowerCase()] || 'tag-default';
+  }
+  
+  getRoleIcon(role: string): string {
+    const roleIcons: { [key: string]: string } = {
+      'admin': 'admin_panel_settings',
+      'viewer': 'person'
+    };
+    return roleIcons[role?.toLowerCase()] || 'help';
+  }
+  
+  getCategoryIcon(category: string): string {
+    const categoryIcons: { [key: string]: string } = {
+      'café': 'local_cafe',
+      'cafetería': 'local_cafe',
+      'comida y bebida': 'restaurant',
+      'restaurant': 'restaurant',
+      'panadería': 'bakery_dining',
+    };
+    return categoryIcons[category?.toLowerCase()] || 'sell'; // Ícono por defecto
+  }
+}  

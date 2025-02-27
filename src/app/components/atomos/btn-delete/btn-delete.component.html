@@ -1,3 +1,15 @@
-<button type="button" (click)="deleteItem(item)"
+<button type="button" (confirm)="deleteItem(item)" 
+    [swal]="{
+    title: 'Borrar elemento', 
+    text: '¿Estás seguro de que quieres eliminar este elemento?', 
+    showCancelButton: true, 
+    imageUrl: 'https://editorialtelevisa.brightspotcdn.com/dims4/default/9443553/2147483647/strip/true/crop/2121x1194+0+70/resize/1000x563!/quality/90/?url=https%3A%2F%2Fk2-prod-editorial-televisa.s3.us-east-1.amazonaws.com%2Fbrightspot%2Feb%2F4e%2F09394b54417db4d041a1e965f87c%2Fgettyimages-137385374.jpg',
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: 'Custom image',
+    confirmButtonText: 'Eliminar elemento',
+    cancelButtonText: 'Cancelar',
+    confirmButtonColor: '#E74C3C',
+    }"
     class="btn btn-danger btn-sm d-flex align-items-center mx-2"><mat-icon>delete</mat-icon>
 </button>
