@@ -43,7 +43,8 @@ export class AddUserComponent {
         surname: [''],
         username: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(4)]]
+        password: ['', [Validators.required, Validators.minLength(4)]],
+        role: ['', Validators.required]
 
       })
     }
@@ -62,7 +63,8 @@ export class AddUserComponent {
         surname: this.formAddUser.value.surname,
         username: this.formAddUser.value.username,
         password: this.formAddUser.value.password,
-        email: this.formAddUser.value.email       
+        email: this.formAddUser.value.email,
+        role: this.formAddUser.value.role
       }
       console.log(usuarioNuevo);
       this.loading = true;
@@ -96,9 +98,11 @@ export class AddUserComponent {
           surname: data.surname,
           username: data.username,
           email: data.email,
-          password: data.password
+          password: data.password,
+          role: data.role
         })
       })
+      console.log('Rol antes de actualizar:', this.formAddUser.value.role);
     }
 
     volver(){

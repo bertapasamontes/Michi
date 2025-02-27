@@ -23,13 +23,20 @@
                     <input formControlName="surname" type="text" class="form-control" placeholder="Pascual">
                 </div>
 
-                <div class="col-12">
+                <div class="col-md-6">
                     <label for="email">Email*</label>
                     <input formControlName="email" type="email" class="form-control"
                         placeholder="pedropascual@gmail.com">
                     @if(formAddUser.get('email')?.hasError('required') && formAddUser.get('email')?.touched){
                     <span>Este campo es requerido</span>
                     }
+                </div>
+                <div class="col-md-6">
+                    <label for="role">Rol*</label>
+                    <select class="form-select" formControlName="role">
+                        <option selected value="viewer">Viewer</option>
+                        <option value="admin">Admin</option>
+                      </select>
                 </div>
 
 
