@@ -30,25 +30,24 @@ export class HomeComponent {
     tipo = 'users'
 
     dataUsers : Signal<any[]> = this._dataSignalService.usuariosEnMichiSignal;
-    dataPlaces = this._dataSignalService.sitiosEnMichiSignal;
+    dataPlaces: Signal<any[]> = this._dataSignalService.sitiosEnMichiSignal;
     
     refreshData() {
-      this._dataSignalService.usuariosEnMichiSignal;
-      location.reload();
+      this._dataSignalService.getListPlacesSignal();
+      this._dataSignalService.getListUsersSignal();      
     }
     
     deleteItem(event: { id: number; tipo: 'usuarios' | 'locales' }): void {
         if(event.tipo === 'usuarios'){
             this._userService.deleteUser(event.id).subscribe(()=>{
-                // this.dataUsers = this._dataSignalService.getListUsersSignal;
-                console.log('eliminado')
             })
         }
         if(event.tipo === 'locales'){
             this._mapGlobal.deletePlace(event.id).subscribe(()=>{
-                // this.dataPlaces = this._dataSignalService.getListPlacesSignal;
             })
         }
+        this.refreshData();
+
         console.log("delete evento: ", event)
     }
 }

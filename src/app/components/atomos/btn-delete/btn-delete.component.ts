@@ -17,6 +17,8 @@ export class BtnDeleteComponent {
   deleteItem(id: number){
     this.removeItem.emit({id: id, tipo: this.tipo});
     console.log('delete:', id, this.tipo);
-    Swal.fire("Eliminado", 'El elemento ha sido eliminado', 'success')
+    Swal.fire("Eliminado", 'El elemento ha sido eliminado', 'success');
+    location.reload();
+
   }
 }
