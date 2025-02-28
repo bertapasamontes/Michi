@@ -9,6 +9,7 @@ import { UserLayoutComponent } from './components/layouts/user-layout/user-layou
 import { DescubrirComponent } from './components/app-mobile/descubrir/descubrir.component';
 import { MapaMobileComponent } from './components/app-mobile/mapa-mobile/mapa-mobile.component';
 import { MichiBotComponent } from './components/app-mobile/michi-bot/michi-bot.component';
+import { InicioSesionComponent } from './components/moleculas/inicio-sesion/inicio-sesion.component';
 
 export const routes: Routes = [
     {
@@ -35,6 +36,7 @@ export const routes: Routes = [
             {path: 'mapa', component: MapaMobileComponent},
         ] //falta
     },
+    { path: 'login', pathMatch:'full', component:InicioSesionComponent},
     { path: '', redirectTo: 'admin/data', pathMatch: 'full'}, //hay que cambiarlo a que se vaya la app. pero que apse antes por un inicio de sesión
     { path: '**', redirectTo:"", pathMatch:'full', component:AdminLayoutComponent}
 

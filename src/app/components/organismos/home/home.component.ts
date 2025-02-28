@@ -17,17 +17,11 @@ import { MapGlobalService } from '../../../services/mapa/map-global.service';
 })
 export class HomeComponent {
 
-
-    
     constructor(
         private _dataSignalService: DataSignalService,
         private _userService: UserService,
         private _mapGlobal: MapGlobalService
-    ){
-
-    }
-
-    tipo = 'users'
+    ){}
 
     dataUsers : Signal<any[]> = this._dataSignalService.usuariosEnMichiSignal;
     dataPlaces: Signal<any[]> = this._dataSignalService.sitiosEnMichiSignal;

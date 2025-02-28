@@ -10,6 +10,7 @@
 
 
 $primary: #F17A12 !default;
+$light: #FBD8B8;
 
 * {
   font-family: 'Poppins';
@@ -22,3 +23,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   flex-direction: column;
   align-items: center;
 }
+
+.btn-secundario{
+  background-color: $light !important;
+  border: solid 1px $light !important;
+  border-radius: 20px !important;
+  color: $primary !important;
+
+  transition: border ease-in-out;
+  transition: background-color ease-in-out;
+
+  &:hover{
+    border: solid 1px $primary !important;
+    color: $primary !important;
+    background-color: transparent !important;
+  }
+}
+
