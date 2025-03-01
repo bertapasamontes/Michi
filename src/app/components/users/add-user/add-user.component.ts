@@ -9,7 +9,7 @@ import { User } from '../../../interfaces/users';
 
 @Component({
   selector: 'app-add-user',
-  imports: [MatIcon, ReactiveFormsModule, ProgressBarComponent],
+  imports: [MatIcon, ReactiveFormsModule, ProgressBarComponent, MatIcon],
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.scss'
 })

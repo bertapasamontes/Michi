@@ -42,6 +42,7 @@ export class TablaDatosComponent {
   onDeleteItem(id: number, tipo: 'usuarios' | 'locales'): void {
     console.log(`📢 Notificando a home para eliminar ${tipo} con ID: ${id}`);
     this.deleteItem.emit({ id, tipo }); // 🔥 Enviamos el evento a home
+    // this.refreshData();
   }
 
 
