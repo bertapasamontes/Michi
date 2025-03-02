@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.postUser = exports.deleteOneUser = exports.getOneUser = exports.getUsers = void 0;
+exports.updateUser = exports.postUser = exports.deleteOneUser = exports.getOneUser = exports.getOneUserByEmail = exports.getUsers = void 0;
 const users_js_1 = __importDefault(require("../../src/app/model/users.js"));
 //para usar estas funciones, hay que añadirlas al module.export
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -28,6 +28,14 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 exports.getUsers = getUsers;
+const getOneUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.params;
+    users_js_1.default
+        .findOne({ email })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ mensaje: error }));
+});
+exports.getOneUserByEmail = getOneUserByEmail;
 const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     users_js_1.default
@@ -68,5 +76,5 @@ const updateUser = (req, res) => {
 };
 exports.updateUser = updateUser;
 module.exports = {
-    updateUser: exports.updateUser, getOneUser: exports.getOneUser, deleteOneUser: exports.deleteOneUser, postUser: exports.postUser, getUsers: exports.getUsers
+    updateUser: exports.updateUser, getOneUser: exports.getOneUser, deleteOneUser: exports.deleteOneUser, postUser: exports.postUser, getUsers: exports.getUsers, getOneUserByEmail: exports.getOneUserByEmail
 };

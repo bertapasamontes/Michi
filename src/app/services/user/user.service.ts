@@ -30,7 +30,11 @@ export class UserService {
   }
 
   getUser(id:number): Observable<User>{
-    return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}${id}`)
+    return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}/id/${id}`)
+  }
+
+  getUserByEmail(email:string): Observable<User>{
+    return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}/email/${email}`)
   }
 
   updateUser(id:number, user: User): Observable<void>{

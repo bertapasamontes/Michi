@@ -17,6 +17,14 @@ export const getUsers = async (req:Request, res:Response)=> {
     })
 }
 
+export const getOneUserByEmail = async (req:Request, res: Response)=>{
+    const {email} = req.params;
+    UserNuevo
+        .findOne({ email })
+        .then((data)=> res.json(data))
+        .catch((error)=> res.json({mensaje: error}))
+}
+
 export const getOneUser = async (req:Request, res: Response)=>{
     const {id} = req.params;
     UserNuevo
@@ -59,5 +67,5 @@ export const updateUser = (req:Request, res: Response)=>{
 
 
 module.exports = {
-    updateUser, getOneUser, deleteOneUser, postUser, getUsers
+    updateUser, getOneUser, deleteOneUser, postUser, getUsers, getOneUserByEmail
 }
