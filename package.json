@@ -29,6 +29,8 @@
     "@fullcalendar/interaction": "^6.1.15",
     "@popperjs/core": "^2.11.8",
     "@sweetalert2/ngx-sweetalert2": "^13.0.0",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.8",
     "cors": "^2.8.5",

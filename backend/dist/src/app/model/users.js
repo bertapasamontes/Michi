@@ -17,5 +17,17 @@ const userSchema = new Schema({
     createdAt: Date,
     updatedAt: Date,
 });
+// userSchema.pre('save', async function(next){
+//   console.log('dentro de presave');
+//   if (!this.isModified("password")) return next(); 
+//   try{
+//     this.password = await bcrypt.hash(this.password, 10);
+//     next();
+//   }
+//   catch(error){
+//     next();
+//     console.log(error);
+//   }
+// });
 exports.UserNuevo = mongoose_1.default.model('UsersDeMichi', userSchema); //este User es el que le da nombre a la subcarpeta de mongoDB
 exports.default = exports.UserNuevo;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-form-inicio-sesion',
@@ -14,6 +15,7 @@ export class FormInicioSesionComponent {
   constructor(
     //formulario
     private formBuilder: FormBuilder,
+    private _userService: UserService
   ) 
     {
     //formulario
@@ -24,8 +26,12 @@ export class FormInicioSesionComponent {
   }
 
   iniciarSesion(){
-    
+    const email = this.formInicioSesion.value.email;
+    const password = this.formInicioSesion.value.password;
+
+    this._userService.getUserByEmail(email)
   }
+
 
 
 }
