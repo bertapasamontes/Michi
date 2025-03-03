@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user/user.service';
 
@@ -25,11 +25,13 @@ export class FormInicioSesionComponent {
     })
   }
 
+  @Output() loginEvent = new EventEmitter<{ email: string, password: string }>();
+
   iniciarSesion(){
     const email = this.formInicioSesion.value.email;
     const password = this.formInicioSesion.value.password;
 
-    this._userService.getUserByEmail(email)
+    this.loginEvent.emit({ email: email, password: password }); //enviamos los datos al compontente padre
   }
 
 

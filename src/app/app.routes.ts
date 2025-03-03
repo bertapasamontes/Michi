@@ -10,11 +10,15 @@ import { DescubrirComponent } from './components/app-mobile/descubrir/descubrir.
 import { MapaMobileComponent } from './components/app-mobile/mapa-mobile/mapa-mobile.component';
 import { MichiBotComponent } from './components/app-mobile/michi-bot/michi-bot.component';
 import { InicioSesionComponent } from './components/moleculas/inicio-sesion/inicio-sesion.component';
+import { AuthGuard } from './_helpers/authGuard/auth.guard';
+
+
+
 
 export const routes: Routes = [
     {
         path: 'admin', 
-        component: AdminLayoutComponent, 
+        component: AdminLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: 'admin' }, 
         children:[
             {path: 'data', component: HomeComponent},
             {path: 'mapa', component: MapaComponent},
@@ -30,7 +34,7 @@ export const routes: Routes = [
     },
     {
         path: 'user',
-        component: UserLayoutComponent,
+        component: UserLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: 'viewer' },
         children:[
             {path: 'descubrir', component: DescubrirComponent},
             {path: 'mapa', component: MapaMobileComponent},

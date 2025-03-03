@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LogoDashboardComponent } from "../../atomos/logo-dashboard/logo-dashboard.component";
 import { FormInicioSesionComponent } from "../../atomos/form-inicio-sesion/form-inicio-sesion.component";
 import { LogoMichiComponent } from "../../atomos/logo-michi/logo-michi.component";
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -10,5 +11,15 @@ import { LogoMichiComponent } from "../../atomos/logo-michi/logo-michi.component
   styleUrl: './inicio-sesion.component.scss'
 })
 export class InicioSesionComponent {
-  operacion: string = "Iniciar sesión"
+
+  constructor(
+    private _userService: UserService
+  ){
+  }
+
+  operacion: string = "Iniciar sesión";
+
+  loguearAlUser(credenciales: {email:string, password: string}){
+    this._userService.login(credenciales.email, credenciales.password).subscribe(
+  )}
 }

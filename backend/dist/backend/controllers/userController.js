@@ -72,10 +72,13 @@ const getOneUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }
         const secret = "secreto";
         // const experiesIn = '7d';
-        // Generar token de autenticación
-        const token = jwt.sign({ id: usuarioDB._id, email: usuarioDB.email }, // Solo almacenamos el ID
+        const tokenDelUser = jwt.sign(// Generar token de autenticación
+        { id: usuarioDB._id, email: usuarioDB.email }, // Solo almacenamos el ID
         secret, { expiresIn: '7d' });
-        return res.json({ ok: true, usuario: usuarioDB, token });
+        if (tokenDelUser) {
+            console.log("tokenDelUser:", tokenDelUser);
+        }
+        return res.json({ ok: true, usuario: usuarioDB, tokenDelUser });
     }
     catch (error) {
         return res.status(500).json({

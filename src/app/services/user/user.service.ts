@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { User } from '../../interfaces/users.js';
 import { environment } from '../../../env/environment.js';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class UserService {
   private myAppUrl: String;
   private myApiUrl: String; // URL del backend
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = 'api/usuario/';
   }
@@ -33,8 +37,25 @@ export class UserService {
     return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}/id/${id}`)
   }
 
-  getUserByEmail(email:string): Observable<User>{
-    return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}/email/${email}`)
+  login(email: string, password: string): Observable<any> {
+    return this.http.post<any>( // el {} determina qué tipos de datos le entran
+      `${this.myAppUrl}${this.myApiUrl}/login`,
+      { email, password } // envia los datos en el body
+    ).pipe(
+      tap(respuesta =>{
+        if(respuesta.tokenDelUser){
+          localStorage.setItem("tokenDelUser",respuesta.tokenDelUser);
+          localStorage.setItem("role",respuesta.usuario.role);
+          console.log(localStorage.getItem('role'))
+
+          if(respuesta.role == 'admin'){
+            this.router.navigate(['admin/data']);
+          } else{
+            this.router.navigate(['user/descubrir'])
+          }
+        }
+      })
+    )
   }
 
   updateUser(id:number, user: User): Observable<void>{

@@ -1,6 +1,6 @@
 <div class="container d-flex flex-column justify-content-center align-items-md-center">
     <app-logo-michi></app-logo-michi>
     <h2 class="mt-5">{{operacion}}</h2>
-    <app-form-inicio-sesion class="my-5"></app-form-inicio-sesion>
+    <app-form-inicio-sesion class="my-5" (loginEvent)="loguearAlUser($event)"></app-form-inicio-sesion>
     <p>Ups! ¿No estás registrado?</p>
 </div>
