@@ -20,7 +20,7 @@ const getUsers = async (req:Request, res:Response)=> {
     })
 }
 
-const getOneUserByEmail = async (req:Request, res: Response): Promise<Response | void>=>{
+const getOneUserByEmail = async (req:Request, res: Response): Promise<any>=>{
 
     try{
         const {email, password} = req.body;
