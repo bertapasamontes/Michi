@@ -31,7 +31,7 @@ class Database {
         this.app.use('/api/calendar', eventsRoutes_1.default); //cuando mi url sea "localhost:puerto/api/calendar" y el verbo sea get, ejecutamos el trozo de codigo de getUsers
     }
     midlewares() {
-        //parseamos el body
+        //parseamos el body. sin esto, no puede leer lo que contiene en un form
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: true }));
         //cors

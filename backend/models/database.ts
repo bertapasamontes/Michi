@@ -40,7 +40,7 @@ class Database{
     }
 
     midlewares(){
-        //parseamos el body
+        //parseamos el body. sin esto, no puede leer lo que contiene en un form
         this.app.use(express.json());
         
         this.app.use(express.urlencoded({ extended: true }));

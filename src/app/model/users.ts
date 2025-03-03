@@ -15,6 +15,17 @@ const userSchema = new Schema({
   updatedAt: Date,
     
 });
+userSchema.pre('save', async function hasheandoContraseña(next) {
+  console.log('dentro de presave');
+  try{
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
+  }
+  catch(error){
+    next();
+    console.log(error);
+  }
+})
 // userSchema.pre('save', async function(next){
 //   console.log('dentro de presave');
 //   if (!this.isModified("password")) return next(); 

@@ -3,8 +3,11 @@ import UserNuevo from '../../src/app/model/users.js';
 
 import { Request, Response } from 'express';
 
-//para usar estas funciones, hay que añadirlas al module.export
-export const getUsers = async (req:Request, res:Response)=> {
+import * as bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken'
+
+//para usar estas funciones, hay que añadirlas al export
+const getUsers = async (req:Request, res:Response)=> {
     UserNuevo.find()
     .then((respuesta: any)=>{
         res.status(200).json(respuesta)
@@ -17,15 +20,50 @@ export const getUsers = async (req:Request, res:Response)=> {
     })
 }
 
-export const getOneUserByEmail = async (req:Request, res: Response)=>{
-    const {email} = req.params;
-    UserNuevo
-        .findOne({ email })
-        .then((data)=> res.json(data))
-        .catch((error)=> res.json({mensaje: error}))
+const getOneUserByEmail = async (req:Request, res: Response): Promise<Response | void>=>{
+
+    try{
+        const {email, password} = req.body;
+
+        const usuarioDB = await UserNuevo.findOne({ email });
+        if(!usuarioDB){
+            return res.status(400).json({
+                ok: false,
+                error:{message: 'User no encontrado'}
+            })
+        }
+        const passwordCorrecto = await bcrypt.compare(password, usuarioDB.password);
+        if (!passwordCorrecto) {
+            return res.status(400).json({
+                ok: false,
+                error: { message: "Usuario o contraseña incorrectos" }
+            });
+        }
+
+        const secret = "secreto";
+        // const experiesIn = '7d';
+        // Generar token de autenticación
+        const token = jwt.sign(
+            { id: usuarioDB._id, email: usuarioDB.email }, // Solo almacenamos el ID
+            secret,
+            {expiresIn: '7d'}
+        );
+
+        return res.json({ ok: true, usuario: usuarioDB, token });
+    }
+    catch(error){
+        return res.status(500).json({
+            message: 'Error de autenticación',
+            error: error
+        })
+    }
+    
+
+        // .then((data)=> res.json(data))
+        // .catch((error)=> res.json({mensaje: error}))
 }
 
-export const getOneUser = async (req:Request, res: Response)=>{
+const getOneUser = async (req:Request, res: Response)=>{
     const {id} = req.params;
     UserNuevo
         .findById(id)
@@ -33,7 +71,7 @@ export const getOneUser = async (req:Request, res: Response)=>{
         .catch((error)=> res.json({mensaje: error}))
 }
 
-export const deleteOneUser = (req:Request, res: Response)=>{
+const deleteOneUser = (req:Request, res: Response)=>{
     const {id} = req.params;
     UserNuevo
         .deleteOne({_id: id}) // con $set mongoDB actualiza el objeto de ese ID con el los datos del objeto que se le pasa (email, surname..).
@@ -43,7 +81,7 @@ export const deleteOneUser = (req:Request, res: Response)=>{
         }))
 }
 
-export const postUser = (req:Request, res: Response)=>{
+const postUser = (req:Request, res: Response)=>{
     const user = new UserNuevo(req.body);
     user
         .save()
@@ -53,7 +91,7 @@ export const postUser = (req:Request, res: Response)=>{
         }))
 }
 
-export const updateUser = (req:Request, res: Response)=>{
+const updateUser = (req:Request, res: Response)=>{
     const {id} = req.params;
     const {name, username, surname, email, role} = req.body;
     UserNuevo
@@ -66,6 +104,6 @@ export const updateUser = (req:Request, res: Response)=>{
 
 
 
-module.exports = {
+export {
     updateUser, getOneUser, deleteOneUser, postUser, getUsers, getOneUserByEmail
 }
