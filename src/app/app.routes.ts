@@ -20,7 +20,7 @@ export const routes: Routes = [
         path: 'admin', 
         component: AdminLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: 'admin' }, 
         children:[
-            {path: 'data', component: HomeComponent},
+            {path: 'data', component: HomeComponent,  data: { rolEsperado: 'admin' }},
             {path: 'mapa', component: MapaComponent},
             {path: 'calendar', component: FullCalendarComponent},
             {path: 'modo-user', component: UserLayoutComponent, children:[
@@ -43,16 +43,4 @@ export const routes: Routes = [
     { path: 'login', pathMatch:'full', component:InicioSesionComponent},
     { path: '', redirectTo: 'admin/data', pathMatch: 'full'}, //hay que cambiarlo a que se vaya la app. pero que apse antes por un inicio de sesión
     { path: '**', redirectTo:"", pathMatch:'full', component:AdminLayoutComponent}
-
-
-
-    // { path: 'home', component: HomeComponent},
-    // { path: '',   redirectTo: '/home', pathMatch: 'full'},
-    // // { path: 'edit/:id', component: AddUserComponent},
-    // { path: 'mapa', component: MapaComponent},
-    // { path: 'calendar', component: FullCalendarComponent},
-    // { path: 'charts', component: ChartsComponent},
-    // { path: '**', redirectTo:"", pathMatch:'full', component: HomeComponent},
-
-
 ];

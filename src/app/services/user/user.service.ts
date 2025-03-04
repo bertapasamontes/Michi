@@ -46,11 +46,12 @@ export class UserService {
         if(respuesta.tokenDelUser){
           localStorage.setItem("tokenDelUser",respuesta.tokenDelUser);
           localStorage.setItem("role",respuesta.usuario.role);
-          console.log(localStorage.getItem('role'))
+          console.log("rol desde userService login(): ",localStorage.getItem('role'))
 
-          if(respuesta.role == 'admin'){
+          if(respuesta.usuario.role == 'admin'){
             this.router.navigate(['admin/data']);
-          } else{
+          } 
+          if(respuesta.usuario.role == 'viewer'){
             this.router.navigate(['user/descubrir'])
           }
         }
