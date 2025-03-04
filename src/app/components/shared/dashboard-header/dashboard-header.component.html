@@ -1,3 +1,16 @@
 <div class="container d-flex justify-content-end">
-    <div class="profile"> Perfil del admin</div>
+    <div class="profile row">
+        @if(usuarioLogueado){
+        <div class="col">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                alt="img-perfil" class="img-fluid img-perfil">
+        </div>
+        <div class="col">
+            <div class="row"><b class="p-0">{{usuarioLogueado.name}} {{usuarioLogueado.surname}}</b></div>
+            <div class="row">{{usuarioLogueado.email}}</div>
+        </div>
+
+        }
+
+    </div>
 </div>

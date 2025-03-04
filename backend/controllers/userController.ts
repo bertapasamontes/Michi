@@ -75,6 +75,14 @@ const getOneUser = async (req:Request, res: Response)=>{
         .catch((error)=> res.json({mensaje: error}))
 }
 
+const getUserByEmail = async (req:Request, res: Response)=>{
+    const {email} = req.params;
+    UserNuevo
+        .findOne({email})
+        .then((data)=> res.json(data))
+        .catch((error)=> res.json({mensaje: error}))
+}
+
 const deleteOneUser = (req:Request, res: Response)=>{
     const {id} = req.params;
     UserNuevo
@@ -109,5 +117,5 @@ const updateUser = (req:Request, res: Response)=>{
 
 
 export {
-    updateUser, getOneUser, deleteOneUser, postUser, getUsers, getOneUserByEmail
+    updateUser, getOneUser, deleteOneUser, postUser, getUsers, getOneUserByEmail, getUserByEmail
 }

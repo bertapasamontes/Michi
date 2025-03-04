@@ -21,4 +21,21 @@ export class AuthService {
     localStorage.removeItem('tokenDelUser');
     localStorage.removeItem('role');
   }
+
+  getToken(): string | null {
+    return localStorage.getItem('tokenDelUser');
+  }
+
+  getUserFromToken(): any {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1])); // Decodifica el payload
+      return payload; // Devuelve los datos del usuario
+    } catch (error) {
+      console.error("Error decodificando el token:", error);
+      return null;
+    }
+  }
 }

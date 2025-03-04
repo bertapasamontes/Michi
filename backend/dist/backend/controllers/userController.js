@@ -35,7 +35,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOneUserByEmail = exports.getUsers = exports.postUser = exports.deleteOneUser = exports.getOneUser = exports.updateUser = void 0;
+exports.getUserByEmail = exports.getOneUserByEmail = exports.getUsers = exports.postUser = exports.deleteOneUser = exports.getOneUser = exports.updateUser = void 0;
 const users_js_1 = __importDefault(require("../../src/app/model/users.js"));
 const bcrypt = __importStar(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
@@ -98,6 +98,14 @@ const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         .catch((error) => res.json({ mensaje: error }));
 });
 exports.getOneUser = getOneUser;
+const getUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.params;
+    users_js_1.default
+        .findOne({ email })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ mensaje: error }));
+});
+exports.getUserByEmail = getUserByEmail;
 const deleteOneUser = (req, res) => {
     const { id } = req.params;
     users_js_1.default

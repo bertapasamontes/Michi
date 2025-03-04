@@ -37,13 +37,17 @@ export class UserService {
     return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}/id/${id}`)
   }
 
+  getUserByEmail(email: string): Observable<User>{
+    return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}/email/${email}`)
+  }
+
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>( // el {} determina qué tipos de datos le entran
       `${this.myAppUrl}${this.myApiUrl}/login`,
       { email, password } // envia los datos en el body
     ).pipe(
       tap(respuesta =>{
-        if(respuesta.tokenDelUser){
+        if(respuesta.tokenDelUser){ //guardamos el token y el rol del user en el localStorage
           localStorage.setItem("tokenDelUser",respuesta.tokenDelUser);
           localStorage.setItem("role",respuesta.usuario.role);
           console.log("rol desde userService login(): ",localStorage.getItem('role'))
