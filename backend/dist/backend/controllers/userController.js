@@ -86,8 +86,6 @@ const getOneUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, functi
             error: error
         });
     }
-    // .then((data)=> res.json(data))
-    // .catch((error)=> res.json({mensaje: error}))
 });
 exports.getOneUserByEmail = getOneUserByEmail;
 const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

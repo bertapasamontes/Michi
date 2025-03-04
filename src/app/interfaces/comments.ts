@@ -1,4 +1,4 @@
-export interface Comment {
+export interface Comentario {
     _id?: string;
     product: string; // ID del producto
     user: string; // ID del user que lo ha dicho

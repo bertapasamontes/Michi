@@ -61,10 +61,6 @@ const getOneUserByEmail = async (req:Request, res: Response): Promise<any>=>{
             error: error
         })
     }
-    
-
-        // .then((data)=> res.json(data))
-        // .catch((error)=> res.json({mensaje: error}))
 }
 
 const getOneUser = async (req:Request, res: Response)=>{

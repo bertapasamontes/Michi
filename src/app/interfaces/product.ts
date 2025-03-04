@@ -1,3 +1,4 @@
+import { Comentario } from "./comments";
 import { placeGlobal } from "./places/placeGlobal";
 
 export interface User {
@@ -6,5 +7,5 @@ export interface User {
     category: string;
     price: number;
     site: placeGlobal | string;
-    comments?: Comment[];
+    comments?: Comentario[];
 }

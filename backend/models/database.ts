@@ -8,6 +8,8 @@ import { environment } from "../env";
 import routeUsers from '../routes/userRoutes'
 import routePlaces from '../routes/placesRoutes'
 import routeEvents from '../routes/eventsRoutes'
+import routeProducts from '../routes/productsRoutes'
+import routeComments from '../routes/commentsRoutes'
 
 class Database{
 
@@ -34,8 +36,10 @@ class Database{
 
     routes(){
         this.app.use('/api/usuario', routeUsers); //cuando mi url sea "localhost:puerto/api/users" y el verbo sea get, ejecutamos el trozo de codigo de getUsers
-        this.app.use('/api/map', routePlaces); //cuando mi url sea "localhost:puerto/api/map" y el verbo sea get, ejecutamos el trozo de codigo de getUsers
-        this.app.use('/api/calendar', routeEvents); //cuando mi url sea "localhost:puerto/api/calendar" y el verbo sea get, ejecutamos el trozo de codigo de getUsers
+        this.app.use('/api/map', routePlaces);
+        this.app.use('/api/calendar', routeEvents); 
+        this.app.use('/api/producto', routeProducts);
+        this.app.use('/api/comentario', routeComments);
 
     }
 

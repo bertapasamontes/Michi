@@ -11,6 +11,8 @@ const env_1 = require("../env");
 const userRoutes_1 = __importDefault(require("../routes/userRoutes"));
 const placesRoutes_1 = __importDefault(require("../routes/placesRoutes"));
 const eventsRoutes_1 = __importDefault(require("../routes/eventsRoutes"));
+const productsRoutes_1 = __importDefault(require("../routes/productsRoutes"));
+const commentsRoutes_1 = __importDefault(require("../routes/commentsRoutes"));
 class Database {
     constructor() {
         this.app = (0, express_1.default)();
@@ -27,8 +29,10 @@ class Database {
     }
     routes() {
         this.app.use('/api/usuario', userRoutes_1.default); //cuando mi url sea "localhost:puerto/api/users" y el verbo sea get, ejecutamos el trozo de codigo de getUsers
-        this.app.use('/api/map', placesRoutes_1.default); //cuando mi url sea "localhost:puerto/api/map" y el verbo sea get, ejecutamos el trozo de codigo de getUsers
-        this.app.use('/api/calendar', eventsRoutes_1.default); //cuando mi url sea "localhost:puerto/api/calendar" y el verbo sea get, ejecutamos el trozo de codigo de getUsers
+        this.app.use('/api/map', placesRoutes_1.default);
+        this.app.use('/api/calendar', eventsRoutes_1.default);
+        this.app.use('/api/producto', productsRoutes_1.default);
+        this.app.use('/api/comentario', commentsRoutes_1.default);
     }
     midlewares() {
         //parseamos el body. sin esto, no puede leer lo que contiene en un form

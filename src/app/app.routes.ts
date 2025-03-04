@@ -6,9 +6,9 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { FullCalendarComponent } from './components/full-calendar/full-calendar.component';
 import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
 import { UserLayoutComponent } from './components/layouts/user-layout/user-layout.component';
-import { DescubrirComponent } from './components/app-mobile/descubrir/descubrir.component';
-import { MapaMobileComponent } from './components/app-mobile/mapa-mobile/mapa-mobile.component';
-import { MichiBotComponent } from './components/app-mobile/michi-bot/michi-bot.component';
+import { DescubrirComponent } from './components/organismos/mobile-descubrir/descubrir.component';
+import { MapaMobileComponent } from './components/organismos/mobile-mapa/mapa-mobile.component';
+import { MichiBotComponent } from './components/organismos/mobile-michi-bot/michi-bot.component';
 import { InicioSesionComponent } from './components/moleculas/inicio-sesion/inicio-sesion.component';
 import { AuthGuard } from './_helpers/authGuard/auth.guard';
 
