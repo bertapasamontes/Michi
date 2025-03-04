@@ -1,0 +1,14 @@
+#popover-content{
+    display: flex;
+    flex-direction: row;
+    position: absolute; 
+}
+
+.oculto{
+    visibility: hidden;
+    display: none;
+}
+
+.visible{
+    visibility: visible;
+}

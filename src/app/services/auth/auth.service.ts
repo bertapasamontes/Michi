@@ -9,11 +9,16 @@ export class AuthService {
 
   isLogged(): boolean{
     localStorage.getItem('tokenDelUser');
-    // console.log("autorizado")
-    return true;
+    localStorage.getItem('role');
+
+    if(localStorage.getItem('tokenDelUser') != null || localStorage.getItem('role') != null){
+      return true;
+    }
+    else return false    
   }
 
   logOut(): void{
     localStorage.removeItem('tokenDelUser');
+    localStorage.removeItem('role');
   }
 }

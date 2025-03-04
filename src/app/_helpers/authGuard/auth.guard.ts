@@ -8,12 +8,16 @@ export const AuthGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state:Rou
   const _authService = inject(AuthService);
   const router = inject(Router);
   
-  if (!_authService.isLogged()) { // si no está logueado, vuelve al login.
-    console.log("No estás logueado");
+  if (_authService.isLogged()) { 
+   console.log("estas logueado")
+   console.log(_authService.isLogged());
+    return true;
+  }
+  else{
+    console.log("No estás logueado");// si no está logueado, vuelve al login.
     router.navigate(["/login"]);
     return false;
   }
-  console.log("estas logueado")
-  return true;
+   
 
 };
