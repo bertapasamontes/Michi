@@ -6,4 +6,6 @@ export interface User {
     email: string;
     password: string;
     role: 'viewer' | 'admin';
+    imgProfile?: string;
+    comments?:{};
 }

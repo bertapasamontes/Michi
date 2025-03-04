@@ -39,6 +39,13 @@ exports.UserNuevo = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const { Schema, model } = mongoose_1.default;
 const bcrypt = __importStar(require("bcrypt"));
+const defaultImages = [
+    '../../assets/img/profile-images/michi-default.png',
+    // '../../assets/img/profile-images/michi-cook.png',
+    '../../assets/img/profile-images/michi-gold.png',
+    '../../assets/img/profile-images/michi-idea.png',
+    '../../assets/img/profile-images/michi-suerte.png',
+];
 const userSchema = new Schema({
     // id: {type: Number, unique:true},
     name: { type: String, required: true },
@@ -47,9 +54,12 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, required: true },
+    imgProfile: { type: String, default: () => defaultImages[Math.floor(Math.random() * defaultImages.length)] },
+    comments: { type: { type: String } },
     createdAt: Date,
     updatedAt: Date,
 });
+//hasheamos la contraseña antes de guardar el user en la base de datos
 userSchema.pre('save', function hasheandoContraseña(next) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log('dentro de presave');
@@ -63,17 +73,5 @@ userSchema.pre('save', function hasheandoContraseña(next) {
         }
     });
 });
-// userSchema.pre('save', async function(next){
-//   console.log('dentro de presave');
-//   if (!this.isModified("password")) return next(); 
-//   try{
-//     this.password = await bcrypt.hash(this.password, 10);
-//     next();
-//   }
-//   catch(error){
-//     next();
-//     console.log(error);
-//   }
-// });
 exports.UserNuevo = mongoose_1.default.model('UsersDeMichi', userSchema); //este User es el que le da nombre a la subcarpeta de mongoDB
 exports.default = exports.UserNuevo;

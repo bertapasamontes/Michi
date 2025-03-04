@@ -1,0 +1,18 @@
+.img-perfil{
+    width: 140%;  
+    height: auto;
+    position: absolute;
+    top: 0px;
+    left: -8px; 
+}
+.image-container{
+    border: solid 1.5px #0a0b0a;
+    width: 40px;  
+    height: 40px;  /* Altura deseada para mostrar solo la cabeza */
+    overflow: hidden;  /* Oculta el resto de la imagen */
+    border-radius: 50%; /* Opcional: para hacerlo redondo */
+    position: relative;
+}
+.primera-col{
+    max-width: 50px;
+}

@@ -3,12 +3,12 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/user/user.service';
 
 @Component({
-  selector: 'app-dashboard-header',
+  selector: 'app-ProfileSmallInfo',
   imports: [],
-  templateUrl: './dashboard-header.component.html',
-  styleUrl: './dashboard-header.component.scss'
+  templateUrl: './ProfileSmallInfo.component.html',
+  styleUrl: './ProfileSmallInfo.component.scss'
 })
-export class DashboardHeaderComponent {
+export class ProfileSmallInfo {
 
   usuarioLogueado:any = null
 

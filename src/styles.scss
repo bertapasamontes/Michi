@@ -14,9 +14,22 @@ $light: #FBD8B8;
 
 * {
   font-family: 'Poppins';
-  }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+}
+
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+p{
+  font-size: 14px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
 
 .btn-navbar-mobile{
   display: flex;
