@@ -3,7 +3,7 @@ import { PlacesService } from '../../../../services/mapa/places/places-service.s
 import * as mapbox from 'mapbox-gl';
 import { MapService } from '../../../../services/mapa/map/map.service';
 import { MapGlobalService } from '../../../../services/mapa/map-global.service';
-import { FiltroMapaComponent } from "../filtro-mapa/filtro-mapa.component";
+import { FiltroMapaComponent } from "../../../atomos/filtro-mapa/filtro-mapa.component";
 
 
 @Component({

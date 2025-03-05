@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PlacesService } from '../../services/mapa/places/places-service.service';
 import { MapViewComponent } from "./components/map-view/map-view.component";
 import { ProgressBarComponent } from "../shared/progress-bar/progress-bar.component";
-import { BtnMyLocationComponent } from "./components/btn-my-location/btn-my-location.component";
+import { BtnMyLocationComponent } from "../atomos/btn-my-location/btn-my-location.component";
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { MatIcon } from '@angular/material/icon';
 

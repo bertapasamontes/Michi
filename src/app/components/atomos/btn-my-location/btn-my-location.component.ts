@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { MapService } from '../../../../services/mapa/map/map.service';
-import { PlacesService } from '../../../../services/mapa/places/places-service.service';
+import { MapService } from '../../../services/mapa/map/map.service';
+import { PlacesService } from '../../../services/mapa/places/places-service.service';
 
 @Component({
   selector: 'app-btn-my-location',
