@@ -10,7 +10,9 @@
 
 
 $primary: #F17A12 !default;
+$secondary: #686665;
 $light: #FBD8B8;
+
 
 * {
   font-family: 'Poppins';
@@ -50,6 +52,22 @@ p{
     border: solid 1px $primary !important;
     color: $primary !important;
     background-color: transparent !important;
+  }
+}
+
+.btn-outline-secundario{
+  // background-color: $light !important;
+  border: solid 1px $secondary !important;
+  border-radius: 20px !important;
+  color: $secondary !important;
+
+  transition: border ease-in-out;
+  transition: background-color ease-in-out;
+
+  &:hover{
+    border: solid 1px $secondary !important;
+    color: black !important;
+    background-color: $secondary !important;
   }
 }
 

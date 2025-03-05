@@ -1,15 +1,19 @@
 <div class="container d-flex flex-column justify-content-center align-items-md-center">
     
-    @if(operacion == 'Iniciar Sesión'){
+    @if(operacion == 'Iniciar sesión'){
         <app-logo-michi></app-logo-michi>
         <h2 class="mt-5">{{operacion}}</h2>
         <app-form-inicio-sesion class="my-5" (loginEvent)="loguearAlUser($event)"></app-form-inicio-sesion>
         <p>Ups! ¿No estás registrado?</p>
-        <button type="submit" class="btn btn-outline-secundario" routerLink="registro">Registrarme</button>
+        <app-btn-login-registro operacionAlBoton="Registrarme" (operation)="changeOperation($event)"></app-btn-login-registro>
     }
-    @else{
+    @if(operacion == 'Registrarme'){
         <h2 class="mt-5">{{operacion}}</h2>
-        <app-form-registro class="my-5" (registerEvent)="registrarAlUser($event)"></app-form-registro>
+        <app-form-registro class="my-5" (registerEvent)="registrarAlUser($event)" ></app-form-registro>
+        <!-- <app-btn-login-registro operacionAlBoton="Registrarme" (operation)="changeOperation($event)"></app-btn-login-registro> -->
+
+        <p>¿Ya estás registrado?</p>
+        <app-btn-login-registro operacionAlBoton="Iniciar sesión" (operation)="changeOperation($event)"></app-btn-login-registro>
     }
 
 </div>

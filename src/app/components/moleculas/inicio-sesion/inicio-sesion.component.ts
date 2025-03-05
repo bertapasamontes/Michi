@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LogoDashboardComponent } from "../../atomos/logo-dashboard/logo-dashboard.component";
 import { FormInicioSesionComponent } from "../../atomos/form-inicio-sesion/form-inicio-sesion.component";
 import { LogoMichiComponent } from "../../atomos/logo-michi/logo-michi.component";
 import { UserService } from '../../../services/user/user.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormRegistroComponent } from "../../atomos/form-registro/form-registro.component";
+import { BtnLoginRegistroComponent } from "../../atomos/btn-login-registro/btn-login-registro.component";
 
 @Component({
   selector: 'app-inicio-sesion',
-  imports: [FormInicioSesionComponent, LogoMichiComponent, RouterLink, FormRegistroComponent],
+  imports: [FormInicioSesionComponent, LogoMichiComponent, FormRegistroComponent, BtnLoginRegistroComponent],
   templateUrl: './inicio-sesion.component.html',
   styleUrl: './inicio-sesion.component.scss'
 })
@@ -18,6 +19,8 @@ export class InicioSesionComponent {
     private _userService: UserService
   ){
   }
+
+  operacionAlBoton:string = ''; //enviamos la operacion que debe realizar el boton
 
   operacion: string = "Iniciar sesión";
 
@@ -29,4 +32,15 @@ export class InicioSesionComponent {
     this._userService.saveUser(credenciales).subscribe(
     )
   } 
+
+  ngOnInit(){
+    console.log(this.operacion);
+  }
+  changeOperation(nuevaOperacion: string){
+    this.operacion = nuevaOperacion;
+  }
+
+  reload(){
+    console.log(this.operacion);
+  }
 }

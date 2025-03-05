@@ -37,7 +37,9 @@ export class FormRegistroComponent {
     const role = 'viewer';
 
     this.registerEvent.emit({ email: email, password: password, name: name , username: username , role: role }); //enviamos los datos al compontente padre
+   
   }
+
 
 
 
