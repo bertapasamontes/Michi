@@ -29,7 +29,17 @@ export class InicioSesionComponent {
   )}
 
   registrarAlUser(credenciales: { name: string,  username: string, email:string, password: string, role: string }){
-    this._userService.saveUser(credenciales).subscribe(
+    this._userService.register(credenciales).subscribe({
+      next: (respuesta)=>{
+        console.log("registro exitoso: ", respuesta);
+        return this.loguearAlUser({email:credenciales.email, password: credenciales.password})
+
+      },
+      error:(error)=>{
+        console.log("error: ", error)
+      }
+    }
+      
     )
   } 
 

@@ -41,6 +41,10 @@ export class UserService {
     return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}/email/${email}`)
   }
 
+  register(user: User): Observable<any>{
+    return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, user);
+  }
+
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>( // el {} determina qué tipos de datos le entran
       `${this.myAppUrl}${this.myApiUrl}/login`,
