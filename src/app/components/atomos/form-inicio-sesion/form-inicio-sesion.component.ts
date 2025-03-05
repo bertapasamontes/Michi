@@ -10,7 +10,6 @@ import { UserService } from '../../../services/user/user.service';
 })
 export class FormInicioSesionComponent {
   formInicioSesion: FormGroup;
-  operacion: string = 'Inicio de sesión';
 
   constructor(
     //formulario

@@ -1,0 +1,59 @@
+<form class="row g-3" [formGroup]='formRegistro' (ngSubmit)="registro()">
+
+  <div class="col-md-6">
+    <label for="name">Nombre*</label>
+    <input formControlName="name" type="text" class="form-control" placeholder="Pedro">
+    @if(formRegistro.get('name')?.hasError('required') && formRegistro.get('name')?.touched){
+    <span>Este campo es requerido</span>
+    }
+
+  </div>
+  <div class="col-md-6">
+    <label for="username">Username*</label>
+    <input formControlName="username" type="text" class="form-control" placeholder="@pedropascual"
+      autocomplete="username">
+    @if(formRegistro.get('username')?.hasError('required') && formRegistro.get('username')?.touched){
+    <span>Este campo es requerido</span>
+    }
+  </div>
+
+  <div class="col-md-6">
+    <label for="email">Email*</label>
+    <input formControlName="email" type="email" class="form-control" placeholder="pedropascual@gmail.com">
+    @if(formRegistro.get('email')?.hasError('required') && formRegistro.get('email')?.touched){
+    <span>Este campo es requerido</span>
+    }
+  </div>
+  <div class="col-md-6">
+    <label for="role">Rol*</label>
+    <select class="form-select" formControlName="role">
+      <option selected value="viewer"><span><mat-icon>visibility</mat-icon></span> Viewer</option>
+      <option value="admin">Admin</option>
+    </select>
+  </div>
+
+
+
+  <div class="col-md-6">
+    <label for="password">Password*</label>
+    <input formControlName="password" type="password" class="form-control" placeholder="****"
+      autocomplete="new-password">
+    @if(formRegistro.get('password')?.hasError('required') && formRegistro.get('password')?.touched){
+    <span>Este campo es requerido</span>
+    }
+  </div>
+
+
+
+  <div class="col-12">
+    <div class="row mt-2">
+      <div class="col-lg-6">
+
+        <button [disabled]="formRegistro.invalid" type="submit"
+          class="btn btn-primary d-flex align-items-center"><mat-icon>add</mat-icon>Registrarme</button>
+
+      </div>
+    </div>
+  </div>
+
+</form>

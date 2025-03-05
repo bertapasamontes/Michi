@@ -31,7 +31,7 @@ export class TablaDatosComponent {
   });
 
   private columnMapping: { [key: string]: { [key: string]: string } } = {
-    usuarios: { nombre: 'name', apellido: 'surname', username: 'username', rol: 'role' },
+    usuarios: { nombre: 'name', username: 'username', email: 'email', rol: 'role' },
     locales: { nombre: 'name', dirección: 'short_direction', categoria: 'category' }
   };
 
@@ -48,52 +48,52 @@ export class TablaDatosComponent {
 
 
 
-  getClassForColumn(column: string, value: string): string {
-    if (column === 'rol') {
-      return this.getRoleClass(value);
-    }
-    if (column === 'categoria') {
-      return this.getCategoryClass(value);
-    }
-    return '';
-  }
+  // getClassForColumn(column: string, value: string): string {
+  //   if (column === 'rol') {
+  //     return this.getRoleClass(value);
+  //   }
+  //   if (column === 'categoria') {
+  //     return this.getCategoryClass(value);
+  //   }
+  //   return '';
+  // }
   
-  getRoleClass(role: string): string {
-    const roleClasses: { [key: string]: string } = {
-      'admin': 'tag-admin',
-      'usuario': 'tag-user',
-      'moderador': 'tag-moderator',
-    };
-    return roleClasses[role?.toLowerCase()] || 'tag-default';
-  }
+  // getRoleClass(role: string): string {
+  //   const roleClasses: { [key: string]: string } = {
+  //     'admin': 'tag-admin',
+  //     'usuario': 'tag-user',
+  //     'moderador': 'tag-moderator',
+  //   };
+  //   return roleClasses[role?.toLowerCase()] || 'tag-default';
+  // }
   
-  getCategoryClass(category: string): string {
-    const categoryClasses: { [key: string]: string } = {
-      'café': 'tag-cafe',
-      'cafetería': 'tag-cafe',
-      'comida y bebida': 'tag-drink-food',
-      'restaurant': 'tag-restaurant',
-      'panadería': 'tag-bakery',
-    };
-    return categoryClasses[category?.toLowerCase()] || 'tag-default';
-  }
+  // getCategoryClass(category: string): string {
+  //   const categoryClasses: { [key: string]: string } = {
+  //     'café': 'tag-cafe',
+  //     'cafetería': 'tag-cafe',
+  //     'comida y bebida': 'tag-drink-food',
+  //     'restaurant': 'tag-restaurant',
+  //     'panadería': 'tag-bakery',
+  //   };
+  //   return categoryClasses[category?.toLowerCase()] || 'tag-default';
+  // }
   
-  getRoleIcon(role: string): string {
-    const roleIcons: { [key: string]: string } = {
-      'admin': 'admin_panel_settings',
-      'viewer': 'person'
-    };
-    return roleIcons[role?.toLowerCase()] || 'help';
-  }
+  // getRoleIcon(role: string): string {
+  //   const roleIcons: { [key: string]: string } = {
+  //     'admin': 'admin_panel_settings',
+  //     'viewer': 'person'
+  //   };
+  //   return roleIcons[role?.toLowerCase()] || 'help';
+  // }
   
-  getCategoryIcon(category: string): string {
-    const categoryIcons: { [key: string]: string } = {
-      'café': 'local_cafe',
-      'cafetería': 'local_cafe',
-      'comida y bebida': 'restaurant',
-      'restaurant': 'restaurant',
-      'panadería': 'bakery_dining',
-    };
-    return categoryIcons[category?.toLowerCase()] || 'sell'; // Ícono por defecto
-  }
+  // getCategoryIcon(category: string): string {
+  //   const categoryIcons: { [key: string]: string } = {
+  //     'café': 'local_cafe',
+  //     'cafetería': 'local_cafe',
+  //     'comida y bebida': 'restaurant',
+  //     'restaurant': 'restaurant',
+  //     'panadería': 'bakery_dining',
+  //   };
+  //   return categoryIcons[category?.toLowerCase()] || 'sell'; // Ícono por defecto
+  // }
 }  

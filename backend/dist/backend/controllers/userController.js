@@ -126,9 +126,9 @@ const postUser = (req, res) => {
 exports.postUser = postUser;
 const updateUser = (req, res) => {
     const { id } = req.params;
-    const { name, username, surname, email, role, imgProfile, comments } = req.body;
+    const { name, username, email, role, imgProfile, comments } = req.body;
     users_js_1.default
-        .updateOne({ _id: id }, { $set: { name, username, surname, email, role, imgProfile, comments } }) // con $set mongoDB actualiza el objeto de ese ID con el los datos del objeto que se le pasa (email, surname..).
+        .updateOne({ _id: id }, { $set: { name, username, email, role, imgProfile, comments } }) // con $set mongoDB actualiza el objeto de ese ID con el los datos del objeto que se le pasa (email..).
         .then((data) => res.json(data))
         .catch((error) => res.json({
         mensaje: error

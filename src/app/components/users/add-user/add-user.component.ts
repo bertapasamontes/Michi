@@ -40,7 +40,7 @@ export class AddUserComponent {
       //formulario
       this.formAddUser = formBuilder.group({
         name: ['', Validators.required],
-        surname: [''],
+        // surname: [''],
         username: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(4)]],
@@ -60,7 +60,7 @@ export class AddUserComponent {
     addUser(){
       const usuarioNuevo: User = {
         name: this.formAddUser.value.name,
-        surname: this.formAddUser.value.surname,
+        // surname: this.formAddUser.value.surname,
         username: this.formAddUser.value.username,
         password: this.formAddUser.value.password,
         email: this.formAddUser.value.email,
@@ -95,7 +95,7 @@ export class AddUserComponent {
         this.loading=false;
         this.formAddUser.setValue({
           name: data.name,
-          surname: data.surname,
+          // surname: data.surname,
           username: data.username,
           email: data.email,
           password: data.password,
