@@ -1,7 +1,7 @@
 import { Comentario } from "./comments";
 import { placeGlobal } from "./places/placeGlobal";
 
-export interface User {
+export interface Product {
     _id?: number;
     name: string;
     category: string;
