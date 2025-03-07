@@ -8,7 +8,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const { Schema, model } = mongoose_1.default;
 const productSchema = new Schema({
     name: { type: String, required: true },
-    category: { type: String, required: true },
+    category: [{ type: String, required: true }],
     price: { type: Number, required: true },
     site: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "sitiosDeMichi" },
     rate: { type: Number },

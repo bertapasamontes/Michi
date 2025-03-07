@@ -15,7 +15,8 @@ export class PixabayImagesService {
 
    async getImageFromPixabay(nameProduct: string): Promise<string> {
     try {
-        const response = await axios.get(`${this.pixabayEstructura}?key=${this.pixabayAPIKey}&q=${nameProduct}&image_type=photo`);
+        console.log("api key: ", this.pixabayAPIKey)
+        const response = await axios.get(`${this.pixabayEstructura}${this.pixabayAPIKey}&q=${nameProduct}&image_type=photo&pretty=true`);
         return response.data.hits[0]?.webformatURL || ''; // Devuelve la URL de la primera imagen
     } catch (error) {
         console.error('Error obteniendo imagen de Pixabay:', error);

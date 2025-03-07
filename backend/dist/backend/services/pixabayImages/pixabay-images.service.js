@@ -24,7 +24,8 @@ class PixabayImagesService {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;
             try {
-                const response = yield axios_1.default.get(`${this.pixabayEstructura}?key=${this.pixabayAPIKey}&q=${nameProduct}&image_type=photo`);
+                console.log("api key: ", this.pixabayAPIKey);
+                const response = yield axios_1.default.get(`${this.pixabayEstructura}${this.pixabayAPIKey}&q=${nameProduct}&image_type=photo&pretty=true`);
                 return ((_a = response.data.hits[0]) === null || _a === void 0 ? void 0 : _a.webformatURL) || ''; // Devuelve la URL de la primera imagen
             }
             catch (error) {

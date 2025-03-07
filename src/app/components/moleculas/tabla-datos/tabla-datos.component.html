@@ -1,4 +1,3 @@
-
 <table class="table">
     <thead>
         <tr>
@@ -9,16 +8,45 @@
         </tr>
     </thead>
     <tbody>
-        @for (row of filteredData(); track row) {<tr>
+        @for (row of filteredData(); track row) {
+            <tr>
             @for(column of selectedColumns(); track column){
-            <td>{{ row[column] }}</td>
+
+                @if(tipo === 'productos'){
+                    @if(column == "imagen"){
+                        <img src="{{row[column]}}" alt="img-{{row[column]}}" class="img-fluid img-product">
+                    }
+
+                    @else if(column == "puntuación"){
+                        <td>{{ row[column] }}⭐</td>
+                    }
+                    @else if(column === "comentarios"){
+                    <td>
+                        <div>
+                            @for (comment of row['comentarios']; track comment){
+                            <span class="comentario">{{comment.text}}</span> -
+                            <span class="username">&#64;{{comment.user?.username || 'Usuario desconocido'}}</span>
+                            }
+                        </div>
+                    </td>
+                    }
+                    @else{
+                        <td>{{ row[column] }}</td>
+                    }
+                }
+
+
+                @else{
+                <td>{{ row[column] }}</td>
+                }
             }
 
             <td class="d-inline-flex">
                 @if (tipo === 'usuarios' && row['id'] !== undefined) {
                 <app-btn-editar [item]="row['id']" (updateData)="refreshData()"></app-btn-editar>
                 }
-                <app-btn-delete (removeItem)="onDeleteItem($event['id'], $event['tipo'])" [item]="row['id']" [tipo]="tipo"></app-btn-delete>
+                <app-btn-delete (removeItem)="onDeleteItem($event['id'], $event['tipo'])" [item]="row['id']"
+                    [tipo]="tipo"></app-btn-delete>
             </td>
         </tr>
         }

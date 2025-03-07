@@ -16,6 +16,21 @@ const _pixabayImages = new pixabay_images_service_js_1.PixabayImagesService();
 //para usar estas funciones, hay que añadirlas al module.export
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     product_js_1.ProductoNuevo.find()
+        .populate({
+        path: 'site',
+        model: 'sitiosDeMichi',
+        select: 'name'
+    })
+        .populate({
+        path: 'comments',
+        model: 'comentarios',
+        select: 'text',
+        populate: {
+            path: 'user',
+            model: 'UsersDeMichi',
+            select: 'username'
+        }
+    })
         .then((respuesta) => {
         res.status(200).json(respuesta);
     })
@@ -64,17 +79,29 @@ const deleteOneProduct = (req, res) => {
 };
 exports.deleteOneProduct = deleteOneProduct;
 const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, category, price, site, rate, comments } = req.body;
-    const imgURL = yield _pixabayImages.getImageFromPixabay(name);
-    const producto = new product_js_1.ProductoNuevo({
-        name, category, price, site, rate, comments, imgURL
-    });
-    producto
-        .save()
-        .then((data) => res.json(data))
-        .catch((error) => res.json({
-        mensaje: error
-    }));
+    try {
+        const { name, category, price, site, rate, comments } = req.body;
+        const imgProduct = yield _pixabayImages.getImageFromPixabay(name);
+        console.log("imgProduct: ", imgProduct);
+        if (!imgProduct || imgProduct.trim() === '') {
+            res.status(400).json({ mensaje: 'No se pudo obtener una URL de imagen válida' });
+        }
+        const producto = new product_js_1.ProductoNuevo({
+            name, category, price, site, rate, comments, imgProduct
+        });
+        try {
+            console.log("Producto a guardar:", producto);
+            const productoGuardado = yield producto.save();
+            res.json({ data: productoGuardado, mensaje: 'Producto guardado' });
+        }
+        catch (error) {
+            res.status(500).json({ mensaje: "Error al crear el producto", error: error });
+        }
+        // res.status(200).json(producto);
+    }
+    catch (error) {
+        res.status(500).json({ mensaje: "Error en postProduct", error: error });
+    }
 });
 exports.postProduct = postProduct;
 const updateProduct = (req, res) => {

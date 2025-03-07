@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const productSchema = new Schema({
     name: {type: String, required: true},
-    category: {type: String, required: true},
+    category: [{type: String, required: true}],
     price:{type: Number, required: true},
     site: { type: mongoose.Schema.Types.ObjectId, ref: "sitiosDeMichi" },
     rate:{type: Number},

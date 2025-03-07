@@ -10,6 +10,21 @@ const _pixabayImages = new PixabayImagesService();
 //para usar estas funciones, hay que añadirlas al module.export
 export const getProducts = async (req:Request, res:Response)=> {
     ProductoNuevo.find()
+    .populate({
+        path: 'site',
+        model: 'sitiosDeMichi',
+        select: 'name'
+    })
+    .populate({
+        path: 'comments',
+        model: 'comentarios',
+        select: 'text',
+        populate:{
+            path: 'user',
+            model: 'UsersDeMichi',
+            select: 'username'
+        }
+    })
     .then((respuesta: any)=>{
         res.status(200).json(respuesta)
     })
@@ -58,20 +73,36 @@ export const deleteOneProduct = (req:Request, res: Response)=>{
         }))
 }
 
-export const postProduct = async (req:Request, res: Response)=>{
-    
-    const {name, category, price, site, rate, comments} = req.body;
-    const imgURL = await _pixabayImages.getImageFromPixabay(name);
+export const postProduct = async (req:Request, res: Response):Promise<void>=>{
+    try{
+        const {name, category, price, site, rate, comments} = req.body;
+        const imgProduct = await _pixabayImages.getImageFromPixabay(name);
 
-    const producto = new ProductoNuevo({
-        name, category, price, site, rate, comments, imgURL
-    });
-    producto
-        .save()
-        .then((data)=> res.json(data))
-        .catch((error)=> res.json({
-            mensaje: error
-        }))
+        console.log("imgProduct: ",imgProduct);
+
+        if (!imgProduct || imgProduct.trim() === '') {
+            res.status(400).json({ mensaje: 'No se pudo obtener una URL de imagen válida' });
+        }
+
+        const producto = new ProductoNuevo({
+            name, category, price, site, rate, comments, imgProduct
+        });
+        try{
+            console.log("Producto a guardar:", producto);
+            const productoGuardado = await producto.save()
+            res.json({data: productoGuardado, mensaje: 'Producto guardado'});
+                
+        }
+        catch(error){
+            res.status(500).json({ mensaje: "Error al crear el producto", error: error });
+        }
+        
+        // res.status(200).json(producto);
+    }
+    catch(error){
+        res.status(500).json({ mensaje: "Error en postProduct", error: error });
+    }
+    
 }
 
 export const updateProduct = (req:Request, res: Response)=>{

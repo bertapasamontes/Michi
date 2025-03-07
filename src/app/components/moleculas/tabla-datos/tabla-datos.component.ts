@@ -17,22 +17,42 @@ export class TablaDatosComponent {
 
   selectedColumns = computed(()=> Object.keys(this.columnMapping[this.tipo] || {}))
 
-  // Crear un Signal que calcule filteredData basado en datos()
+  // signal que calcula filteredData basado en datos()
   filteredData = computed(() => {
     return this.datos().map(row => {
-      let filteredRow: { [key: string]: any } = { id: row._id }; // Intentar extraer el ID
+      let filteredRow: { [key: string]: any } = { id: row._id }; //extrae el ID
       for (let column of this.selectedColumns()) {
         const key = this.columnMapping[this.tipo][column];
-        filteredRow[column] = row[key] ?? 'no hay';
+
+        //Si el tipo es 'productos':
+        if(this.tipo == 'productos'){
+          if(column == 'dirección' && row[key] && row[key].name){
+            filteredRow[column] = row[key].name;
+          } 
+          else if (column === 'comentarios' && row[key]) {
+            filteredRow[column] = row[key].map((comment: { text: string; user: { username: string } }) => { //cogemos el comentario u el username del user
+              // return `<span class="comentario">${comment.text}</span> - <span class="username">@${comment.user?.username || 'Usuario desconocido'}</span>`;
+            }).join("<br>");
+          }
+          else if(column != 'comentarios' && column != 'dirección'){
+            filteredRow[column] = row[key] ?? 'no hay';
+          } 
+        }
+
+        //si no, muestralo tal cual
+        else {
+          filteredRow[column] = row[key] ?? 'no hay';
+        }
       }
       return filteredRow;
     });
   });
 
-  private columnMapping: { [key: string]: { [key: string]: string } } = {
+  //decidimos las columnas que habrá por cada tipo de datos que pasen
+  private columnMapping: { [key: string]: { [key: string]: string } } = { 
     usuarios: { nombre: 'name', username: 'username', email: 'email', rol: 'role' },
     locales: { nombre: 'name', dirección: 'short_direction', categoria: 'category' },
-    productos: { nombre: 'name', puntuación:'rate', comentarios: 'comments' , dirección: 'site', categoria: 'category'}
+    productos: { imagen: 'imgProduct', nombre: 'name', puntuación:'rate', comentarios: 'comments' , dirección: 'site', categoria: 'category'}
   };
 
   refreshData(): void {

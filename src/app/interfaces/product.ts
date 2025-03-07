@@ -4,7 +4,7 @@ import { placeGlobal } from "./places/placeGlobal";
 export interface Product {
     _id?: number;
     name: string;
-    category: string;
+    category: [string];
     price: number;
     site: placeGlobal | string;
     rate: number;
