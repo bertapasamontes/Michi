@@ -14,7 +14,8 @@
 
                 @if(tipo === 'productos'){
                     @if(column == "imagen"){
-                        <img src="{{row[column]}}" alt="img-{{row[column]}}" class="img-fluid img-product">
+
+                        <td><img src="{{row[column]}}" alt="img-{{row[column]}}" class="img-fluid img-product"></td>
                     }
 
                     @else if(column == "puntuación"){
@@ -22,10 +23,11 @@
                     }
                     @else if(column === "comentarios"){
                     <td>
-                        <div>
-                            @for (comment of row['comentarios']; track comment){
-                            <span class="comentario">{{comment.text}}</span> -
-                            <span class="username">&#64;{{comment.user?.username || 'Usuario desconocido'}}</span>
+                        <div class="comentarios">
+                            @for (comment of row[column]; track comment){
+                                <span class="comentario">{{comment.text}}</span> -
+                                <span class="username">&#64;{{comment.user?.username || 'Usuario desconocido'}}</span>
+                                <br>
                             }
                         </div>
                     </td>
@@ -41,12 +43,15 @@
                 }
             }
 
-            <td class="d-inline-flex">
-                @if (tipo === 'usuarios' && row['id'] !== undefined) {
+            <td>
+                <div class="d-inline-flex">
+                    @if (tipo === 'usuarios' && row['id'] !== undefined) {
                 <app-btn-editar [item]="row['id']" (updateData)="refreshData()"></app-btn-editar>
                 }
                 <app-btn-delete (removeItem)="onDeleteItem($event['id'], $event['tipo'])" [item]="row['id']"
                     [tipo]="tipo"></app-btn-delete>
+                </div>
+                
             </td>
         </tr>
         }

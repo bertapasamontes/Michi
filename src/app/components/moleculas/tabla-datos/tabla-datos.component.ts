@@ -29,11 +29,13 @@ export class TablaDatosComponent {
           if(column == 'dirección' && row[key] && row[key].name){
             filteredRow[column] = row[key].name;
           } 
+
           else if (column === 'comentarios' && row[key]) {
-            filteredRow[column] = row[key].map((comment: { text: string; user: { username: string } }) => { //cogemos el comentario u el username del user
-              // return `<span class="comentario">${comment.text}</span> - <span class="username">@${comment.user?.username || 'Usuario desconocido'}</span>`;
-            }).join("<br>");
+            filteredRow[column] = row[key];
+
+            console.log("comentario",row[key])
           }
+
           else if(column != 'comentarios' && column != 'dirección'){
             filteredRow[column] = row[key] ?? 'no hay';
           } 

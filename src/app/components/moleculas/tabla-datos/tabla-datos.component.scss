@@ -1,10 +1,18 @@
 .img-product{
   max-width: 100px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
-.comentario{
-  font-style: italic;
+// .comentario{
+//   font-style: italic;
+// }
+
+::ng-deep td{
+  height: 40px;
+}
+
+.comentarios{
+  overflow-y: auto;
 }
 
 .tag-admin {
