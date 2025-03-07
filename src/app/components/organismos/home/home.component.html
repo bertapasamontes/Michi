@@ -10,6 +10,10 @@
         <h2>Locales guardados:</h2>
         <app-tabla-datos [datos]="dataPlaces" tipo="locales" (deleteItem)="deleteItem($event)"></app-tabla-datos>
     </div>
+    <div class="locales mt-5">
+        <h2>Productos guardados:</h2>
+        <app-tabla-datos [datos]="dataProducts" tipo="productos" (deleteItem)="deleteItem($event)"></app-tabla-datos>
+    </div>
 </div>
 
 

@@ -11,8 +11,8 @@ import Swal from 'sweetalert2';
 })
 export class BtnDeleteComponent {
   @Input() item!:number;
-  @Input() tipo!: 'usuarios' | 'locales';
-  @Output() removeItem = new EventEmitter<{ id: number; tipo: 'usuarios' | 'locales' }>();
+  @Input() tipo!: 'usuarios' | 'locales' | 'productos';
+  @Output() removeItem = new EventEmitter<{ id: number; tipo: 'usuarios' | 'locales' | 'productos' }>();
   
   deleteItem(id: number){
     this.removeItem.emit({id: id, tipo: this.tipo});

@@ -1,0 +1,15 @@
+<div class="card-product container">
+    <div class="row">
+        <div class="col">
+            <img src="{{producto.img}}" alt="img-{{producto.name}}">
+            <p>{{producto.name}}</p>
+        </div>
+        <div class="col">
+            <div class="puntuacion-y-precio d-flex flex-row">
+                <div class="rate"><mat-icon>star</mat-icon>{{producto.rate}}</div>
+                <p>{{producto.price}}€</p>
+            </div>
+            <mat-icon>location</mat-icon>{{producto.site}}
+        </div>
+    </div>
+</div>

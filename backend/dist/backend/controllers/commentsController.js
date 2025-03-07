@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postComment = exports.deleteOneComment = exports.getOneComment = exports.getComments = void 0;
 const comments_js_1 = __importDefault(require("../../src/app/model/comments.js"));
+const product_js_1 = require("../../src/app/model/product.js");
 //para usar estas funciones, hay que añadirlas al module.export
 const getComments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     comments_js_1.default.find()
@@ -46,16 +47,36 @@ const deleteOneComment = (req, res) => {
     }));
 };
 exports.deleteOneComment = deleteOneComment;
-const postComment = (req, res) => {
-    const sitio = new comments_js_1.default(req.body);
-    sitio
-        .save()
-        .then((data) => res.json(data))
-        .catch((error) => res.json({
-        mensaje: error
-    }));
-};
+const postComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { idProducto } = req.params;
+        const { user, text } = req.body;
+        //creamos nuevo comentario
+        const nuevoComment = new comments_js_1.default({ user, text });
+        yield nuevoComment.save();
+        //lo añadimos al producto al que hace referencia
+        const producto = yield product_js_1.ProductoNuevo.findById(idProducto); //cogemos el producto
+        if (!producto) { //miramos si existe
+            console.log("NO EXISTE ESTE PRODUCTO");
+        }
+        producto === null || producto === void 0 ? void 0 : producto.comments.push(nuevoComment._id); //añadimos el id del comentario en el array comentarios del producto
+        yield (producto === null || producto === void 0 ? void 0 : producto.save()); //guardamos
+        res.status(201).json({ mensaje: "Comentario agregado correctamente", producto });
+    }
+    catch (error) {
+        res.status(500).json({ mensaje: "El comentario no se ha podido agregar al producto", error: error });
+    }
+});
 exports.postComment = postComment;
+// export const postComment = (req:Request, res: Response)=>{
+//     const sitio = new comentarioNuevo(req.body);
+//     sitio
+//         .save()
+//         .then((data)=> res.json(data))
+//         .catch((error)=> res.json({
+//             mensaje: error
+//         }))
+// }
 // export const updateComment = (req:Request, res: Response)=>{
 //     const {id} = req.params;
 //     const {name, category, price, site, comments} = req.body;

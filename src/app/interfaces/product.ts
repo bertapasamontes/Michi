@@ -7,5 +7,7 @@ export interface Product {
     category: string;
     price: number;
     site: placeGlobal | string;
+    rate: number;
     comments?: Comentario[];
+    imgProduct: string;
 }

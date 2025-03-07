@@ -8,15 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProduct = exports.postProduct = exports.deleteOneProduct = exports.getOneProduct = exports.getProducts = void 0;
-const product_js_1 = __importDefault(require("../../src/app/model/product.js"));
+exports.updateProduct = exports.postProduct = exports.deleteOneProduct = exports.getOneProductWithComments = exports.getOneProduct = exports.getProducts = void 0;
+const product_js_1 = require("../../src/app/model/product.js");
+const pixabay_images_service_js_1 = require("../services/pixabayImages/pixabay-images.service.js");
+const _pixabayImages = new pixabay_images_service_js_1.PixabayImagesService();
 //para usar estas funciones, hay que añadirlas al module.export
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    product_js_1.default.find()
+    product_js_1.ProductoNuevo.find()
         .then((respuesta) => {
         res.status(200).json(respuesta);
     })
@@ -30,15 +29,33 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getProducts = getProducts;
 const getOneProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    product_js_1.default
+    product_js_1.ProductoNuevo
         .findById(id)
         .then((data) => res.json(data))
         .catch((error) => res.json({ mensaje: error }));
 });
 exports.getOneProduct = getOneProduct;
+const getOneProductWithComments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const producto = yield product_js_1.ProductoNuevo.findById(id).populate({
+            path: 'comments',
+            model: 'comentarios'
+        });
+        if (!producto) {
+            res.status(404).json({ mensaje: "Producto no encontrado" });
+            return;
+        }
+        res.status(200).json(producto);
+    }
+    catch (error) {
+        res.status(500).json({ mensaje: "Error al obtener el producto", error: error });
+    }
+});
+exports.getOneProductWithComments = getOneProductWithComments;
 const deleteOneProduct = (req, res) => {
     const { id } = req.params;
-    product_js_1.default
+    product_js_1.ProductoNuevo
         .deleteOne({ _id: id }) // con $set mongoDB actualiza el objeto de ese ID con el los datos del objeto que se le pasa (email, surname..).
         .then((data) => res.json(data))
         .catch((error) => res.json({
@@ -46,27 +63,31 @@ const deleteOneProduct = (req, res) => {
     }));
 };
 exports.deleteOneProduct = deleteOneProduct;
-const postProduct = (req, res) => {
-    const sitio = new product_js_1.default(req.body);
-    sitio
+const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, category, price, site, rate, comments } = req.body;
+    const imgURL = yield _pixabayImages.getImageFromPixabay(name);
+    const producto = new product_js_1.ProductoNuevo({
+        name, category, price, site, rate, comments, imgURL
+    });
+    producto
         .save()
         .then((data) => res.json(data))
         .catch((error) => res.json({
         mensaje: error
     }));
-};
+});
 exports.postProduct = postProduct;
 const updateProduct = (req, res) => {
     const { id } = req.params;
-    const { name, category, price, site, comments } = req.body;
-    product_js_1.default
-        .updateOne({ _id: id }, { $set: { name, category, price, site, comments } })
+    const { name, category, price, site, comments, rate, imgProduct } = req.body;
+    product_js_1.ProductoNuevo
+        .updateOne({ _id: id }, { $set: { name, category, price, site, comments, rate, imgProduct } })
         .then((data) => res.json(data))
         .catch((error) => res.json({
         mensaje: error
     }));
 };
 exports.updateProduct = updateProduct;
-module.exports = {
-    updateProduct: exports.updateProduct, getOneProduct: exports.getOneProduct, deleteOneProduct: exports.deleteOneProduct, postProduct: exports.postProduct, getProducts: exports.getProducts
-};
+// module.exports = {
+//     updateProduct, getOneProduct, deleteOneProduct, postProduct, getProducts
+// }

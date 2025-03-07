@@ -7,7 +7,7 @@ router.get('/', getComments); // cuando mi ruta sea "localhost:puerto/api/Commen
 
 router.get('/:id', getOneComment);
 router.delete('/:id', deleteOneComment);
-router.post('/', postComment);
+router.post('/:idProducto', postComment);
 // router.put('/:id', updateComment);
 
 export default router;

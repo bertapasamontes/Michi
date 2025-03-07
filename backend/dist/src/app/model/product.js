@@ -11,7 +11,9 @@ const productSchema = new Schema({
     category: { type: String, required: true },
     price: { type: Number, required: true },
     site: { type: mongoose_1.default.Schema.Types.ObjectId, ref: "sitiosDeMichi" },
-    comments: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: "comentarios" }]
+    rate: { type: Number },
+    comments: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: "comentarios" }],
+    imgProduct: { type: String }
 });
 exports.ProductoNuevo = mongoose_1.default.model('productos', productSchema);
 exports.default = exports.ProductoNuevo;

@@ -6,7 +6,9 @@ const productSchema = new Schema({
     category: {type: String, required: true},
     price:{type: Number, required: true},
     site: { type: mongoose.Schema.Types.ObjectId, ref: "sitiosDeMichi" },
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comentarios" }]
+    rate:{type: Number},
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comentarios" }],
+    imgProduct: {type:String}
 });
 export const ProductoNuevo = mongoose.model('productos', productSchema);
 export default ProductoNuevo;
