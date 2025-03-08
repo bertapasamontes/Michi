@@ -13,20 +13,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PixabayImagesService = void 0;
+const cloudinary_config_1 = __importDefault(require("../../config/cloudinary/cloudinary.config"));
 const env_1 = require("../../env");
 const axios_1 = __importDefault(require("axios"));
 class PixabayImagesService {
     constructor() {
         this.pixabayEstructura = env_1.environment.pixabayEstructura;
         this.pixabayAPIKey = env_1.environment.pixabayAPIKEY;
+        this.cloudinaryFolder = 'productos';
     }
     getImageFromPixabay(nameProduct) {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;
             try {
                 console.log("api key: ", this.pixabayAPIKey);
+                //cogemos la imagen de pixabay segun el nombre del producto
                 const response = yield axios_1.default.get(`${this.pixabayEstructura}${this.pixabayAPIKey}&q=${nameProduct}&image_type=photo&pretty=true`);
-                return ((_a = response.data.hits[0]) === null || _a === void 0 ? void 0 : _a.webformatURL) || ''; // Devuelve la URL de la primera imagen
+                const imgURL = ((_a = response.data.hits[0]) === null || _a === void 0 ? void 0 : _a.webformatURL) || ''; // Devuelve la URL de la primera imagen
+                if (imgURL) {
+                    //subimos la imagen encontrada a cloudinary:
+                    const uploadResponse = yield cloudinary_config_1.default.uploader.upload(imgURL, {
+                        folder: this.cloudinaryFolder,
+                        public_id: nameProduct.replace(/\s+/g, '_'), // Nombre sin espacios
+                        transformation: [{
+                                fetch_format: "auto"
+                            }]
+                    });
+                    console.log('Imagen subida a Cloudinary:', uploadResponse.secure_url);
+                    //devolvemos la url de cloudinary para guardarla en el json del producto
+                    return uploadResponse.secure_url;
+                }
+                console.error('no se ha podido encontrar la imagen en pixabay');
+                return 'Sin imagen';
             }
             catch (error) {
                 console.error('Error obteniendo imagen de Pixabay:', error);
