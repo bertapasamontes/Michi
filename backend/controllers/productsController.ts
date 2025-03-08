@@ -9,31 +9,49 @@ const _pixabayImages = new PixabayImagesService();
 
 //para usar estas funciones, hay que añadirlas al module.export
 export const getProducts = async (req:Request, res:Response)=> {
-    ProductoNuevo.find()
-    .populate({
-        path: 'site',
-        model: 'sitiosDeMichi',
-        select: 'name'
-    })
-    .populate({
-        path: 'comments',
-        model: 'comentarios',
-        select: 'text',
-        populate:{
-            path: 'user',
-            model: 'UsersDeMichi',
-            select: 'username'
-        }
-    })
-    .then((respuesta: any)=>{
-        res.status(200).json(respuesta)
-    })
-    .catch((error:any) =>{
+
+    try{
+         // Obtener los valores de la página y el límite de la consulta
+        const page = parseInt(req.query.page as string) || 1;  // Página actual (por defecto, página 1)
+        const limit = parseInt(req.query.limit as string) || 5; // Cantidad de productos por página (por defecto, 5 productos por página)
+        const skip = (page - 1) * limit;  // Calcular los productos que hay que saltarse según la página
+
+        const productos = await ProductoNuevo.find()
+        .skip(skip)  // Saltar los productos según la página actual
+        .limit(limit)  // Limitar la cantidad de productos por página
+        .populate({
+            path: 'site',
+            model: 'sitiosDeMichi',
+            select: 'name'
+        })
+        .populate({
+            path: 'comments',
+            model: 'comentarios',
+            select: 'text',
+            populate:{
+                path: 'user',
+                model: 'UsersDeMichi',
+                select: 'username'
+            }
+        });
+
+        // Contar el total de productos para calcular las páginas
+        const total = await ProductoNuevo.countDocuments();
+
+        res.status(200).json({
+            data: productos,
+            total,
+            page,
+            totalPages:  Math.ceil(total / limit)
+        })
+
+    }
+    catch(error:any){
         res.status(500).json({
             message: 'Ocurrió un error en la función getProducts',
             error: error.message
         })
-    })
+    }
 }
 
 export const getOneProduct = async (req:Request, res: Response)=>{

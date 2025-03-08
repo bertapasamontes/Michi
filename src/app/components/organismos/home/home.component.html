@@ -2,7 +2,7 @@
     <div class="users mt-5">
         <div class="d-flex justify-content-between">
             <h2>Usuarios registrados en Michi:</h2>
-            <app-btn-add (updateData)="refreshData()"></app-btn-add>
+            <app-btn-add (updateData)="refreshUsers()"></app-btn-add>
         </div>
         <app-tabla-datos [datos]="dataUsers" tipo="usuarios" (deleteItem)="deleteItem($event)"></app-tabla-datos>
     </div>
@@ -13,6 +13,12 @@
     <div class="locales mt-5">
         <h2>Productos guardados:</h2>
         <app-tabla-datos [datos]="dataProducts" tipo="productos" (deleteItem)="deleteItem($event)"></app-tabla-datos>
+        <!-- Controles de Paginación -->
+        <div class="pagination">
+            <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1" class="btn btn-secondary">Anterior</button>
+            <span>Página {{ paginaActual }} de {{ totalPaginasSignal }}</span>
+            <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual >= totalPaginasSignal" class="btn btn-primary">Siguiente</button>
+        </div>
     </div>
 </div>
 

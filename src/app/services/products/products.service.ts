@@ -22,8 +22,13 @@ export class ProductsService {
   }
 
   // Método para obtener la lista de sitios desde el backend
-  getListProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.myAppUrl}${this.myApiUrl}`);
+  // getListProducts(): Observable<Product[]>{
+  //   return this.http.get<Product[]>(`${this.myAppUrl}${this.myApiUrl}`);
+  // }
+  getListProducts(page: number, limit: number): Observable<{ data: Product[], total: number, totalPages: number }> {
+    return this.http.get<{ data: Product[], total: number, totalPages: number }>(
+      `${this.myAppUrl}${this.myApiUrl}?page=${page}&limit=${limit}`
+    );
   }
   deleteProduct(id:number): Observable<void>{
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`)

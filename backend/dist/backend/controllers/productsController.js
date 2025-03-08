@@ -15,31 +15,44 @@ const pixabay_images_service_js_1 = require("../services/pixabayImages/pixabay-i
 const _pixabayImages = new pixabay_images_service_js_1.PixabayImagesService();
 //para usar estas funciones, hay que añadirlas al module.export
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    product_js_1.ProductoNuevo.find()
-        .populate({
-        path: 'site',
-        model: 'sitiosDeMichi',
-        select: 'name'
-    })
-        .populate({
-        path: 'comments',
-        model: 'comentarios',
-        select: 'text',
-        populate: {
-            path: 'user',
-            model: 'UsersDeMichi',
-            select: 'username'
-        }
-    })
-        .then((respuesta) => {
-        res.status(200).json(respuesta);
-    })
-        .catch((error) => {
+    try {
+        // Obtener los valores de la página y el límite de la consulta
+        const page = parseInt(req.query.page) || 1; // Página actual (por defecto, página 1)
+        const limit = parseInt(req.query.limit) || 5; // Cantidad de productos por página (por defecto, 5 productos por página)
+        const skip = (page - 1) * limit; // Calcular los productos que hay que saltarse según la página
+        const productos = yield product_js_1.ProductoNuevo.find()
+            .skip(skip) // Saltar los productos según la página actual
+            .limit(limit) // Limitar la cantidad de productos por página
+            .populate({
+            path: 'site',
+            model: 'sitiosDeMichi',
+            select: 'name'
+        })
+            .populate({
+            path: 'comments',
+            model: 'comentarios',
+            select: 'text',
+            populate: {
+                path: 'user',
+                model: 'UsersDeMichi',
+                select: 'username'
+            }
+        });
+        // Contar el total de productos para calcular las páginas
+        const total = yield product_js_1.ProductoNuevo.countDocuments();
+        res.status(200).json({
+            data: productos,
+            total,
+            page,
+            totalPages: Math.ceil(total / limit)
+        });
+    }
+    catch (error) {
         res.status(500).json({
             message: 'Ocurrió un error en la función getProducts',
             error: error.message
         });
-    });
+    }
 });
 exports.getProducts = getProducts;
 const getOneProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
