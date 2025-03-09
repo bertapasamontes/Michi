@@ -23,6 +23,24 @@ export class DataSignalService {
   sitiosEnMichiSignal = signal<any[]>([]);
   productosSignal = signal<any[]>([]);
 
+
+  //paginacion convertida en opbjeto con tipos para que sea atomico
+  paginacionSignal = {
+    usuarios: {
+      totalPaginas: signal<number>(0),
+      paginaActual: signal<number>(1)
+    },
+    locales: {
+      totalPaginas: signal<number>(0),
+      paginaActual: signal<number>(1)
+    },
+    productos: {
+      totalPaginas: signal<number>(0),
+      paginaActual: signal<number>(1)
+    }
+  }
+
+
   totalProductosSignal = signal<number>(0);  // Guardar el total de productos
   totalUsersSignal = signal<number>(0); 
 
@@ -30,26 +48,18 @@ export class DataSignalService {
   paginaActualSignal = signal<number>(1);
 
 
-  // getListUsersSignal(){
-  //   try{
-  //   this._userService.getListUsers().subscribe((data:User[])=>{
-  //     this.usuariosEnMichiSignal.set(data);
-  //   })
-  //   }
-  //   catch (error){
-  //     console.log("error",error);
-  //   }
-  // }
-
   getListUsersSignal(page: number, limit: number){
     try{
     this._userService.getListUsers(page, limit).subscribe((data)=>{
       this.usuariosEnMichiSignal.set(data.data);
 
       this.totalUsersSignal.set(data.total);  // Total de productos
-      this.totalPaginasSignal.set(data.totalPages);  // Total de páginas
-      console.log("total pages signal actulizado 1: ",this.totalPaginasSignal());
-      this.paginaActualSignal.set(page);  // Página actual
+
+      this.paginacionSignal.usuarios.totalPaginas.set(data.totalPages)
+
+      this.paginacionSignal.usuarios.paginaActual.set(page)
+      console.log("total pages usuarios signal: ",this.paginacionSignal.usuarios.totalPaginas());
+      
     })
     }
     catch (error){
@@ -75,10 +85,11 @@ export class DataSignalService {
 
         // Actualizar las señales de productos, total de productos y total de páginas
         this.productosSignal.set(data.data);  // Productos actuales de la página
-        this.totalProductosSignal.set(data.total);  // Total de productos
-        this.totalPaginasSignal.set(data.totalPages);  // Total de páginas
-        console.log("total pages signal actulizado 1: ",this.totalPaginasSignal());
-        this.paginaActualSignal.set(page);  // Página actual
+
+        this.paginacionSignal.productos.totalPaginas.set(data.totalPages)
+
+        this.paginacionSignal.productos.paginaActual.set(page)
+        console.log("total pages productos signal: ",this.paginacionSignal.productos.totalPaginas());
       });
     } catch (error) {
       console.log('error', error);

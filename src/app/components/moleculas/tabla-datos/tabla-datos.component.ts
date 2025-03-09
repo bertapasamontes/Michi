@@ -32,8 +32,6 @@ export class TablaDatosComponent {
 
           else if (column === 'comentarios' && row[key]) {
             filteredRow[column] = row[key];
-
-            console.log("comentario",row[key])
           }
 
           else if(column != 'comentarios' && column != 'dirección'){

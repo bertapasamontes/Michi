@@ -12,8 +12,25 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
+import { IMAGE_CONFIG } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync(), provideHttpClient(), provideAnimations(), // required animations providers
-    provideToastr({positionClass: 'toast-bottom-right'}), MatDatepickerModule, MatNativeDateModule, provideNativeDateAdapter(), provideCharts(withDefaultRegisterables()), importProvidersFrom([SweetAlert2Module.forRoot()])]
+  providers: [
+    provideRouter(routes), 
+    provideAnimationsAsync(), 
+    provideHttpClient(), 
+    provideAnimations(), // required animations providers
+    provideToastr({positionClass: 'toast-bottom-right'}),
+    MatDatepickerModule, 
+    MatNativeDateModule, 
+    provideNativeDateAdapter(), 
+    provideCharts(withDefaultRegisterables()),
+    importProvidersFrom([SweetAlert2Module.forRoot()]),
+    {
+      provide: IMAGE_CONFIG,
+      useValue: {
+        disableImageSizeWarning: true, 
+        disableImageLazyLoadWarning: true
+      }
+    },]
 };

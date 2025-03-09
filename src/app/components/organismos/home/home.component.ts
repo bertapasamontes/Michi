@@ -8,11 +8,12 @@ import { UserService } from '../../../services/user/user.service';
 import { MapGlobalService } from '../../../services/mapa/map-global.service';
 import { ProductsService } from '../../../services/products/products.service';
 import { MatIcon } from '@angular/material/icon';
+import { PaginacionDatosComponent } from "../../atomos/paginacion-datos/paginacion-datos.component";
 
 
 @Component({
     selector: 'app-home',
-    imports: [TablaDatosComponent, BtnAddComponent, MatIcon],
+    imports: [TablaDatosComponent, BtnAddComponent, PaginacionDatosComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })
@@ -24,26 +25,43 @@ export class HomeComponent {
         private _mapGlobal: MapGlobalService,
         private _productService: ProductsService
     ){
-        console.log("total Paginas: ",this.totalPaginasSignal);
+        // console.log("total Paginas: ",);
+
+    
     }
+
+    tipo!:  'usuarios' | 'locales' | 'productos';
 
     dataUsers : Signal<any[]> = this._dataSignalService.usuariosEnMichiSignal;
     dataPlaces: Signal<any[]> = this._dataSignalService.sitiosEnMichiSignal;
     dataProducts: Signal<any[]> = this._dataSignalService.productosSignal;
 
 
+    //obtener la cantidad de paginas segun el tipo de datos:
+    getTotalPagesSignal(tipo: 'usuarios' | 'locales' | 'productos'){
+        const totalPaginas2 = this._dataSignalService.paginacionSignal[tipo].totalPaginas();
 
-    productos$ = this._dataSignalService.productosSignal;  // Observable de productos
-    totalProductos$ = this._dataSignalService.totalProductosSignal;  // Observable de total de productos
-    totalPaginas$ = this._dataSignalService.totalPaginasSignal;  // Observable de total de páginas
-    paginaActual$ = this._dataSignalService.paginaActualSignal;  // Observable de página actual
+        if(!totalPaginas2){
+           return 1;
+        }
+        return totalPaginas2;
+    }
+
+    //obtener la pagina actual segun el tipo de datos:
+    getPaginaActualSignal(tipo: 'usuarios' | 'locales' | 'productos'){
+        const paginaActual =  this._dataSignalService.paginacionSignal[tipo];
+
+        if(!paginaActual){
+            return 1;
+        }
+        return paginaActual.paginaActual();
+    }
 
 
     // Paginación de productos
     paginaActual: number = 1;
     limit: number = 5;
-    // totalProductos: number = 0;
-    // totalPaginas: number = 0;
+    
     
     refreshProducts(pagina:number) {
       this._dataSignalService.getListProductSignal(pagina,5);      
@@ -59,34 +77,37 @@ export class HomeComponent {
         if(event.tipo === 'usuarios'){
             this._userService.deleteUser(event.id).subscribe(()=>{
             });
-            this.refreshUsers(this.paginaActual);
+            
         }
         if(event.tipo === 'locales'){
             this._mapGlobal.deletePlace(event.id).subscribe(()=>{
             });
-            this.refreshPlaces();
         }
         if(event.tipo === 'productos'){
             this._productService.deleteProduct(event.id).subscribe(()=>{
             });
-            this.refreshProducts(this.paginaActual);
         }
+        this.refreshUsers(this.getPaginaActualSignal(event.tipo));
         console.log("delete evento: ", event)
     }
 
-    cambiarPagina(nuevaPagina: number): void {
-        if (nuevaPagina >= 1 && nuevaPagina <= this.totalPaginasSignal) {
-            this.paginaActual = nuevaPagina;
-            this.refreshProducts(this.paginaActual);
+    cambiarPagina(pagina: number, tipo: 'usuarios' | 'locales' | 'productos'): void {
+
+        console.log("total pages users: ",this.getTotalPagesSignal(tipo))
+
+        if (pagina >= 1 && pagina <= this.getTotalPagesSignal(tipo)) {
+            this._dataSignalService.paginacionSignal[tipo].paginaActual.set(pagina);          
+
+            switch(tipo){
+                case 'usuarios':
+                    this._dataSignalService.getListUsersSignal(pagina, 5);
+                    break;
+                // case 'locales':
+                //     this._dataSignalService.getListPlacesSignal(pagina, 5);
+                case 'productos':
+                    this._dataSignalService.getListProductSignal(pagina, 5);
+                    break;
+            }
         }
-    }
-
-     // Accediendo a los signals directamente en la plantilla
-    get totalProductosSignal(): number {
-        return this._dataSignalService.totalProductosSignal();  // Accede al valor del signal
-    }
-
-    get totalPaginasSignal(): number {
-        return this._dataSignalService.totalPaginasSignal();  // Accede al valor del signal
     }
 }

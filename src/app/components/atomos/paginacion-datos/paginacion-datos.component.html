@@ -1,0 +1,9 @@
+<div class="paginacion centradoHorizontal">
+    <button (click)="emitirCambiarPagina(paginaActualSignal  - 1, tipo)" 
+    [disabled]="paginaActualSignal  === 1" class="btn btn-sm btn-secondary centradoHorizontal mx-2"><mat-icon>arrow_back</mat-icon> Anterior</button>
+
+    <span>Página {{ paginaActualSignal}} de {{ totalPagesSignal }}</span>
+
+    <button (click)="emitirCambiarPagina(paginaActualSignal  + 1, tipo)" 
+    [disabled]="paginaActualSignal  >= totalPagesSignal " class="btn btn-sm btn-primary centradoHorizontal mx-2">Siguiente <mat-icon>arrow_forward</mat-icon></button>
+</div>
