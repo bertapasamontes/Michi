@@ -86,24 +86,50 @@ span.tag-comida::before {
   }
 
 
-::ng-deep .tag-compras {
+::ng-deep .tag-compras, .tag-centro {
   background-color: #cce4c3;
   color: #409840;
   
-}span.tag-compras::before {
+}span.tag-compras::before, span.tag-centro::before {
     content: "🛒";
   }
 
+// ------ categorias productos -----
+
+::ng-deep .tag-desayuno {
+  background-color: #f6e8dd;
+  color: #e0a25b;
+  
+}span.tag-desayuno::before {
+    content: "🥐";
+}
+
+::ng-deep .tag-italiano {
+  background-color: #f1e6fa;
+  color: #e05b99;
+  
+}span.tag-italiano::before {
+    content: "🍷";
+}
+
+::ng-deep .tag-mediterraneo {
+  background-color: #fbf0c6;
+  color: #c6b042;
+  
+}span.tag-mediterraneo::before {
+    content: "🌻";
+}
+
+
 
 //Media queries
-
 @media (max-width: 1172px) {
   .emoji {
       display: none;
   }
 
   
-  span.tag-admin::before,span.tag-viewer::before,span.tag-panadería::before, span.tag-comida::before, span.tag-compras::before, span.tag-café::before   {
+  span.tag-admin::before,span.tag-viewer::before,span.tag-panadería::before, span.tag-comida::before, span.tag-compras::before, span.tag-café::before,span.tag-mediterraneo::before,span.tag-italiano::before,span.tag-centro::before {
       content: none;
   
 }
