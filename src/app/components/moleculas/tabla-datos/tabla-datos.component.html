@@ -2,7 +2,7 @@
     <thead>
         <tr>
             @for(column of selectedColumns(); track column){
-            <th scope="col">{{ column | titlecase }}</th>
+            <th scope="col d-flex justify-content-center">{{ column | titlecase }}</th>
             }
             <th scope="col">Acciones</th>
         </tr>
@@ -84,7 +84,7 @@
             }
 
             <td>
-                <div class="d-inline-flex">
+                <div class="d-flex justify-content-center">
                     @if (tipo === 'usuarios' && row['id'] !== undefined) {
                 <app-btn-editar [item]="row['id']" (updateData)="refreshData()"></app-btn-editar>
                 }

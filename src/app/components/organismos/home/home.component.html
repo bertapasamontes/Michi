@@ -6,11 +6,12 @@
         </div>
         <app-tabla-datos [datos]="dataUsers" tipo="usuarios" (deleteItem)="deleteItem($event)"></app-tabla-datos>
 
-        <app-paginacion-datos tipo="usuarios"
+        <app-paginacion-datos 
+        class="d-flex justify-content-end"
+        tipo="usuarios"
         [totalPagesSignal]="getTotalPagesSignal('usuarios')" 
         [paginaActualSignal]="getPaginaActualSignal('usuarios')" 
         (paginaActual)="cambiarPagina($event.pagina, $event.tipo)"></app-paginacion-datos>
-
     </div>
     <div class="locales mt-5">
         <h2>Locales guardados:</h2>

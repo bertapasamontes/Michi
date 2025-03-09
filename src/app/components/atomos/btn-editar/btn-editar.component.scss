@@ -4,6 +4,10 @@
 }
 
 ::ng-deep .mat-mdc-raised-button:not(:disabled){
-    background-color: rgb(244, 176, 49) !important;
+    background-color: #f4b031 !important;
     // border-radius: 20px;
+}
+
+.btn-editar{
+    color: #b2780c;
 }
