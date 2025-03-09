@@ -1,5 +1,5 @@
 import { Component, Signal } from '@angular/core';
-import { UsersInAppComponent } from '../../users/users-in-app/users-in-app.component';
+// import { UsersInAppComponent } from '../../users/users-in-app/users-in-app.component';
 import { PlacesInAppComponent } from "../../places-in-app/places-in-app.component";
 import { TablaDatosComponent } from "../../moleculas/tabla-datos/tabla-datos.component";
 import { DataSignalService } from '../../../services/dataSignalService/data-signal.service';
@@ -48,8 +48,8 @@ export class HomeComponent {
     refreshProducts(pagina:number) {
       this._dataSignalService.getListProductSignal(pagina,5);      
     }
-    refreshUsers(){
-        this._dataSignalService.getListUsersSignal();      
+    refreshUsers(pagina:number){
+        this._dataSignalService.getListUsersSignal(pagina,5);      
     }
     refreshPlaces(){
       this._dataSignalService.getListPlacesSignal();
@@ -59,7 +59,7 @@ export class HomeComponent {
         if(event.tipo === 'usuarios'){
             this._userService.deleteUser(event.id).subscribe(()=>{
             });
-            this.refreshUsers();
+            this.refreshUsers(this.paginaActual);
         }
         if(event.tipo === 'locales'){
             this._mapGlobal.deletePlace(event.id).subscribe(()=>{

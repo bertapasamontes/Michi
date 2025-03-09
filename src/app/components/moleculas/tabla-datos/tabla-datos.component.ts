@@ -19,7 +19,7 @@ export class TablaDatosComponent {
 
   // signal que calcula filteredData basado en datos()
   filteredData = computed(() => {
-    return this.datos().map(row => {
+    return  (this.datos() ?? []).map(row => { //si datos es un array, hace el map
       let filteredRow: { [key: string]: any } = { id: row._id }; //extrae el ID
       for (let column of this.selectedColumns()) {
         const key = this.columnMapping[this.tipo][column];

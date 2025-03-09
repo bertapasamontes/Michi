@@ -8,16 +8,35 @@ import * as jwt from 'jsonwebtoken'
 
 //para usar estas funciones, hay que añadirlas al export
 const getUsers = async (req:Request, res:Response)=> {
-    UserNuevo.find()
-    .then((respuesta: any)=>{
-        res.status(200).json(respuesta)
-    })
-    .catch((error:any) =>{
-        res.status(500).json({
-            message: 'Ocurrió un error en la función GetUsers',
-            error: error.message
+
+    try{
+        //Config para paginas y limites de items:
+    const page = parseInt(req.query.page as string) || 1;  // Página actual (por defecto, página 1)
+    const limit = parseInt(req.query.limit as string) || 5; // Cantidad de productos por página (por defecto, 5 productos por página)
+    const skip = (page - 1) * limit;  // Calcular los productos que hay que saltarse según la página
+
+    const usuarios = await UserNuevo.find()
+    .skip(skip)
+    .limit(limit)
+
+     // Contar el total de productos para calcular las páginas
+    const total = await UserNuevo.countDocuments();
+
+    
+        res.status(200).json({
+            data: usuarios,
+            total,
+            page,
+            totalPages:  Math.ceil(total / limit)
         })
+
+    }
+    catch(error){
+    res.status(500).json({
+        message: 'Ocurrió un error en la función GetUsers',
+        error: error
     })
+    }
 }
 
 const getOneUserByEmail = async (req:Request, res: Response): Promise<any>=>{

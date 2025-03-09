@@ -14,7 +14,7 @@ export class DataSignalService {
     private _mapGlobalService: MapGlobalService,
     private _productService: ProductsService,
   ){
-    this.getListUsersSignal();
+    this.getListUsersSignal(1,5);
     this.getListPlacesSignal();
     this.getListProductSignal(1,5);
   }
@@ -24,20 +24,39 @@ export class DataSignalService {
   productosSignal = signal<any[]>([]);
 
   totalProductosSignal = signal<number>(0);  // Guardar el total de productos
+  totalUsersSignal = signal<number>(0); 
+
   totalPaginasSignal = signal<number>(0);    // Guardar el total de páginas
   paginaActualSignal = signal<number>(1);
 
 
-  getListUsersSignal(){
+  // getListUsersSignal(){
+  //   try{
+  //   this._userService.getListUsers().subscribe((data:User[])=>{
+  //     this.usuariosEnMichiSignal.set(data);
+  //   })
+  //   }
+  //   catch (error){
+  //     console.log("error",error);
+  //   }
+  // }
+
+  getListUsersSignal(page: number, limit: number){
     try{
-    this._userService.getListUsers().subscribe((data:User[])=>{
-      this.usuariosEnMichiSignal.set(data);
+    this._userService.getListUsers(page, limit).subscribe((data)=>{
+      this.usuariosEnMichiSignal.set(data.data);
+
+      this.totalUsersSignal.set(data.total);  // Total de productos
+      this.totalPaginasSignal.set(data.totalPages);  // Total de páginas
+      console.log("total pages signal actulizado 1: ",this.totalPaginasSignal());
+      this.paginaActualSignal.set(page);  // Página actual
     })
     }
     catch (error){
       console.log("error",error);
     }
   }
+
   getListPlacesSignal(){
     try{
       this._mapGlobalService.getListPlaces().subscribe((data)=>{

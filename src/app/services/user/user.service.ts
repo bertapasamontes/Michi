@@ -22,8 +22,13 @@ export class UserService {
   }
 
   // Método para obtener la lista de usuarios desde el backend
-  getListUsers(): Observable<User[]>{
-    return this.http.get<User[]>(`${this.myAppUrl}${this.myApiUrl}`);
+  // getListUsers(): Observable<User[]>{
+  //   return this.http.get<User[]>(`${this.myAppUrl}${this.myApiUrl}`);
+  // }
+  getListUsers(page: number, limit: number): Observable<{ data: User[], total: number, totalPages: number }> {
+    return this.http.get<{ data: User[], total: number, totalPages: number }>(
+      `${this.myAppUrl}${this.myApiUrl}?page=${page}&limit=${limit}`
+    );
   }
   deleteUser(id:number): Observable<void>{
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`)

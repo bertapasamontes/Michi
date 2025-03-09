@@ -41,16 +41,29 @@ const bcrypt = __importStar(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
 //para usar estas funciones, hay que añadirlas al export
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    users_js_1.default.find()
-        .then((respuesta) => {
-        res.status(200).json(respuesta);
-    })
-        .catch((error) => {
+    try {
+        //Config para paginas y limites de items:
+        const page = parseInt(req.query.page) || 1; // Página actual (por defecto, página 1)
+        const limit = parseInt(req.query.limit) || 5; // Cantidad de productos por página (por defecto, 5 productos por página)
+        const skip = (page - 1) * limit; // Calcular los productos que hay que saltarse según la página
+        const usuarios = yield users_js_1.default.find()
+            .skip(skip)
+            .limit(limit);
+        // Contar el total de productos para calcular las páginas
+        const total = yield users_js_1.default.countDocuments();
+        res.status(200).json({
+            data: usuarios,
+            total,
+            page,
+            totalPages: Math.ceil(total / limit)
+        });
+    }
+    catch (error) {
         res.status(500).json({
             message: 'Ocurrió un error en la función GetUsers',
-            error: error.message
+            error: error
         });
-    });
+    }
 });
 exports.getUsers = getUsers;
 const getOneUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
