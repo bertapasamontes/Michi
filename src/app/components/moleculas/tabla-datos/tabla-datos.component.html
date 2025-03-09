@@ -12,7 +12,44 @@
             <tr>
             @for(column of selectedColumns(); track column){
 
-                @if(tipo === 'productos'){
+                @if(tipo === 'usuarios'){
+                    @if(column == "imagen"){
+                         <td ><div class="img-container"><img src="{{row[column]}}" alt="img-{{row[column]}}" class="img-fluid img-perfil"></div></td>
+                    }
+                    @else if (column == "rol") {
+                        <div class="categorias d-flex flex-nowrap">
+                            <span class="mx-1 tag-{{row[column]}} border-tag">
+                            <span class="emoji">
+                                @if(row[column] == 'admin'){
+                                💼
+                            }
+                            @if(row[column] == 'viewer'){
+                                👁️
+                            }
+                            </span>
+                            
+
+                            {{row[column]}}</span>
+                            <!-- <br> -->
+                        </div>
+                    }
+                    @else{
+                        <td>{{ row[column] }}</td>
+                        }
+                   
+                }
+                @else if (column == 'categoría') {
+                    <div class="categorias d-flex flex-wrap">
+                        @for(cat of row[column]; track cat){
+                        <span class="tag-default tag-{{cat.trim()}} border-tag m-1">{{cat}}</span>
+                        <!-- <br> -->
+                    }
+                    </div>
+                    
+                }
+            
+
+                @else if(tipo === 'productos'){
                     @if(column == "imagen"){
 
                         <td><img src="{{row[column]}}" alt="img-{{row[column]}}" class="img-fluid img-product"></td>
@@ -27,15 +64,18 @@
                             @for (comment of row[column]; track comment){
                                 <span class="comentario">{{comment.text}}</span> -
                                 <span class="username">&#64;{{comment.user?.username || 'Usuario desconocido'}}</span>
-                                <br>
+                                
                             }
                         </div>
                     </td>
                     }
+                    
                     @else{
                         <td>{{ row[column] }}</td>
                     }
                 }
+
+                
 
 
                 @else{

@@ -14,10 +14,12 @@
         <h2>Productos guardados:</h2>
         <app-tabla-datos [datos]="dataProducts" tipo="productos" (deleteItem)="deleteItem($event)"></app-tabla-datos>
         <!-- Controles de Paginación -->
-        <div class="pagination">
-            <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1" class="btn btn-secondary">Anterior</button>
+        <div class="pagination centradoHorizontal">
+            <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1" class="btn btn-sm btn-secondary centradoHorizontal mx-2"><mat-icon>arrow_back</mat-icon> Anterior</button>
+
             <span>Página {{ paginaActual }} de {{ totalPaginasSignal }}</span>
-            <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual >= totalPaginasSignal" class="btn btn-primary">Siguiente</button>
+
+            <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual >= totalPaginasSignal" class="btn btn-sm btn-primary centradoHorizontal mx-2">Siguiente <mat-icon>arrow_forward</mat-icon></button>
         </div>
     </div>
 </div>

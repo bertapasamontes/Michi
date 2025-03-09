@@ -52,9 +52,9 @@ export class TablaDatosComponent {
 
   //decidimos las columnas que habrá por cada tipo de datos que pasen
   private columnMapping: { [key: string]: { [key: string]: string } } = { 
-    usuarios: { nombre: 'name', username: 'username', email: 'email', rol: 'role' },
-    locales: { nombre: 'name', dirección: 'short_direction', categoria: 'category' },
-    productos: { imagen: 'imgProduct', nombre: 'name', puntuación:'rate', comentarios: 'comments' , dirección: 'site', categoria: 'category'}
+    usuarios: {  imagen: 'imgProfile', nombre: 'name', username: 'username', email: 'email', rol: 'role' },
+    locales: { nombre: 'name', dirección: 'short_direction', categoría: 'category' },
+    productos: { imagen: 'imgProduct', nombre: 'name', puntuación:'rate', comentarios: 'comments' , dirección: 'site', categoría: 'category'}
   };
 
   refreshData(): void {

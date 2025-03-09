@@ -6,11 +6,11 @@
     left: -8px; 
 }
 .image-container{
-    border: solid 1.5px #0a0b0a;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     width: 40px;  
-    height: 40px;  /* Altura deseada para mostrar solo la cabeza */
-    overflow: hidden;  /* Oculta el resto de la imagen */
-    border-radius: 50%; /* Opcional: para hacerlo redondo */
+    height: 40px;  
+    overflow: hidden;  
+    border-radius: 50%;
     position: relative;
 }
 .primera-col{

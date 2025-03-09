@@ -7,12 +7,12 @@ import { BtnAddComponent } from "../../atomos/btn-add/btn-add.component";
 import { UserService } from '../../../services/user/user.service';
 import { MapGlobalService } from '../../../services/mapa/map-global.service';
 import { ProductsService } from '../../../services/products/products.service';
-// import { UsersInAppComponent } from 'users-in-app/user-in-app.component';
+import { MatIcon } from '@angular/material/icon';
+
 
 @Component({
     selector: 'app-home',
-    // imports: [UsersInAppComponent, PlacesInAppComponent, TablaDatosComponent],
-    imports: [TablaDatosComponent, BtnAddComponent],
+    imports: [TablaDatosComponent, BtnAddComponent, MatIcon],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })

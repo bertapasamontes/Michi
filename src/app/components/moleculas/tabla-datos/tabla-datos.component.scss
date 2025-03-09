@@ -1,73 +1,110 @@
+$primary: #F17A12 !default;
+$secondary: #686665;
+$light: #FBD8B8;
+$light-secondary: #e4e4e4;
+
+
 .img-product{
   max-width: 100px;
   border-radius: 10px;
 }
 
-// .comentario{
-//   font-style: italic;
-// }
+.img-perfil{
+  width: 240%;  
+  height: auto;
+  position: absolute;
+  top: 0px;
+  // left: -7px; 
+}
 
+.img-container{
+  // border: solid 1.5px #0a0b0a;
+  width: 40px;  
+  height: 40px;  
+  overflow: hidden;  
+  border-radius: 50%;
+  position: relative;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
 ::ng-deep td{
   height: 40px;
+  background-color: transparent;
 }
 
 .comentarios{
   overflow-y: auto;
 }
 
+.categorias{
+  font-size: 14px;
+  margin: 5px;
+  padding: 0px;
+}
+
+.border-tag{
+  border-radius: 50px;
+  padding: 5px;
+}
+
+//categoria rol
 .tag-admin {
-  background-color: #d32f2f; // Rojo oscuro
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
+  background-color: $light; 
+  color: $primary;
 }
 
-.tag-user {
-  background-color: #1976d2; // Azul
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
+.tag-viewer {
+  background-color: $light-secondary;
+  color: $secondary;
 }
 
-.tag-moderator {
-  background-color: #ffa000; // Naranja
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
+
+
+// --- categorias locales -----
+.tag-café {
+  background-color: #d1ada0;
+  color: #795548;
+  // border: 1px solid #795548;
+}
+span.tag-café::before {
+  content: "☕";
 }
 
-.tag-cafe {
-  background-color: #795548; // Marrón
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
+.tag-comida {
+  background-color: #e4e4e4;
+  color: #828282;
+}
+span.tag-comida::before {
+  content: "🍴";
 }
 
-.tag-drink-food {
-  background-color: #03a9f4; // Azul claro
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.tag-restaurant {
-  background-color: #ff7043; // Naranja fuerte
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.tag-bakery {
-  background-color: #ffcc80; // Amarillo claro
-  color: black;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.tag-default {
-  background-color: #bdbdbd; // Gris
-  color: black;
-  padding: 5px;
-  border-radius: 5px;
-}
+::ng-deep .tag-panadería {
+  background-color: #fbe6d4;
+  color: #e3a052;
   
+}span.tag-panadería::before {
+    content: "🥖";
+  }
+
+
+::ng-deep .tag-compras {
+  background-color: #cce4c3;
+  color: #409840;
+  
+}span.tag-compras::before {
+    content: "🛒";
+  }
+
+
+//Media queries
+
+@media (max-width: 1172px) {
+  .emoji {
+      display: none;
+  }
+
+  
+  span.tag-admin::before,span.tag-viewer::before,span.tag-panadería::before, span.tag-comida::before, span.tag-compras::before, span.tag-café::before   {
+      content: none;
+  
+}
+}
