@@ -54,6 +54,32 @@ export const getProducts = async (req:Request, res:Response)=> {
     }
 }
 
+
+export const getProductsWithoutPages = async (req:Request, res:Response)=> {
+    ProductoNuevo.find()
+    .populate({
+        path: 'site',
+        model: 'sitiosDeMichi',
+        select: 'name'
+    })
+    .populate({
+        path: 'comments',
+        model: 'comentarios',
+        select: 'text',
+        populate:{
+            path: 'user',
+            model: 'UsersDeMichi',
+            select: 'username'
+        }
+    })
+    .then((respuesta: any)=>{
+        res.status(200).json(respuesta)
+    })
+    .catch((error:any) =>{
+
+    })
+}
+
 export const getOneProduct = async (req:Request, res: Response)=>{
     const {id} = req.params;
     ProductoNuevo

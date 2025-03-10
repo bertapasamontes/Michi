@@ -13,7 +13,6 @@ export class DescubrirComponent {
   constructor(
     private _dataSignalService: DataSignalService
   ){
-
   }
-  dataProducts: Signal<any[]> = this._dataSignalService.productosSignal;
+  dataProducts: Signal<any[]> = this._dataSignalService.productosSinPaginasSignal;
 }

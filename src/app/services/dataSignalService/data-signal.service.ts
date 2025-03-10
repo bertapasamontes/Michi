@@ -17,11 +17,14 @@ export class DataSignalService {
     this.getListUsersSignal(1,5);
     this.getListPlacesSignal();
     this.getListProductSignal(1,5);
+
+    this.getListProductsWithoutPagesSignal()
   }
 
   usuariosEnMichiSignal = signal<any[]>([]);
   sitiosEnMichiSignal = signal<any[]>([]);
   productosSignal = signal<any[]>([]);
+  productosSinPaginasSignal = signal<any[]>([]);
 
 
   //paginacion convertida en opbjeto con tipos para que sea atomico
@@ -77,6 +80,20 @@ export class DataSignalService {
       console.log("error",error);
     }
   }
+
+
+
+  getListProductsWithoutPagesSignal(){
+    try{
+      this._productService.getListProductsWithoutPages().subscribe((data)=>{
+      this.productosSinPaginasSignal.set(data);
+    })
+    }
+    catch (error){
+      console.log("error",error);
+    }
+  }
+
   // Obtener productos con paginación
   getListProductSignal(page: number, limit: number) {
     try {
@@ -89,11 +106,11 @@ export class DataSignalService {
         this.paginacionSignal.productos.totalPaginas.set(data.totalPages)
 
         this.paginacionSignal.productos.paginaActual.set(page)
-        console.log("total pages productos signal: ",this.paginacionSignal.productos.totalPaginas());
+        
 
         this.totalProductosSignal.set(data.total);  // Total de productos
         this.totalPaginasSignal.set(data.totalPages);  // Total de páginas
-        console.log("total pages signal actulizado 1: ",this.totalPaginasSignal());
+      
         this.paginaActualSignal.set(page);  // Página actual
       });
     } catch (error) {

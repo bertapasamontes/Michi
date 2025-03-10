@@ -1,6 +1,12 @@
 <div class="container-productos ">
+    <p>categorias</p>
+    <app-filtros-productos
+    [categoriasDeProductos]="categoriasDeProductos"
+    (categorySelected)="onCategorySelected($event)"></app-filtros-productos>
+
     <div class="productos d-flex justify-content-center align-items-center">
-        @for(producto of datos(); track producto._id){
+        gola
+        @for(producto of productosFiltrados(); track producto._id){
         <app-card-product [producto]="producto" class="m-1"></app-card-product>
     }
     </div>

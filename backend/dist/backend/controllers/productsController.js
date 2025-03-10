@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProduct = exports.postProduct = exports.deleteOneProduct = exports.getOneProductWithComments = exports.getOneProduct = exports.getProducts = void 0;
+exports.updateProduct = exports.postProduct = exports.deleteOneProduct = exports.getOneProductWithComments = exports.getOneProduct = exports.getProductsWithoutPages = exports.getProducts = void 0;
 const product_js_1 = require("../../src/app/model/product.js");
 const pixabay_images_service_js_1 = require("../services/pixabayImages/pixabay-images.service.js");
 const _pixabayImages = new pixabay_images_service_js_1.PixabayImagesService();
@@ -55,6 +55,30 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getProducts = getProducts;
+const getProductsWithoutPages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    product_js_1.ProductoNuevo.find()
+        .populate({
+        path: 'site',
+        model: 'sitiosDeMichi',
+        select: 'name'
+    })
+        .populate({
+        path: 'comments',
+        model: 'comentarios',
+        select: 'text',
+        populate: {
+            path: 'user',
+            model: 'UsersDeMichi',
+            select: 'username'
+        }
+    })
+        .then((respuesta) => {
+        res.status(200).json(respuesta);
+    })
+        .catch((error) => {
+    });
+});
+exports.getProductsWithoutPages = getProductsWithoutPages;
 const getOneProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     product_js_1.ProductoNuevo

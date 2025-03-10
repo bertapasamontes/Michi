@@ -27,6 +27,11 @@ export class ProductsService {
       `${this.myAppUrl}${this.myApiUrl}?page=${page}&limit=${limit}`
     );
   }
+
+  getListProductsWithoutPages(): Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.myAppUrl}${this.myApiUrl}all`);
+  }
+
   deleteProduct(id:number): Observable<void>{
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
