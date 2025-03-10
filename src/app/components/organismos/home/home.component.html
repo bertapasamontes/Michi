@@ -21,7 +21,9 @@
         <h2>Productos guardados:</h2>
         <app-tabla-datos [datos]="dataProducts" tipo="productos" (deleteItem)="deleteItem($event)"></app-tabla-datos>
 
-        <app-paginacion-datos tipo="productos"
+        <app-paginacion-datos 
+        class="d-flex justify-content-end"
+        tipo="productos"
         [totalPagesSignal]="getTotalPagesSignal('productos')" 
         [paginaActualSignal]="getPaginaActualSignal('productos')" 
         (paginaActual)="cambiarPagina($event.pagina, $event.tipo)"></app-paginacion-datos>

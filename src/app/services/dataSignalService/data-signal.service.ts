@@ -90,6 +90,11 @@ export class DataSignalService {
 
         this.paginacionSignal.productos.paginaActual.set(page)
         console.log("total pages productos signal: ",this.paginacionSignal.productos.totalPaginas());
+
+        this.totalProductosSignal.set(data.total);  // Total de productos
+        this.totalPaginasSignal.set(data.totalPages);  // Total de páginas
+        console.log("total pages signal actulizado 1: ",this.totalPaginasSignal());
+        this.paginaActualSignal.set(page);  // Página actual
       });
     } catch (error) {
       console.log('error', error);

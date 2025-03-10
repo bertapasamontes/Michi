@@ -1,0 +1,5 @@
+<div class="productos">
+    @for(producto of datos(); track producto._id){
+        <app-card-product [producto]="producto"></app-card-product>
+    }
+</div>

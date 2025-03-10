@@ -9,6 +9,6 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './card-product.component.scss'
 })
 export class CardProductComponent {
-  @Input() producto:{name:string, img: string, rate: number, price: number, site: {}};
+  @Input() producto!:{name:string, imgProduct: string, rate: number, price: number, site: {name:string}};
     
 }

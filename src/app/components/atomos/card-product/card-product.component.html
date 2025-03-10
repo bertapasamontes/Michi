@@ -1,15 +1,16 @@
 <div class="card-product container">
-    <div class="row">
+    <div class="row d-inline-flex">
         <div class="col">
-            <img src="{{producto.img}}" alt="img-{{producto.name}}">
-            <p>{{producto.name}}</p>
-        </div>
-        <div class="col">
-            <div class="puntuacion-y-precio d-flex flex-row">
-                <div class="rate"><mat-icon>star</mat-icon>{{producto.rate}}</div>
-                <p>{{producto.price}}€</p>
+            <div class="row card-header">
+                <img src="{{producto.imgProduct}}" alt="img-{{producto.name.trim()}}" class="img-fluid">
+                <p class="product-name">{{producto.name}}</p>
             </div>
-            <mat-icon>location</mat-icon>{{producto.site}}
+            <div class="row card-description d-flex justify-content-around">
+                <div class="rate">{{producto.rate}}⭐</div>
+                <p>{{producto.price}}€</p>
+                <mat-icon>location_on</mat-icon>{{producto.site.name}}
+            </div>
         </div>
+
     </div>
 </div>

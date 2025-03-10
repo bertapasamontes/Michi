@@ -27,7 +27,16 @@ export class HomeComponent {
     ){
         // console.log("total Paginas: ",);
 
+        // Ejemplo de inicialización en el servicio
+    this._dataSignalService.paginacionSignal.usuarios.totalPaginas.set(0);  // Asegurarse de que no sea undefined
+    this._dataSignalService.paginacionSignal.usuarios.paginaActual.set(1);  // Asegurarse de que no sea undefined
+
+
     
+    }
+
+    ngAfterViewInit(){
+        // console.log("total pages users",this.getTotalPagesSignal('usuarios'));
     }
 
     tipo!:  'usuarios' | 'locales' | 'productos';
@@ -37,12 +46,17 @@ export class HomeComponent {
     dataProducts: Signal<any[]> = this._dataSignalService.productosSignal;
 
 
+    
+
+
     //obtener la cantidad de paginas segun el tipo de datos:
     getTotalPagesSignal(tipo: 'usuarios' | 'locales' | 'productos'){
         const totalPaginas2 = this._dataSignalService.paginacionSignal[tipo].totalPaginas();
 
         if(!totalPaginas2){
-           return 1;
+            console.error("no hay totalPaginas2 en getTotalPagesSignal()");
+
+            return 1;
         }
         return totalPaginas2;
     }
@@ -52,6 +66,7 @@ export class HomeComponent {
         const paginaActual =  this._dataSignalService.paginacionSignal[tipo];
 
         if(!paginaActual){
+            console.error("no hay paginación");
             return 1;
         }
         return paginaActual.paginaActual();
@@ -96,7 +111,9 @@ export class HomeComponent {
         console.log("total pages users: ",this.getTotalPagesSignal(tipo))
 
         if (pagina >= 1 && pagina <= this.getTotalPagesSignal(tipo)) {
-            this._dataSignalService.paginacionSignal[tipo].paginaActual.set(pagina);          
+            this._dataSignalService.paginacionSignal[tipo].paginaActual.set(pagina);
+
+            
 
             switch(tipo){
                 case 'usuarios':
