@@ -1,6 +1,11 @@
 <div class="user-container">
-  <div class="main-content container">
-    <router-outlet></router-outlet>
+  <div class="main-content container d-flex align-items-stretch">
+    @if(loading){
+       <app-loading-page class="flex-grow-1"></app-loading-page>
+    }
+    @else {<router-outlet class="flex-grow-1"></router-outlet>}
+   
+    
   </div>
   <div class="navbar-content container">
     <app-mobile-navbar></app-mobile-navbar>

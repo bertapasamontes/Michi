@@ -9,8 +9,9 @@ import { DescubrirComponent } from './components/organismos/mobile-descubrir/des
 import { MapaMobileComponent } from './components/organismos/mobile-mapa/mapa-mobile.component';
 import { MichiBotComponent } from './components/organismos/mobile-michi-bot/michi-bot.component';
 import { InicioSesionComponent } from './components/moleculas/inicio-sesion/inicio-sesion.component';
-import { AuthGuard } from './_helpers/authGuard/auth.guard';
 import { MobilePerfilComponent } from './components/organismos/mobile-perfil/mobile-perfil.component';
+
+import { AuthGuard } from './_helpers/authGuard/auth.guard';
 
 
 
@@ -39,6 +40,8 @@ export const routes: Routes = [
         children:[
             {path: 'descubrir', component: DescubrirComponent},
             {path: 'mapa', component: MapaMobileComponent},
+            {path: 'michibot', component: MichiBotComponent},
+            {path: 'perfil', component: MobilePerfilComponent},
         ] //falta
     },
     { path: 'login', pathMatch:'full', component:InicioSesionComponent},
