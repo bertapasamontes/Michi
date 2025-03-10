@@ -1,16 +1,28 @@
 <div class="listado-productos">
     <p>categorias</p>
-    <app-filtros-productos
-    [categoriasDeProductos]="categoriasDeProductos"
-    (categorySelected)="onCategorySelected($event)"></app-filtros-productos>
+    <app-filtros-productos (categoriasDeProductosSignal)="onCategoriesLoaded($event)"
+        (categorySelectedSignal)="onCategorySelected($event)"></app-filtros-productos>
 </div>
-<div class="container-productos ">
-    
+<div class="container-productos mt-4">
+    @if(categoriaSeleccionada === 'Todas'){
+        @for(categoria of categoriasDeProductos; track categoria){
+        <h3 class="tag-name">{{ categoria }}</h3>
+        <div class="productos d-flex justify-content-start align-items-center">
+            @for(producto of productosPorCategoria[categoria]; track producto){
+            <app-card-product [producto]="producto" class="m-1"></app-card-product>
+            }
+        </div>
 
-    <div class="productos d-flex justify-content-start align-items-center">
-        @for(producto of productosFiltrados(); track producto._id){
-        <app-card-product [producto]="producto" class="m-1"></app-card-product>
+        }
     }
-    </div>
-    
+    @else{
+        <h3 class="tag-name">{{categoriaSeleccionada}}</h3>
+        <div class="productos">
+            @for(producto of productosFiltrados(); track producto){
+            <app-card-product [producto]="producto" class="m-1"></app-card-product>
+        }
+        </div>
+        
+    }
+
 </div>

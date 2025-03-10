@@ -27,7 +27,7 @@ export const routes: Routes = [
             {path: 'calendar', component: FullCalendarComponent},
             {path: 'modo-user', component: UserLayoutComponent, children:[
                 {path: 'descubrir', component: DescubrirComponent, children:[
-                    {path: 'producto/:id', component: InfoProductoComponent},
+                    {path: ':id', component: InfoProductoComponent},
                 ]},
                 {path: 'mapa', component: MapaMobileComponent},
                 {path: 'michibot', component: MichiBotComponent},

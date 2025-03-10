@@ -1,12 +1,22 @@
 .container-productos{
     max-width: 350px;
-    height: auto;
+    height: 500px;
     overflow-x: auto;
+    overflow-y: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
+
+    scrollbar-width: none !important;
 }
 
-// .productos{
-//     // overflow: scroll;
-//     // scroll-behavior: smooth;
-// }
+.productos{
+    overflow-x: auto;
+
+    scrollbar-width: none !important;
+}
+
+.tag-name{
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+}

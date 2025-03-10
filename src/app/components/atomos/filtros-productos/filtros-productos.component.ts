@@ -12,14 +12,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class FiltrosProductosComponent {
 
-  @Output() categorySelected = new EventEmitter<string>();
-  categoriasDeProductos: string[] = [];
+  @Output() categorySelectedSignal = new EventEmitter<string>();
+  @Output() categoriasDeProductosSignal = new EventEmitter<string[]>();
 
-  selectedCategory: string = 'Todas'; 
+  selectedCategory: string = 'Todas';
+  categoriasDeProductos: string[] = [];
 
 
   constructor(
-    private _dataSignalService: DataSignalService,
     private _productService: ProductsService
   ){}
 
@@ -33,7 +33,7 @@ export class FiltrosProductosComponent {
   obtenerCategorias(productos: Product[]): void {
     const categoriasUnicas = new Set<string>();  //evitamos duplicados
 
-    //Recorremos los productos
+    //cecorremos los productos
     productos.forEach(producto => {
       if (producto.category) {
         producto.category.forEach((categoria: string) => {
@@ -42,13 +42,14 @@ export class FiltrosProductosComponent {
       }
     });
 
-    // Convertimos el Set a un array y lo asignamos
+    // convertimos el Set a un array y lo asignamos
     this.categoriasDeProductos = Array.from(categoriasUnicas);
-    console.log('Categorías disponibles:', this.categoriasDeProductos);
+    console.log('Categorías disponibles de productos:', this.categoriasDeProductos);
   }
 
   onCategoryChange(){
-    this.categorySelected.emit(this.selectedCategory);
+    this.categorySelectedSignal.emit(this.selectedCategory);
+    this.categoriasDeProductosSignal.emit(this.categoriasDeProductos);
   }
   
 }

@@ -1,9 +1,9 @@
-<div class="categorias">
+<div class="categorias d-flex justify-content-start align-items-center">
     <input 
     type="radio" 
-    class="btn-check" 
+    class="btn-check tag-todas" 
     name="categoria-base" 
-    id="default" 
+    id="Todas" 
     autocomplete="off" 
     
     (change)="onCategoryChange()"
@@ -12,9 +12,9 @@
     checked
     >
 
-    <label class="btn" for="default">Todas</label>  
+    <label class="btn" for="Todas">Todas</label>  
     @for(categoria of categoriasDeProductos; track categoria){
-        <input type="radio" class="btn-check" name="categoria-base" id="{{categoria}}" autocomplete="off"
+        <input type="radio" class="btn-check tag-{{categoria}}" name="categoria-base" id="{{categoria}}" autocomplete="off"
         (change)="onCategoryChange()"
         [(ngModel)]="selectedCategory"
         value="{{categoria}}">

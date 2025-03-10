@@ -1,0 +1,15 @@
+.categorias{
+    width: 325px;
+    
+    overflow-x: auto;
+    scrollbar-width: none !important;
+}
+
+.categorias::hover ::-webkit-scrollbar{
+    scrollbar-width:auto !important;
+    
+}
+
+tag-todas ::before{
+    content:''
+}

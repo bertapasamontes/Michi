@@ -13,12 +13,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class CardProductComponent {
   @Input() producto!:{_id?:number ,name:string, imgProduct: string, rate: number, price: number, site: placeGlobal};
 
-  ngOnInit(){
-    console.log("producto en card",this.producto)
-  }
-
-  // irAlProducto(){
-  //   window.location.href = `user/descubrir/producto/${this.producto._id}`
+  // ngOnInit(){
+  //   console.log("producto en card",this.producto)
   // }
     
 }
