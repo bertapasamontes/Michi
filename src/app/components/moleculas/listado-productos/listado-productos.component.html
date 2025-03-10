@@ -3,23 +3,24 @@
     <app-filtros-productos (categoriasDeProductosSignal)="onCategoriesLoaded($event)"
         (categorySelectedSignal)="onCategorySelected($event)"></app-filtros-productos>
 </div>
-<div class="container-productos mt-4">
+<div class="container-productos mt-4 p-2">
     @if(categoriaSeleccionada === 'Todas'){
         @for(categoria of categoriasDeProductos; track categoria){
-        <h3 class="tag-name">{{ categoria }}</h3>
+        <h3 class="tag-name mx-2" >{{ categoria }}</h3>
         <div class="productos d-flex justify-content-start align-items-center">
             @for(producto of productosPorCategoria[categoria]; track producto){
             <app-card-product [producto]="producto" class="m-1"></app-card-product>
             }
+            <br>
         </div>
 
         }
     }
     @else{
-        <h3 class="tag-name">{{categoriaSeleccionada}}</h3>
-        <div class="productos">
+        <h3 class="tag-name mx-2">{{categoriaSeleccionada}}</h3>
+        <div class="productos d-flex flex-column">
             @for(producto of productosFiltrados(); track producto){
-            <app-card-product [producto]="producto" class="m-1"></app-card-product>
+            <app-card-product [producto]="producto" class=""></app-card-product>
         }
         </div>
         

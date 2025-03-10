@@ -4,7 +4,7 @@
     width: 100%;
     height: 90vh;
     display: grid;
-    grid-template-rows: auto 115px; //router-outlet ocupa el resto de los 100px que ocupa el navbarMobile
+    grid-template-rows: auto 100px; //router-outlet ocupa el resto de los 100px que ocupa el navbarMobile
     overflow: visible; 
 
     background-image: url('../../../../assets/img/mockup_mobile.png');
