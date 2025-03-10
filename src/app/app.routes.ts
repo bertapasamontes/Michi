@@ -12,6 +12,7 @@ import { InicioSesionComponent } from './components/moleculas/inicio-sesion/inic
 import { MobilePerfilComponent } from './components/organismos/mobile-perfil/mobile-perfil.component';
 
 import { AuthGuard } from './_helpers/authGuard/auth.guard';
+import { InfoProductoComponent } from './components/moleculas/info-producto/info-producto.component';
 
 
 
@@ -25,7 +26,9 @@ export const routes: Routes = [
             {path: 'mapa', component: MapaComponent},
             {path: 'calendar', component: FullCalendarComponent},
             {path: 'modo-user', component: UserLayoutComponent, children:[
-                {path: 'descubrir', component: DescubrirComponent},
+                {path: 'descubrir', component: DescubrirComponent, children:[
+                    {path: 'producto/:id', component: InfoProductoComponent},
+                ]},
                 {path: 'mapa', component: MapaMobileComponent},
                 {path: 'michibot', component: MichiBotComponent},
                 {path: 'perfil', component: MobilePerfilComponent},

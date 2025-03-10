@@ -6,7 +6,7 @@ export interface Product {
     name: string;
     category: [string];
     price: number;
-    site: placeGlobal | string;
+    site: placeGlobal;
     rate: number;
     comments?: Comentario[];
     imgProduct: string;

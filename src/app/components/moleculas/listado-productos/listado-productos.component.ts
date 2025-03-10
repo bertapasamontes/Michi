@@ -14,18 +14,23 @@ export class ListadoProductosComponent {
   @Input() datos!: Signal<Product[]>; //recibe los datos de descubir.component
   
   @Input() categoriasDeProductos: string[] = [];  // Categorías disponibles para filtrar
-  categoriaSeleccionada: string = 'Todas';
-   // Creación de una señal reactiva para los productos filtrados
-   productosFiltrados = signal<Product[]>([]);
+  @Input() categoriaSeleccionada: string = 'Todas';
+   
+  productosFiltrados = signal<Product[]>([]); //signal para los porductos filtrados
 
-   constructor() {
-    // Sincronizamos los productos filtrados cuando la categoría cambia
-    this.updateFilteredProducts();
+  constructor() {
+    ()=>{
+      this.updateFilteredProducts();
+    }
   }
+  get productos(): Product[] {
+    return this.datos(); 
+  }
+
 
   // Filtra los productos según la categoría seleccionada
   updateFilteredProducts(): void {
-    const productos = this.datos();
+    const productos = this.productos;
     if (this.categoriaSeleccionada === 'Todas') {
       this.productosFiltrados.set(productos);  // Si no hay filtro, devuelve todos los productos
     } else {

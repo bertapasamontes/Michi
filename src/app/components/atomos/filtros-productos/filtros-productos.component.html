@@ -5,16 +5,19 @@
     name="categoria-base" 
     id="default" 
     autocomplete="off" 
-    checked
+    
     (change)="onCategoryChange()"
     [(ngModel)]="selectedCategory"
+    value="Todas"
+    checked
     >
 
     <label class="btn" for="default">Todas</label>  
     @for(categoria of categoriasDeProductos; track categoria){
         <input type="radio" class="btn-check" name="categoria-base" id="{{categoria}}" autocomplete="off"
         (change)="onCategoryChange()"
-        [(ngModel)]="selectedCategory">
+        [(ngModel)]="selectedCategory"
+        value="{{categoria}}">
         <label class="btn" for="{{categoria}}">{{categoria}}</label>
     }
 </div>
