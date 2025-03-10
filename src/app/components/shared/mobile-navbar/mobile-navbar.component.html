@@ -1,20 +1,22 @@
 <nav class="navbar">
     <ul class="navbar-nav d-flex flex-row align-items-baseline g-4">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" 
-                    routerLinkActive="active"><app-btn-descubrir [routerLink]="'descubrir'"></app-btn-descubrir></a>
+            <a class="nav-link active" aria-current="page" routerLink="descubrir" routerLinkActive="active">
+                <app-btn-descubrir></app-btn-descubrir>
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page"
-                    routerLinkActive="active"><app-btn-mapa [routerLink]="'mapa'"></app-btn-mapa></a>
+            <a class="nav-link active" aria-current="page" routerLink="mapa" routerLinkActive="active">
+                <app-btn-mapa></app-btn-mapa>
+            </a>
         </li>
         <li class="nav-item">
-            <button class="nav-link active" aria-current="page" routerLink="michibot"
-                    routerLinkActive="active"><app-btn-michi-bot></app-btn-michi-bot></button>
+            <a class="nav-link active" aria-current="page" routerLink="michibot"
+                routerLinkActive="active"><app-btn-michi-bot></app-btn-michi-bot></a>
         </li>
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLink="perfil"
-                    routerLinkActive="active"><app-btn-perfil></app-btn-perfil></a>
+                routerLinkActive="active"><app-btn-perfil></app-btn-perfil></a>
         </li>
     </ul>
 </nav>

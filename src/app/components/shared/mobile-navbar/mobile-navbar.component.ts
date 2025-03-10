@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { BtnDescubrirComponent } from "../../atomos/btn-descubrir/btn-descubrir.component";
 import { BtnMapaComponent } from "../../atomos/btn-mapa/btn-mapa.component";
 import { BtnMichiBotComponent } from '../../atomos/btn-michi-bot/btn-michi-bot.component';

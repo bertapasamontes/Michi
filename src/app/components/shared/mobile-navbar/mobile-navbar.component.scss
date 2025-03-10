@@ -1,4 +1,9 @@
 @use '../../../../assets/_variables.scss' as *;
+
+$primary: #F17A12 !default;
+$secondary: #686665;
+$light: #FBD8B8;
+
 .nav-item{
     margin: 15px;
     font-size: small;
@@ -13,5 +18,5 @@
 }
 
 .nav-link.active{
-    color: $primary;
+    color: $primary !important;
 }

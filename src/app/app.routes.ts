@@ -10,6 +10,7 @@ import { MapaMobileComponent } from './components/organismos/mobile-mapa/mapa-mo
 import { MichiBotComponent } from './components/organismos/mobile-michi-bot/michi-bot.component';
 import { InicioSesionComponent } from './components/moleculas/inicio-sesion/inicio-sesion.component';
 import { AuthGuard } from './_helpers/authGuard/auth.guard';
+import { MobilePerfilComponent } from './components/organismos/mobile-perfil/mobile-perfil.component';
 
 
 
@@ -26,6 +27,7 @@ export const routes: Routes = [
                 {path: 'descubrir', component: DescubrirComponent},
                 {path: 'mapa', component: MapaMobileComponent},
                 {path: 'michibot', component: MichiBotComponent},
+                {path: 'perfil', component: MobilePerfilComponent},
 
             ]},
             // {path: 'charts', component: ChartsComponent},
