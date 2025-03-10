@@ -9,5 +9,13 @@ import { CardProductComponent } from '../../atomos/card-product/card-product.com
 })
 export class ListadoProductosComponent {
   @Input() datos!: Signal<any[]>; //recibe los datos de descubir.component
+
+  categoriasDeProductos = [];
+
+  // getCategories(data:any[]){
+  //   data.forEach(producto => {
+  //     this.categoriasDeProductos.push(producto.category);
+  //   });
+  // }
  
 }

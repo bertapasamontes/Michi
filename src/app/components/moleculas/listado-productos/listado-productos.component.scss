@@ -1,0 +1,12 @@
+.container-productos{
+    max-width: 350px;
+    height: auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+}
+
+// .productos{
+//     // overflow: scroll;
+//     // scroll-behavior: smooth;
+// }
