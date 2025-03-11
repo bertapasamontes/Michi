@@ -5,57 +5,110 @@
 @if(!loading){
 <div class="col-lg-4">
     <div class="card mb-3">
-        <div class="card-header">{{operacion}} usuario</div>
+        <div class="card-header">{{operacion}} {{tipoOperacion}}</div>
         <div class="card-body">
             <form class="row g-3" [formGroup]='formAddUser' (ngSubmit)="addUser()">
 
-                <div class="col-md-6">
-                    <label for="name">Name*</label>
-                    <input formControlName="name" type="text" class="form-control" placeholder="Pedro">
-                    @if(formAddUser.get('name')?.hasError('required') && formAddUser.get('name')?.touched){
-                    <span>Este campo es requerido</span>
-                    }
+                @if(tipoForm == 'usuarios'){
+                    <div class="col-md-6">
+                        <label for="name">Nombre*</label>
+                        <input formControlName="name" type="text" class="form-control" placeholder="Pedro">
+                        @if(formAddUser.get('name')?.hasError('required') && formAddUser.get('name')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+    
+                    </div>
+    
+                    <!-- <div class="col-md-6">
+                        <label for="surname">Surname (opcional)</label>
+                        <input formControlName="surname" type="text" class="form-control" placeholder="Pascual">
+                    </div> -->
+    
+                    <div class="col-md-6">
+                        <label for="email">Email*</label>
+                        <input formControlName="email" type="email" class="form-control"
+                            placeholder="pedropascual@gmail.com">
+                        @if(formAddUser.get('email')?.hasError('required') && formAddUser.get('email')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <label for="role">Rol*</label>
+                        <select class="form-select" formControlName="role">
+                            <option selected value="viewer">👁️ Viewer</option>
+                            <option value="admin">💼 Admin</option>
+                          </select>
+                    </div>
+    
+    
+                    <div class="col-md-6">
+                        <label for="username">Username*</label>
+                        <input formControlName="username" type="text" class="form-control" placeholder="@pedropascual"
+                            autocomplete="username">
+                        @if(formAddUser.get('username')?.hasError('required') && formAddUser.get('username')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password">Contraseña*</label>
+                        <input formControlName="password" type="password" class="form-control" placeholder="****"
+                            autocomplete="new-password">
+                        @if(formAddUser.get('password')?.hasError('required') && formAddUser.get('password')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div>
 
-                </div>
+                }
+                @if(tipoForm == 'productos'){
+                    <div class="col-md-6">
+                        <label for="name">Nombre*</label>
+                        <input formControlName="name" type="text" class="form-control" placeholder="Café solo">
+                        @if(formAddUser.get('name')?.hasError('required') && formAddUser.get('name')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+    
+                    </div>
+    
+                    <!-- <div class="col-md-6">
+                        <label for="surname">Surname (opcional)</label>
+                        <input formControlName="surname" type="text" class="form-control" placeholder="Pascual">
+                    </div> -->
+    
+                    <div class="col-md-6">
+                        <label for="rate">Puntuación*</label>
+                        <input formControlName="rate" type="number" class="form-control"
+                            placeholder="5 ⭐">
+                        @if(formAddUser.get('email')?.hasError('required') && formAddUser.get('rate')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <label for="price">Precio*</label>
+                        <input formControlName="price" type="number" class="form-control"
+                            placeholder="1.70€">
+                    </div>
+    
+    
+                    <div class="col-md-6">
+                        <label for="username">Username*</label>
+                        <input formControlName="username" type="text" class="form-control" placeholder="@pedropascual"
+                            autocomplete="username">
+                        @if(formAddUser.get('username')?.hasError('required') && formAddUser.get('username')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <label for="password">Password*</label>
+                        <input formControlName="password" type="password" class="form-control" placeholder="****"
+                            autocomplete="new-password">
+                        @if(formAddUser.get('password')?.hasError('required') && formAddUser.get('password')?.touched){
+                        <span>Este campo es requerido</span>
+                        }
+                    </div>
 
-                <!-- <div class="col-md-6">
-                    <label for="surname">Surname (opcional)</label>
-                    <input formControlName="surname" type="text" class="form-control" placeholder="Pascual">
-                </div> -->
+                }
 
-                <div class="col-md-6">
-                    <label for="email">Email*</label>
-                    <input formControlName="email" type="email" class="form-control"
-                        placeholder="pedropascual@gmail.com">
-                    @if(formAddUser.get('email')?.hasError('required') && formAddUser.get('email')?.touched){
-                    <span>Este campo es requerido</span>
-                    }
-                </div>
-                <div class="col-md-6">
-                    <label for="role">Rol*</label>
-                    <select class="form-select" formControlName="role">
-                        <option selected value="viewer">👁️ Viewer</option>
-                        <option value="admin">💼 Admin</option>
-                      </select>
-                </div>
-
-
-                <div class="col-md-6">
-                    <label for="username">Username*</label>
-                    <input formControlName="username" type="text" class="form-control" placeholder="@pedropascual"
-                        autocomplete="username">
-                    @if(formAddUser.get('username')?.hasError('required') && formAddUser.get('username')?.touched){
-                    <span>Este campo es requerido</span>
-                    }
-                </div>
-                <div class="col-md-6">
-                    <label for="password">Password*</label>
-                    <input formControlName="password" type="password" class="form-control" placeholder="****"
-                        autocomplete="new-password">
-                    @if(formAddUser.get('password')?.hasError('required') && formAddUser.get('password')?.touched){
-                    <span>Este campo es requerido</span>
-                    }
-                </div>
+                
 
 
 
@@ -67,9 +120,11 @@
                         </div>
                         <div class="col-lg-6">
                             @if(operacion == 'Añadir nuevo'){
-                            <button [disabled]="formAddUser.invalid" type="submit"
+                                    <button [disabled]="formAddUser.invalid" type="submit"
                                 class="btn btn-primary d-flex align-items-center"><mat-icon>add</mat-icon>Crear nuevo
-                                user</button>
+                                {{tipoOperacion}}</button>
+                                
+                           
                             }
                             @if(operacion == 'Editar'){
                                 <button [disabled]="formAddUser.invalid" type="submit"

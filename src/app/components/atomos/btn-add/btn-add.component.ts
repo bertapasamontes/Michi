@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../../users/add-user/add-user.component';
 import { MatIcon } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class BtnAddComponent {
   @Output() updateData = new EventEmitter<void>();
+  @Input() tipo: 'usuarios' | 'locales' | 'productos' = 'usuarios'
 
   constructor(
     private _matDialog: MatDialog
@@ -20,6 +21,7 @@ export class BtnAddComponent {
       const dialogo = this._matDialog.open(AddUserComponent, {
         width: '900px',
         data: {
+          tipo: this.tipo
           // id: this.usuariosEnMichi.id,
           // name: this.usuariosEnMichi[0].name
         }

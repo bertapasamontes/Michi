@@ -6,6 +6,8 @@ import { UserService } from '../../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { ProgressBarComponent } from "../../shared/progress-bar/progress-bar.component";
 import { User } from '../../../interfaces/users';
+import { ProductsService } from '../../../services/products/products.service';
+import { Product } from '../../../interfaces/product';
 
 @Component({
   selector: 'app-add-user',
@@ -17,6 +19,9 @@ export class AddUserComponent {
   formAddUser: FormGroup;
   loading: Boolean = false;
   operacion: string = 'Añadir nuevo'
+  tipoOperacion: string = 'usuario'
+
+  tipoForm: 'usuarios' | 'productos' = 'usuarios'
 
 
 
@@ -27,8 +32,9 @@ export class AddUserComponent {
       //formulario
       private formBuilder: FormBuilder,
 
-      //servicio user
+      //servicios
       private _userService: UserService,
+      private _productService: ProductsService,
 
       //toast
       private toastr: ToastrService
@@ -37,25 +43,51 @@ export class AddUserComponent {
       console.log("id recibido:", this.data.id);
       this.data.name; //recibiendo data en el HTML
 
-      //formulario
-      this.formAddUser = formBuilder.group({
-        name: ['', Validators.required],
-        // surname: [''],
-        username: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(4)]],
-        role: ['', Validators.required]
+      this.tipoForm = this.data.tipo || 'usuarios';
 
-      })
+      if(this.tipoForm == 'productos'){
+        this.tipoOperacion = 'producto'
+      }
+      console.log("tipo form: ",this.tipoForm); 
+      
+      this.formAddUser = this.crearFormSegunTipo(this.tipoForm);
     }
 
     ngOnInit(){
       if(this.data.id != undefined){
         this.operacion = 'Editar';
 
-        this.getUser(this.data.id)
+        this.getDataByType(this.data.id)
       }
     }
+
+    crearFormSegunTipo(tipoDatos: string): FormGroup<any>{
+      //formulario
+      if(tipoDatos == 'usuarios'){
+        return this.formBuilder.group({
+          name: ['', Validators.required],
+          // surname: [''],
+          username: ['', Validators.required],
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', [Validators.required, Validators.minLength(4)]],
+          role: ['', Validators.required]
+  
+        })
+      }
+      else {
+        return this.formBuilder.group({
+          // image: ['', Validators.required],
+          name: ['', Validators.required],
+          rate: ['', Validators.required],
+          price:['', Validators.required],
+          site: ['', Validators.required],
+          category: ['', Validators.required],  
+        })
+      }
+
+    }
+
+
 
     addUser(){
       const usuarioNuevo: User = {
@@ -87,22 +119,41 @@ export class AddUserComponent {
       this._matDialogRef.close(true);
     }
 
-    getUser(id:number){
+  
+
+    getDataByType(id:number){
       this.loading = true;
-      this._userService.getUser(id).subscribe((data: User)=>{
-        console.log('obteniendo datos del user');
-        console.log(data);
-        this.loading=false;
-        this.formAddUser.setValue({
-          name: data.name,
-          // surname: data.surname,
-          username: data.username,
-          email: data.email,
-          password: data.password,
-          role: data.role
+
+      if(this.data.tipo == 'usuarios'){
+          this._userService.getUser(id).subscribe((data: User)=>{
+          console.log('obteniendo datos del user');
+          console.log(data);
+          this.loading=false;
+          this.formAddUser.setValue({
+            name: data.name,
+            // surname: data.surname,
+            username: data.username,
+            email: data.email,
+            password: data.password,
+            role: data.role
+          })
         })
-      })
-      console.log('Rol antes de actualizar:', this.formAddUser.value.role);
+      }
+      else{
+        this._productService.getProduct(id).subscribe((data: Product)=>{
+          console.log('obteniendo datos del producto');
+          console.log(data);
+          this.loading=false;
+          this.formAddUser.setValue({
+            name: data.name,
+            rate: data.rate,
+            price: data.price,
+            site: data.site,
+            category: data.category
+          })
+        })
+      }
+
     }
 
     volver(){

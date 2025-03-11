@@ -2,10 +2,11 @@ import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, Outpu
 import { BtnEditarComponent } from "../../atomos/btn-editar/btn-editar.component";
 import { TitleCasePipe } from '@angular/common';
 import { BtnDeleteComponent } from "../../atomos/btn-delete/btn-delete.component";
+import { BtnClipboardComponent } from "../../atomos/btn-clipboard/btn-clipboard.component";
 
 @Component({
   selector: 'app-tabla-datos',
-  imports: [BtnEditarComponent, TitleCasePipe, BtnDeleteComponent],
+  imports: [BtnEditarComponent, TitleCasePipe, BtnDeleteComponent, BtnClipboardComponent],
   templateUrl: './tabla-datos.component.html',
   styleUrl: './tabla-datos.component.scss',
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

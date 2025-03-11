@@ -3,6 +3,12 @@ $secondary: #686665;
 $light: #FBD8B8;
 $light-secondary: #e4e4e4;
 
+.table{
+  height: 324px;
+}
+::ng-deep table tr{
+  height: 57px;
+}
 
 .img-product{
   max-width: 100px;

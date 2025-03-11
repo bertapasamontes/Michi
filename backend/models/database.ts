@@ -30,7 +30,7 @@ class Database{
 
     listen(){       
         this.app.listen(this.port, ()=>{
-            console.log(`🚀 Servidor en http://localhost:${this.port}`);
+            console.log(`Servidor en http://localhost:${this.port}`);
         })
     }
 

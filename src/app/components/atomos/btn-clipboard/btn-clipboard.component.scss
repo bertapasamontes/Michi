@@ -1,0 +1,12 @@
+$secondary: #686665;
+$light-secondary: #a1a1a1;
+.btn-copy:focus{
+    background-color: #a1a1a1;
+    animation: mymove 5s infinite;
+    transition: background-color ease-in
+}
+
+@keyframes mymove {
+    0% {background-color: $secondary;}
+    50% {background-color: $light-secondary;}
+  }
