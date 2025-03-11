@@ -1,27 +1,66 @@
-# 8Inprocode
+# Michi
+![alt text](image.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+## 📄 Descripción
+Este proyecto es una aplicación Angular generada con Angular CLI. Está diseñada para facilitar el desarrollo de aplicaciones web, proporcionando una estructura modular y escalable.
 
-## Development server
+## ✨ Características
+- **Servidor de Desarrollo**: Permite ejecutar la aplicación localmente con `ng serve`.
+- **Code Scaffolding**: Creación de componentes, directivas y servicios con Angular CLI.
+- **Construcción**: Generación de artefactos optimizados para producción.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 💻 Tecnologías Utilizadas
+- Angular
+- TypeScript
+- HTML5
+- SCSS
 
-## Code scaffolding
+## 📋 Requisitos
+- Node.js y npm instalados.
+- Angular CLI instalado globalmente.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠️ Instalación
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/bertapasamontes/Michi.git
 
-## Build
+2. Instala las dependencias:
+```bash
+cd .\Michi\
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Configuración del entorno 🌍
+Antes de ejecutar el proyecto, crea el archivo `backend/env.ts` y copia el contenido de `environment.example.ts`, luego agrega tus valores reales.
 
-## Running unit tests
+Ejemplo:
+```typescript
+export const environment = {
+    MONGODB_URL: "mongodb+srv://user:user123@cluster0.ve2kx.mongodb.net/DatabaseMichi?retryWrites=true&w=majority&appName=Cluster0",
+    PORT: "3000",
+    MAPBOX_URL: "https://api.mapbox.com/geocoding/v5/mapbox.places",
+    mapBoxToken: "pk.eyJ1IjoiZG9udXRjb25jaG9jbyIsImEiOiJjbTdqMjBnczgwMXlsMm1zYXdjbDJ3djRyIn0.5G7xlZGXidKSDfcMLAhFUQ"
+};
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Inicializa el proyecto:
+1r terminal:
+```powershell
+cd .\backend\dist\backend\models\
+tsc --watch
+```
 
-## Running end-to-end tests
+2o terminal:
+```powershell
+cd .\backend\dist\backend\
+nodemon index.js
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3r terminal:
+```powershell
+ng serve -o
+```
 
-## Further help
+## 🤝 Contribuciones
+¡Contribuciones, sugerencias y mejoras son bienvenidas!
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
