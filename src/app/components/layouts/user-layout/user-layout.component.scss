@@ -38,6 +38,7 @@
 @media (min-width: 700px) {
     .mobile-header{
         display: flex;
+        justify-content: center;
     }
     .navbar-content{
         display: none;

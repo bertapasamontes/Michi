@@ -23,12 +23,16 @@
 }
 
 
-// //tablet
-// @media (min-width: 400px){
-//     .container-productos{
-//         width: 100vx;
-//     }
-// }
+//tablet
+@media (min-width: 500px){
+    .container-productos{
+        width: 100vx;
+    }
+    .productos{
+        display: flex;
+        justify-content: center;
+    }
+}
 
 // @media (min-widht:400px) and (max-width: 575px){
 //     .container-productos{

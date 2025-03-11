@@ -41,7 +41,9 @@ export const routes: Routes = [
         path: 'user',
         component: UserLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: 'viewer' },
         children:[
-            {path: 'descubrir', component: DescubrirComponent},
+            {path: 'descubrir', component: DescubrirComponent, children:[
+                {path: ':id', component: InfoProductoComponent},
+            ]},
             {path: 'mapa', component: MapaMobileComponent},
             {path: 'michibot', component: MichiBotComponent},
             {path: 'perfil', component: MobilePerfilComponent},
