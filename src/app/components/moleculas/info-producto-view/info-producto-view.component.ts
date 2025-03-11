@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../services/products/products.service';
+import { InfoProductComponent } from "../../atomos/info-product/info-product.component";
 
 @Component({
-  selector: 'app-info-producto',
-  imports: [],
-  templateUrl: './info-producto.component.html',
-  styleUrl: './info-producto.component.scss'
+  selector: 'app-info-producto-view',
+  imports: [InfoProductComponent],
+  templateUrl: './info-producto-view.component.html',
+  styleUrl: './info-producto-view.component.scss'
 })
-export class InfoProductoComponent {
+export class InfoProductoViewComponent {
+
+  productoRecibido!:any;
+
+
   constructor(
     private ruta: ActivatedRoute,
     private _productoService: ProductsService
@@ -28,6 +33,7 @@ export class InfoProductoComponent {
   getInfoProductById(id: string){
     try{
       const producto = this._productoService.getProduct(id).subscribe((product)=>{
+          this.productoRecibido = product;
           console.log(product);
       })
       console.log("producto: ", producto)

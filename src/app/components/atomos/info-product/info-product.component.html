@@ -1,0 +1,47 @@
+<div class="row carta-product">
+    <div class="col container">
+        <div class="row header-container">
+            <img class="img-fluid imagen-producto" src="{{producto.imgProduct}}" alt="img-{{producto.name}}">
+            <h3 class="name-producto">{{producto.name}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="row">
+                    ⭐ {{producto.rate}}
+                </div>
+                <div class="row">
+                    📍 {{producto.site.name}}, {{producto.site.short_direction}}
+                </div>
+            </div>
+            <div class="col-lg-2 container-precio">
+                <span class="precio-producto">{{producto.price}}€</span>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="d-flex flex-row centradoHorizontal">
+                <mat-icon>sell</mat-icon>
+                @for(categoria of producto.category; track categoria){
+                    <span class="categoria">{{categoria}}</span>
+                }
+            </div>
+            
+        </div>
+        <div class="row comentarios">
+            <h4 class="text-center">¿Qué piensan los usuarios?</h4>
+            <p class="puntuacion text-center">⭐{{producto.rate}}/5</p>
+            <div class="comments">
+                @if(producto.comments){
+                    @for(comentario of [producto.comments]; track comentario){
+                        
+                    }
+                } @else {
+                    <p>Todavía no hay comentarios. ¡Añadu tú uno!</p>
+                }
+            </div>
+            <div class="comentario-personalizado">
+                <app-comentario-nuevo (comentarioNuevo)="enviarComentario($event)"></app-comentario-nuevo>
+            </div>
+        </div>
+
+    </div>
+</div>

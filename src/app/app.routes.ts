@@ -12,7 +12,7 @@ import { InicioSesionComponent } from './components/moleculas/inicio-sesion/inic
 import { MobilePerfilComponent } from './components/organismos/mobile-perfil/mobile-perfil.component';
 
 import { AuthGuard } from './_helpers/authGuard/auth.guard';
-import { InfoProductoComponent } from './components/moleculas/info-producto/info-producto.component';
+import { InfoProductoViewComponent } from './components/moleculas/info-producto-view/info-producto-view.component';
 
 
 
@@ -42,7 +42,7 @@ export const routes: Routes = [
         component: UserLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: 'viewer' },
         children:[
             {path: 'descubrir', component: DescubrirComponent},
-            {path: 'descubrir/:id', component: InfoProductoComponent},
+            {path: 'descubrir/:id', component: InfoProductoViewComponent},
             {path: 'mapa', component: MapaMobileComponent},
             {path: 'michibot', component: MichiBotComponent},
             {path: 'perfil', component: MobilePerfilComponent},

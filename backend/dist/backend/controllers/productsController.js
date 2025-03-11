@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProduct = exports.postProduct = exports.deleteOneProduct = exports.getOneProductWithComments = exports.getOneProduct = exports.getProductsWithoutPages = exports.getProducts = void 0;
+exports.updateProduct = exports.postProduct = exports.deleteOneProduct = exports.getOneProductWithTotalInfo = exports.getOneProduct = exports.getProductsWithoutPages = exports.getProducts = void 0;
 const product_js_1 = require("../../src/app/model/product.js");
 const pixabay_images_service_js_1 = require("../services/pixabayImages/pixabay-images.service.js");
 const _pixabayImages = new pixabay_images_service_js_1.PixabayImagesService();
@@ -83,16 +83,43 @@ const getOneProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const { id } = req.params;
     product_js_1.ProductoNuevo
         .findById(id)
+        .populate({
+        path: 'site',
+        model: 'sitiosDeMichi',
+        select: 'name'
+    })
+        .populate({
+        path: 'comments',
+        model: 'comentarios',
+        select: 'text',
+        populate: {
+            path: 'user',
+            model: 'UsersDeMichi',
+            select: 'username'
+        }
+    })
         .then((data) => res.json(data))
         .catch((error) => res.json({ mensaje: error }));
 });
 exports.getOneProduct = getOneProduct;
-const getOneProductWithComments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getOneProductWithTotalInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const producto = yield product_js_1.ProductoNuevo.findById(id).populate({
+        const producto = yield product_js_1.ProductoNuevo.findById(id)
+            .populate({
+            path: 'site',
+            model: 'sitiosDeMichi',
+            select: '-_v'
+        })
+            .populate({
             path: 'comments',
-            model: 'comentarios'
+            model: 'comentarios',
+            select: '-_v',
+            populate: {
+                path: 'user',
+                model: 'UsersDeMichi',
+                select: 'username'
+            }
         });
         if (!producto) {
             res.status(404).json({ mensaje: "Producto no encontrado" });
@@ -104,7 +131,7 @@ const getOneProductWithComments = (req, res) => __awaiter(void 0, void 0, void 0
         res.status(500).json({ mensaje: "Error al obtener el producto", error: error });
     }
 });
-exports.getOneProductWithComments = getOneProductWithComments;
+exports.getOneProductWithTotalInfo = getOneProductWithTotalInfo;
 const deleteOneProduct = (req, res) => {
     const { id } = req.params;
     product_js_1.ProductoNuevo

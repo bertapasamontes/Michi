@@ -1,0 +1,15 @@
+<div class="comentario-nuevo">
+    <div class="row">
+        <div class="col-2 image-container">
+            <img src="{{usuarioLogueado.imgProfile}}"
+                alt="img-perfil" class="img-perfil img-fluid">
+        </div>
+        <div class="col-8">
+            <!-- <label for="comentarioNuevo" class="form-label">Example textarea</label> -->
+            <form [formGroup]='formComentario' (ngSubmit)="enviarComment()">
+                <textarea class="form-control" formControlName="comentario"  id="comentarioNuevo" rows="3" placeholder="Escribe aquí tu comentario"></textarea>
+            </form>
+        </div>
+        <div class="col-2"><button type="submit" class="btn btn-sm btn-primary d-flex">Enviar comentario</button></div>
+    </div>
+</div>

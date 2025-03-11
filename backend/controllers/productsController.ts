@@ -84,15 +84,43 @@ export const getOneProduct = async (req:Request, res: Response)=>{
     const {id} = req.params;
     ProductoNuevo
         .findById(id)
+        .populate({
+            path: 'site',
+            model: 'sitiosDeMichi',
+            select: 'name'
+        })
+        .populate({
+            path: 'comments',
+            model: 'comentarios',
+            select: 'text',
+            populate:{
+                path: 'user',
+                model: 'UsersDeMichi',
+                select: 'username'
+            }
+        })
         .then((data)=> res.json(data))
         .catch((error)=> res.json({mensaje: error}))
 }
-export const getOneProductWithComments = async (req:Request, res: Response)=>{
+
+export const getOneProductWithTotalInfo = async (req:Request, res: Response)=>{
     try{
         const {id} = req.params;
-        const producto = await ProductoNuevo.findById(id).populate({
+        const producto = await ProductoNuevo.findById(id)
+        .populate({
+            path: 'site',
+            model: 'sitiosDeMichi',
+            select: '-_v'
+        })
+        .populate({
             path: 'comments',
-            model: 'comentarios'
+            model: 'comentarios',
+            select: '-_v',
+            populate: {
+                path: 'user',
+                model: 'UsersDeMichi',
+                select: 'username'
+            }
         });
         if (!producto) {
             res.status(404).json({ mensaje: "Producto no encontrado" });
