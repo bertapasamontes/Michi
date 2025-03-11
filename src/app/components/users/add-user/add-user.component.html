@@ -60,6 +60,9 @@
 
                 }
                 @if(tipoForm == 'productos'){
+                    <!-- <label for="imgProduct">Select a file:</label>
+                    <input type="file" id="imgProduct" formControlName="imgProduct" class="form-control"> -->
+
                     <div class="col-md-6">
                         <label for="name">Nombre*</label>
                         <input formControlName="name" type="text" class="form-control" placeholder="Café solo">
@@ -68,11 +71,6 @@
                         }
     
                     </div>
-    
-                    <!-- <div class="col-md-6">
-                        <label for="surname">Surname (opcional)</label>
-                        <input formControlName="surname" type="text" class="form-control" placeholder="Pascual">
-                    </div> -->
     
                     <div class="col-md-6">
                         <label for="rate">Puntuación*</label>
@@ -90,18 +88,17 @@
     
     
                     <div class="col-md-6">
-                        <label for="username">Username*</label>
-                        <input formControlName="username" type="text" class="form-control" placeholder="@pedropascual"
-                            autocomplete="username">
-                        @if(formAddUser.get('username')?.hasError('required') && formAddUser.get('username')?.touched){
+                        <label for="site">ID del local*</label>
+                        <input formControlName="site" type="text" class="form-control" placeholder="12345678"
+                            autocomplete="site">
+                        @if(formAddUser.get('site')?.hasError('required') && formAddUser.get('site')?.touched){
                         <span>Este campo es requerido</span>
                         }
                     </div>
                     <div class="col-md-6">
-                        <label for="password">Password*</label>
-                        <input formControlName="password" type="password" class="form-control" placeholder="****"
-                            autocomplete="new-password">
-                        @if(formAddUser.get('password')?.hasError('required') && formAddUser.get('password')?.touched){
+                        <label for="category">Categoría* (separadas por comas)</label>
+                        <input formControlName="category" type="text" class="form-control" placeholder="desayuno, merienda">
+                        @if(formAddUser.get('category')?.hasError('required') && formAddUser.get('category')?.touched){
                         <span>Este campo es requerido</span>
                         }
                     </div>

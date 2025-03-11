@@ -24,16 +24,16 @@ export const routes: Routes = [
         children:[
             {path: 'data', component: HomeComponent,  data: { rolEsperado: 'admin' }},
             {path: 'mapa', component: MapaComponent},
-            {path: 'calendar', component: FullCalendarComponent},
-            {path: 'modo-user', component: UserLayoutComponent, children:[
-                {path: 'descubrir', component: DescubrirComponent, children:[
-                    {path: ':id', component: InfoProductoComponent},
-                ]},
-                {path: 'mapa', component: MapaMobileComponent},
-                {path: 'michibot', component: MichiBotComponent},
-                {path: 'perfil', component: MobilePerfilComponent},
+            // {path: 'calendar', component: FullCalendarComponent},
+            // {path: 'modo-user', component: UserLayoutComponent, children:[
+            //     {path: 'descubrir', component: DescubrirComponent, children:[
+            //         {path: ':id', component: InfoProductoComponent},
+            //     ]},
+            //     {path: 'mapa', component: MapaMobileComponent},
+            //     {path: 'michibot', component: MichiBotComponent},
+            //     {path: 'perfil', component: MobilePerfilComponent},
 
-            ]},
+            // ]},
             // {path: 'charts', component: ChartsComponent},
         ]
     },

@@ -92,7 +92,7 @@
                     <app-btn-clipboard [id]="row['id']"></app-btn-clipboard>
                     }
                 @if (tipo === 'productos' && row['id'] !== undefined) {
-                    <app-btn-editar tipo = 'productos' [item]="row['id']" (updateData)="refreshData()"></app-btn-editar>
+                    <app-btn-editar [tipo] = 'tipo' [item]="row['id']" (updateData)="refreshData()"></app-btn-editar>
                     }
                 <app-btn-delete (removeItem)="onDeleteItem($event['id'], $event['tipo'])" [item]="row['id']"
                     [tipo]="tipo"></app-btn-delete>

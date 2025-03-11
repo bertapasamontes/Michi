@@ -1,6 +1,10 @@
 .categorias{
     width: 325px;
-    
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
     overflow-x: auto;
     scrollbar-width: none !important;
 }
@@ -12,4 +16,10 @@
 
 tag-todas ::before{
     content:''
+}
+
+@media (min-width: 400px) {
+    .categorias{
+        width: 100vw;
+    }
 }

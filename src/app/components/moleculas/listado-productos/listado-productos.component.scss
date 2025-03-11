@@ -1,5 +1,6 @@
 .container-productos{
-    max-width: 350px;
+    width: 100%;
+    // max-width: 100vx;
     height: 500px;
     overflow-x: auto;
     overflow-y: auto;
@@ -20,3 +21,17 @@
     font-weight: 400;
     text-transform: capitalize;
 }
+
+
+// //tablet
+// @media (min-width: 400px){
+//     .container-productos{
+//         width: 100vx;
+//     }
+// }
+
+// @media (min-widht:400px) and (max-width: 575px){
+//     .container-productos{
+//         max-width: 500px;
+//     }
+// }

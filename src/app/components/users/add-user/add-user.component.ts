@@ -18,11 +18,12 @@ import { Product } from '../../../interfaces/product';
 export class AddUserComponent {
   formAddUser: FormGroup;
   loading: Boolean = false;
-  operacion: string = 'Añadir nuevo'
-  tipoOperacion: string = 'usuario'
+  operacion: string = 'Añadir nuevo';
+  tipoOperacion: string = 'usuario';
 
-  tipoForm: 'usuarios' | 'productos' = 'usuarios'
+  tipoForm: 'usuarios' | 'productos' = 'usuarios';
 
+  selectedFile: File | null = null;
 
 
   constructor(
@@ -90,29 +91,59 @@ export class AddUserComponent {
 
 
     addUser(){
-      const usuarioNuevo: User = {
-        name: this.formAddUser.value.name,
-        // surname: this.formAddUser.value.surname,
-        username: this.formAddUser.value.username,
-        password: this.formAddUser.value.password,
-        email: this.formAddUser.value.email,
-        role: this.formAddUser.value.role
+      if(this.tipoForm == 'usuarios'){
+        const usuarioNuevo: User = {
+          name: this.formAddUser.value.name,
+          // surname: this.formAddUser.value.surname,
+          username: this.formAddUser.value.username,
+          password: this.formAddUser.value.password,
+          email: this.formAddUser.value.email,
+          role: this.formAddUser.value.role
+        }
+        console.log(usuarioNuevo);
+        this.loading = true;
+        if(this.data.id !== undefined){
+          //editar  
+          usuarioNuevo._id = this.data.id;
+          this._userService.updateUser(this.data.id, usuarioNuevo).subscribe(()=>{
+            this.toastr.success(`El usuario ${usuarioNuevo.name} ha sido editado exitosamente`, 'Usuario editado')
+          })
+  
+        } else{
+          //añadir nuevo user
+          this._userService.saveUser(usuarioNuevo).subscribe(()=>{
+            this.toastr.success(`${usuarioNuevo.name} añadido exitosamente a la base de datos`, 'Usuario nuevo')
+          })
+        }
       }
-      console.log(usuarioNuevo);
-      this.loading = true;
-      if(this.data.id !== undefined){
-        //editar  
-        usuarioNuevo._id = this.data.id;
-        this._userService.updateUser(this.data.id, usuarioNuevo).subscribe(()=>{
-          this.toastr.success(`El usuario ${usuarioNuevo.name} ha sido editado exitosamente`, 'Usuario editado')
-        })
 
-      } else{
-        //añadir nuevo user
-        this._userService.saveUser(usuarioNuevo).subscribe(()=>{
-          this.toastr.success(`${usuarioNuevo.name} añadido exitosamente a la base de datos`, 'Usuario nuevo')
-        })
+      if(this.tipoForm == 'productos'){
+
+        const productoNuevo: Product = {
+          imgProduct:  this.formAddUser.value.name,
+          name: this.formAddUser.value.name,
+          rate: this.formAddUser.value.rate,
+          price: this.formAddUser.value.price,
+          site: this.formAddUser.value.site,
+          category: this.formAddUser.value.category
+        }
+        console.log(productoNuevo);
+        this.loading = true;
+        if(this.data.id !== undefined){
+          //editar  
+          productoNuevo._id = this.data.id;
+          this._productService.updateProduct(this.data.id, productoNuevo).subscribe(()=>{
+            this.toastr.success(`El producto ${productoNuevo.name} ha sido editado exitosamente`, 'Producto editado')
+          })
+  
+        } else{
+          //añadir nuevo user
+          this._productService.saveProduct(productoNuevo).subscribe(()=>{
+            this.toastr.success(`${productoNuevo.name} añadido exitosamente a la base de datos`, 'Producto nuevo')
+          })
+        }
       }
+      
       this.loading = false;
       this._matDialogRef.close();
 
@@ -131,7 +162,6 @@ export class AddUserComponent {
           this.loading=false;
           this.formAddUser.setValue({
             name: data.name,
-            // surname: data.surname,
             username: data.username,
             email: data.email,
             password: data.password,
@@ -140,11 +170,15 @@ export class AddUserComponent {
         })
       }
       else{
+
+        let imageUrl = this.formAddUser.value.imgProduct;
+
         this._productService.getProduct(id).subscribe((data: Product)=>{
           console.log('obteniendo datos del producto');
           console.log(data);
           this.loading=false;
           this.formAddUser.setValue({
+            imgProduct: data.name,
             name: data.name,
             rate: data.rate,
             price: data.price,

@@ -16,6 +16,7 @@ export class BtnEditarComponent {
   ){}
   
   @Input() item!:number;
+  @Input() tipo!:string;
   @Output() updateData = new EventEmitter<void>();
   
   abrirEdit(id:number):void{
@@ -23,6 +24,7 @@ export class BtnEditarComponent {
       width: '900px',
       data: {
         id: id,
+        tipo: this.tipo
       }
     });
 
