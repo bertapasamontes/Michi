@@ -11,5 +11,4 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 export class BtnClipboardComponent {
 
   @Input() id: number = 0;
-
 }

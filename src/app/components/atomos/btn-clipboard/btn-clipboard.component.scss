@@ -4,9 +4,43 @@ $light-secondary: #a1a1a1;
     background-color: #a1a1a1;
     animation: mymove 5s infinite;
     transition: background-color ease-in
+
+    
+}
+.btn-copy:focus [data-title]::focus {
+    content: attr('copied!');
 }
 
 @keyframes mymove {
     0% {background-color: $secondary;}
     50% {background-color: $light-secondary;}
-  }
+}
+
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
+}
+[data-title]:after {
+    content: attr(data-title);
+    background-color: lightgray;
+    color: #111;
+    font-size: 14px;
+    position: absolute;
+    padding: 1px 5px 2px 5px;
+    bottom: 1.6em;
+    left: 20px;
+    white-space: nowrap;
+    opacity: 0;
+
+    // border: 1px solid #111111;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+
+    z-index: 99999;
+    visibility: hidden;
+}
+[data-title] {
+    position: relative;
+}
