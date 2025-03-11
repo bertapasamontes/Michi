@@ -38,7 +38,7 @@ export class UserService {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, user)
   }
 
-  getUser(id:number): Observable<User>{
+  getUser(id:string): Observable<User>{
     return this.http.get<User>(`${this.myAppUrl}${this.myApiUrl}/id/${id}`)
   }
 

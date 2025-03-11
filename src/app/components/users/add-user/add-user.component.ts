@@ -152,7 +152,7 @@ export class AddUserComponent {
 
   
 
-    getDataByType(id:number){
+    getDataByType(id:string){
       this.loading = true;
 
       if(this.data.tipo == 'usuarios'){

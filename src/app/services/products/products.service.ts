@@ -40,7 +40,7 @@ export class ProductsService {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, Product)
   }
 
-  getProduct(id:number): Observable<Product>{
+  getProduct(id:string): Observable<Product>{
     return this.http.get<Product>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
 
