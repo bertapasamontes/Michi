@@ -8,5 +8,5 @@ export interface User {
     role: string;
     imgProfile?: string;
     comments?:{};
-    misFavs?:{}; 
+    misFavs?:[]; 
 }

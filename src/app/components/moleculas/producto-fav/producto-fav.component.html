@@ -1,6 +1,9 @@
 <div class="productos-fav container">
     <h3>Productos guardados:</h3>
     @if(usuarioLogueado){
-        
+        hola
+        @for(fav of usuarioLogueado.misFavs; track fav){
+            <app-card-product [producto]="fav"></app-card-product>
+        }
     }
 </div>

@@ -118,7 +118,7 @@ export class ListadoProductosComponent {
   onGuardarProducto(idProducto: string) {
     console.log('Producto guardado con ID:', idProducto);
     // Aquí puedes llamar a tu servicio para guardar el producto favorito
-    this._userService.addFavProduct(this.usuarioLogueado._idProducto, idProducto).subscribe(response => {
+    this._userService.addFavProduct(this.usuarioLogueado._id, idProducto).subscribe(response => {
       console.log('Producto agregado a favoritos:', response);
     });
   }
