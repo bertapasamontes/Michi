@@ -1,30 +1,77 @@
 $primary: #F17A12 !default;
 $secondary: #686665;
 $light: #FBD8B8;
+$danger: #E74C3C;
+
 
 .card-product{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    background-color: #f0f0f0;
+    // background-color: #f0f0f0;
+    background-color: white;
     border-radius: 20px;
 
     width: 305px;
     overflow: hidden;
+    padding: 10px;
+
+    cursor: pointer;
 }
 .card-header{
-    width: 400px; 
+    width: auto;
     height: 100px; 
     overflow: hidden;
-    padding: 0px;
+    border-radius: 10px;
 }
 .card-img{
     width: 400px;
     object-fit: cover;
+    position: relative;
+    bottom: 90px;
+}
+.product-name{
+    position: relative;
+    bottom: 135px;
+    padding-left: 20px !important;
+    text-transform: capitalize;
+
+    background: rgba(255, 255, 255, 0.434);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.2px);
+    -webkit-backdrop-filter: blur(11.2px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-guardar{
+    position: relative;
+    top: 10px;
+    right: -265px;
+    z-index: 99;
+    width: 100% !important;
+    color: $secondary;
+    padding: 0px;
+
+
+    background: rgba(255, 255, 255, 0.434);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.2px);
+    -webkit-backdrop-filter: blur(11.2px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-guardar svg {
+    fill: white;
 }
 
 .card-description{
-    height: 50px;
+    height: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .precio{
     font-size: 20px;
+    display: flex;
+    justify-content: end;
 }

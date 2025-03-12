@@ -1,17 +1,19 @@
-<a href="" routerLink='{{producto._id}}' routerLinkActive="active">
+<div href="" routerLink='{{producto._id}}' routerLinkActive="active">
     <div class="card-product">
         <div class="row d-inline-flex">
             <div class="col">
                 <div class="row card-header">
+                    <mat-icon class="btn-guardar">bookmark</mat-icon>
                     <img src="{{producto.imgProduct}}" alt="img-{{producto.name.trim()}}" class="img-fluid card-img">
                     <p class="product-name">{{producto.name}}</p>
                 </div>
-                <div class="row card-description d-flex">
+                
+                <div class="row card-description">
                     <div class="col-2">
                         <div class="rate">{{producto.rate}}⭐</div>
                     </div>
                     <div class="col-6">
-                        <p class="centradoHorizontal"><mat-icon>location_on</mat-icon>{{producto.site.name}}</p>
+                        <p class="centradoHorizontal">📍{{producto.site.name}}</p>
                     </div>
                     <div class="col-4">
                         <p class="precio">{{producto.price}}€</p>
@@ -21,4 +23,4 @@
 
         </div>
     </div>
-</a>
+</div>
