@@ -26,6 +26,8 @@
     .mobile-header{
         display: flex;
         justify-content: center;
+
+        position: sticky;
     }
     .navbar-content{
         display: none;

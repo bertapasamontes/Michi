@@ -13,6 +13,7 @@ import { MobilePerfilComponent } from './components/organismos/mobile-perfil/mob
 
 import { AuthGuard } from './_helpers/authGuard/auth.guard';
 import { InfoProductoViewComponent } from './components/organismos/info-producto-view/info-producto-view.component';
+import { WelcomePageComponent } from './components/atomos/welcome-page/welcome-page.component';
 
 
 
@@ -42,6 +43,7 @@ export const routes: Routes = [
         component: UserLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: 'viewer' },
         children:[
             {path: 'descubrir', component: DescubrirComponent},
+            {path: 'home', component: WelcomePageComponent},
             {path: 'descubrir/:id', component: InfoProductoViewComponent},
             {path: 'mapa', component: MapaMobileComponent},
             {path: 'michibot', component: MichiBotComponent},
@@ -49,6 +51,6 @@ export const routes: Routes = [
         ] //falta
     },
     { path: 'login', pathMatch:'full', component:InicioSesionComponent},
-    { path: '', redirectTo: 'admin/data', pathMatch: 'full'}, //hay que cambiarlo a que se vaya la app. pero que apse antes por un inicio de sesión
+    { path: '', redirectTo: 'user/home', pathMatch: 'full'}, //hay que cambiarlo a que se vaya la app. pero que apse antes por un inicio de sesión
     { path: '**', redirectTo:"", pathMatch:'full', component:AdminLayoutComponent}
 ];

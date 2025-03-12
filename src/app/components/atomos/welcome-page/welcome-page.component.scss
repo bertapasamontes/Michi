@@ -1,0 +1,79 @@
+$primary: #F17A12;
+$secondary: #686665;
+$light: #FBD8B8;
+$golden: #B67B0F;
+$background-color: #F4E9D5;
+
+.username{
+    color: $primary;
+    text-transform: capitalize;
+}
+
+.btn-cta{
+    color: $primary;
+    background-color: #FBD8B8;
+    font-weight: 500;
+}
+
+.titulo{
+    font-size: 60px;
+    // font-weight: 300;
+}
+.titulo2{
+    font-weight: 300;
+}
+.grueso{
+    font-weight: 700;
+
+}
+
+.subtitle{
+    font-weight: 300;
+
+}
+
+.img-michi{
+    max-width: 450px;
+}
+
+.data-title {
+    text-decoration: underline;
+}
+
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
+}
+[data-title]:after {
+    content: attr(data-title);
+    // background-color: rgb(236, 235, 235);
+    background-color: $light;
+    color: #111;
+    font-size: 14px;
+    position: absolute;
+    padding: 1px 5px 2px 5px;
+    bottom: 2.6em;
+    left: 20px;
+    white-space: nowrap;
+    opacity: 0;
+
+    // border: 1px solid #111111;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+
+    z-index: 99999;
+    visibility: hidden;
+}
+[data-title] {
+    position: relative;
+}
+
+
+.row-card{
+    background-color: $background-color;
+    border-radius: 20px;
+    margin-top: 5%;
+    margin-bottom: 15%;
+}
