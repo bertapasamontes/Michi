@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postComment = exports.deleteOneComment = exports.getOneComment = exports.getComments = void 0;
+exports.updateComment = exports.postComment = exports.deleteOneComment = exports.getOneComment = exports.getComments = void 0;
 const comments_js_1 = __importDefault(require("../../src/app/model/comments.js"));
 const product_js_1 = require("../../src/app/model/product.js");
 //para usar estas funciones, hay que añadirlas al module.export
@@ -82,16 +82,17 @@ exports.postComment = postComment;
 //             mensaje: error
 //         }))
 // }
-// export const updateComment = (req:Request, res: Response)=>{
-//     const {id} = req.params;
-//     const {name, category, price, site, comments} = req.body;
-//     comentarioNuevo
-//         .updateOne({_id: id}, { $set: {name, category, price, site, comments}})
-//         .then((data)=> res.json(data))
-//         .catch((error)=> res.json({
-//             mensaje: error  
-//         }))
-// }
+const updateComment = (req, res) => {
+    const { id } = req.params;
+    const { name, category, price, site, comments } = req.body;
+    comments_js_1.default
+        .updateOne({ _id: id }, { $set: { name, category, price, site, comments } })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({
+        mensaje: error
+    }));
+};
+exports.updateComment = updateComment;
 module.exports = {
-    getOneComment: exports.getOneComment, deleteOneComment: exports.deleteOneComment, postComment: exports.postComment, getComments: exports.getComments
+    getOneComment: exports.getOneComment, deleteOneComment: exports.deleteOneComment, postComment: exports.postComment, getComments: exports.getComments, updateComment: exports.updateComment
 };

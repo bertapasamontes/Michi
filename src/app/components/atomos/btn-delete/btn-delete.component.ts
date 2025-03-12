@@ -10,11 +10,11 @@ import Swal from 'sweetalert2';
   styleUrl: './btn-delete.component.scss'
 })
 export class BtnDeleteComponent {
-  @Input() item!:number;
+  @Input() item!:string;
   @Input() tipo!: 'usuarios' | 'locales' | 'productos';
-  @Output() removeItem = new EventEmitter<{ id: number; tipo: 'usuarios' | 'locales' | 'productos' }>();
+  @Output() removeItem = new EventEmitter<{ id: string; tipo: 'usuarios' | 'locales' | 'productos' }>();
   
-  deleteItem(id: number){
+  deleteItem(id: string){
     this.removeItem.emit({id: id, tipo: this.tipo});
     console.log('delete:', id, this.tipo);
     Swal.fire("Eliminado", 'El elemento ha sido eliminado', 'success')

@@ -1,5 +1,5 @@
 export interface placeGlobal {
-    _id?: number;
+    _id?: string;
     name: string;
     mapbox_id: string;
     direction: string;

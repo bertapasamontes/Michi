@@ -7,5 +7,6 @@ router.get('/', commentsController_1.getComments); // cuando mi ruta sea "localh
 router.get('/:id', commentsController_1.getOneComment);
 router.delete('/:id', commentsController_1.deleteOneComment);
 router.post('/:idProducto', commentsController_1.postComment);
+router.put('/:idProducto', commentsController_1.updateComment);
 // router.put('/:id', updateComment);
 exports.default = router;

@@ -25,18 +25,8 @@ export class HomeComponent {
         private _mapGlobal: MapGlobalService,
         private _productService: ProductsService
     ){
-        // console.log("total Paginas: ",);
-
-        // Ejemplo de inicialización en el servicio
-    this._dataSignalService.paginacionSignal.usuarios.totalPaginas.set(0);  // Asegurarse de que no sea undefined
-    this._dataSignalService.paginacionSignal.usuarios.paginaActual.set(1);  // Asegurarse de que no sea undefined
-
-
-    
-    }
-
-    ngAfterViewInit(){
-        // console.log("total pages users",this.getTotalPagesSignal('usuarios'));
+        this._dataSignalService.paginacionSignal.usuarios.totalPaginas.set(0); 
+        this._dataSignalService.paginacionSignal.usuarios.paginaActual.set(1); 
     }
 
     tipo!:  'usuarios' | 'locales' | 'productos';
@@ -44,9 +34,6 @@ export class HomeComponent {
     dataUsers : Signal<any[]> = this._dataSignalService.usuariosEnMichiSignal;
     dataPlaces: Signal<any[]> = this._dataSignalService.sitiosEnMichiSignal;
     dataProducts: Signal<any[]> = this._dataSignalService.productosSignal;
-
-
-    
 
 
     //obtener la cantidad de paginas segun el tipo de datos:
@@ -88,7 +75,7 @@ export class HomeComponent {
       this._dataSignalService.getListPlacesSignal();
     }
     
-    deleteItem(event: { id: number; tipo: 'usuarios' | 'locales' | 'productos' }): void {
+    deleteItem(event: { id: string; tipo: 'usuarios' | 'locales' | 'productos' }): void {
         if(event.tipo === 'usuarios'){
             this._userService.deleteUser(event.id).subscribe(()=>{
             });

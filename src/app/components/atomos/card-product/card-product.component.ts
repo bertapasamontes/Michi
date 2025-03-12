@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { placeGlobal } from '../../../interfaces/places/placeGlobal';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Product } from '../../../interfaces/product';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './card-product.component.scss'
 })
 export class CardProductComponent {
-  @Input() producto!:{_id?:number ,name:string, imgProduct: string, rate: number, price: number, site: placeGlobal};
+  @Input() producto!:Product;
 
   // ngOnInit(){
   //   console.log("producto en card",this.producto)

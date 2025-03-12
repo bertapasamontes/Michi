@@ -13,16 +13,21 @@
 }
 .name-producto{
     position: relative;
-    bottom: 400px;
+    bottom: 290px;
+    left: 12px;
     // color: white;
     
     
     background: rgba(255, 255, 255, 0.434);
-    border-radius: 16px;
+    border-radius: 5px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(11.2px);
     -webkit-backdrop-filter: blur(11.2px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.categorias{
+    margin: 10px 0px;
 }
 
 .categoria{
@@ -44,3 +49,18 @@
 .puntuacion{
     font-size: 20px;
 }
+.comments{
+    width: auto;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+a{
+    text-decoration: none;
+    color: #212529;
+}
+p{
+    font-size: 16px !important;
+}
+

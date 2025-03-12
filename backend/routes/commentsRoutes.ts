@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteOneComment, getOneComment, getComments, postComment } from "../controllers/commentsController"; 
+import { deleteOneComment, getOneComment, getComments, postComment, updateComment } from "../controllers/commentsController"; 
 
 const router = Router();
 
@@ -8,6 +8,7 @@ router.get('/', getComments); // cuando mi ruta sea "localhost:puerto/api/Commen
 router.get('/:id', getOneComment);
 router.delete('/:id', deleteOneComment);
 router.post('/:idProducto', postComment);
+router.put('/:idProducto', updateComment);
 // router.put('/:id', updateComment);
 
 export default router;

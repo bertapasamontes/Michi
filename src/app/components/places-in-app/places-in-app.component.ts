@@ -37,7 +37,7 @@ export class PlacesInAppComponent {
       })
     }
   
-    deletePlace(id:number){
+    deletePlace(id:string){
       this.loading = true;
       this._mapGlobal.deletePlace(id).subscribe(() =>{
         this.getListPlaces(); // para volver a cargar la lista y que no se queden los antiguos

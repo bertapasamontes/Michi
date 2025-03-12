@@ -2,7 +2,7 @@ import { Comentario } from "./comments";
 import { placeGlobal } from "./places/placeGlobal";
 
 export interface Product {
-    _id?: number;
+    _id?: string;
     name: string;
     category: string[];
     price: number;

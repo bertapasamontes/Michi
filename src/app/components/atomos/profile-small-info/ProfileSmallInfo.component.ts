@@ -20,7 +20,6 @@ export class ProfileSmallInfo {
     console.log(user.email);
 
      _userService.getUserByEmail(user.email).subscribe((user)=>{
-      // console.log("user desde dashboard: ", user)
       this.usuarioLogueado = user
       console.log(Object.keys(this.usuarioLogueado))
 

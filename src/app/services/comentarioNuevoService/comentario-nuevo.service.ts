@@ -37,7 +37,7 @@ export class ComentarioNuevoService {
     return this.http.get<Comentario>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
 
-  // updateComentario(id:number, sitio: Comentario): Observable<void>{
-  //   return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, sitio);
-  // }
+  updateComentario(id:string, sitio: Comentario): Observable<void>{
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, sitio);
+  }
 }

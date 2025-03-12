@@ -1,17 +1,17 @@
-<div class="comentario-container container">
+<div class="comentario-container container m-2">
     @if(!comentario){
     Esperando a los datos...
     }
     @else {
-    <div class="header-comment">
+    <div class="comment ">
         <div class="row">
-            <div class="col p-0 primera-col">
+            <div class="col-md-2 p-0">
                 <div class="image-container">
                     <img src="{{comentario.user.imgProfile}}" alt="img-perfil" class="img-perfil img-fluid">
                 </div>
 
             </div>
-            <div class="col m-2">
+            <div class="col-md-7 m-2">
                 <div class="row"><b class="p-0">
                     <p>&#64;{{comentario.user.username}}</p>
                     </b></div>
@@ -21,11 +21,14 @@
 
                 </div>
             </div>
+            <div class="col-md-2 d-flex justify-content-end">
+                @if(comentario.rating > 0){
+                    {{comentario.rating}}
+                }
+                <button class="btn" (click)="likeComment()"><mat-icon class="fav-icon">favorite</mat-icon></button>
+            </div>
         </div>
-        <div class="row"></div>
     </div>
-
-
     }
 
 </div>

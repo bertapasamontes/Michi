@@ -14,7 +14,7 @@ import { BtnClipboardComponent } from "../../atomos/btn-clipboard/btn-clipboard.
 export class TablaDatosComponent {
   @Input() datos!: Signal<any[]>;
   @Input() tipo!:  'usuarios' | 'locales' | 'productos';
-  @Output() deleteItem = new EventEmitter<{ id: number; tipo: 'usuarios' | 'locales' | 'productos'}>();
+  @Output() deleteItem = new EventEmitter<{ id: string; tipo: 'usuarios' | 'locales' | 'productos'}>();
 
   selectedColumns = computed(()=> Object.keys(this.columnMapping[this.tipo] || {}))
 
@@ -60,7 +60,7 @@ export class TablaDatosComponent {
     location.reload();
   }
 
-  onDeleteItem(id: number, tipo: 'usuarios' | 'locales' | 'productos'): void {
+  onDeleteItem(id: string, tipo: 'usuarios' | 'locales' | 'productos'): void {
     console.log(`📢 Notificando a home para eliminar ${tipo} con ID: ${id}`);
     this.deleteItem.emit({ id, tipo }); // Enviamos el evento a home
     // this.refreshData();

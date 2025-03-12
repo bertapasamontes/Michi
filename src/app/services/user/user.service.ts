@@ -30,7 +30,7 @@ export class UserService {
       `${this.myAppUrl}${this.myApiUrl}?page=${page}&limit=${limit}`
     );
   }
-  deleteUser(id:number): Observable<void>{
+  deleteUser(id:string): Observable<void>{
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
 
@@ -72,7 +72,7 @@ export class UserService {
     )
   }
 
-  updateUser(id:number, user: User): Observable<void>{
+  updateUser(id:string, user: User): Observable<void>{
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, user);
   }
 }

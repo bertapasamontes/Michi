@@ -74,19 +74,19 @@ export const postComment = async (req:Request, res: Response)=>{
 //         }))
 // }
 
-// export const updateComment = (req:Request, res: Response)=>{
-//     const {id} = req.params;
-//     const {name, category, price, site, comments} = req.body;
-//     comentarioNuevo
-//         .updateOne({_id: id}, { $set: {name, category, price, site, comments}})
-//         .then((data)=> res.json(data))
-//         .catch((error)=> res.json({
-//             mensaje: error  
-//         }))
-// }
+export const updateComment = (req:Request, res: Response)=>{
+    const {id} = req.params;
+    const {name, category, price, site, comments} = req.body;
+    comentarioNuevo
+        .updateOne({_id: id}, { $set: {name, category, price, site, comments}})
+        .then((data)=> res.json(data))
+        .catch((error)=> res.json({
+            mensaje: error  
+        }))
+}
 
 
 
 module.exports = {
-    getOneComment, deleteOneComment, postComment, getComments
+    getOneComment, deleteOneComment, postComment, getComments, updateComment
 }

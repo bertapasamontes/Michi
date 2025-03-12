@@ -5,20 +5,20 @@
                 <img class="img-fluid imagen-producto" src="{{producto.imgProduct}}" alt="img-{{producto.name}}">
                 <h3 class="name-producto">{{producto.name}}</h3>
             </div>
-            <div class="row">
+            <div class="row m-2">
                 <div class="col-lg-10">
                     <div class="row">
-                        ⭐ {{producto.rate}}
+                        <p>⭐ {{producto.rate}}</p>
                     </div>
                     <div class="row">
-                        📍 {{producto.site.name}}, {{producto.site.short_direction}}
+                        <p><a class="product-name" href="https://www.google.com/maps/search/{{producto.site.name}}{{producto.site.short_direction}}/">📍 {{producto.site.name}}, {{producto.site.short_direction}}</a></p>
                     </div>
                 </div>
                 <div class="col-lg-2 container-precio">
                     <span class="precio-producto">{{producto.price}}€</span>
                 </div>
             </div>
-            <div class="row mt-2">
+            <div class="row categorias">
                 <div class="d-flex flex-row centradoHorizontal">
                     <mat-icon>sell</mat-icon>
                     @for(categoria of producto.category; track categoria){
@@ -33,7 +33,7 @@
                 <div class="comments">
                     @if(producto.comments.length > 0){
                         @for(comentario of producto.comments; track comentario){
-                            <app-comentario [comentario]="comentario"></app-comentario>
+                            <app-comentario [comentario]="comentario" (productoId)="producto._id"></app-comentario>
                         }
                     } @else {
                         <p class="text-center">Todavía no hay comentarios. ¡Añade tú uno!</p>

@@ -21,7 +21,7 @@ export class MapGlobalService {
     getListPlaces(): Observable<placeGlobal[]>{
       return this.http.get<placeGlobal[]>(`${this.myAppUrl}${this.myApiUrl}`);
     }
-    deletePlace(id:number): Observable<void>{
+    deletePlace(id:string): Observable<void>{
       return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`)
     }
   
@@ -29,11 +29,11 @@ export class MapGlobalService {
       return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, Place)
     }
   
-    getPlace(id:number): Observable<placeGlobal>{
+    getPlace(id:string): Observable<placeGlobal>{
       return this.http.get<placeGlobal>(`${this.myAppUrl}${this.myApiUrl}${id}`)
     }
   
-    updatePlace(id:number, sitio: placeGlobal): Observable<void>{
+    updatePlace(id:string, sitio: placeGlobal): Observable<void>{
       return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, sitio);
     }
 }
