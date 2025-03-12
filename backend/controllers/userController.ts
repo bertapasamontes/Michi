@@ -137,14 +137,16 @@ const updateUser = (req:Request, res: Response)=>{
 //guardar fav
 const saveFav = async (req: Request, res: Response): Promise<any> => {
     try {
-      const {id} = req.params;  //id del usuario logueado
-      const { productId } = req.body; //id del producto
+      const {idUser} = req.params;  //id del usuario logueado
+      const { idProducto } = req.body; //id del producto
+
+      console.log("id desde backend: ",idUser);
   
-      const user = await UserNuevo.findById({id});
+      const user = await UserNuevo.findById(idUser);
       if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
   
-      if (!user.misFavs.includes(productId)) {
-        user.misFavs.push(productId);
+      if (!user.misFavs.includes(idProducto)) {
+        user.misFavs.push(idProducto);
         await user.save();
       }
   

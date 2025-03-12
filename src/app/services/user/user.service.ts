@@ -81,6 +81,8 @@ export class UserService {
 
   //favs
   addFavProduct(id: string, idProducto: string): Observable<void>{
+    console.log("id desde frontedn",id);
+    console.log("id producto desde frontedn",idProducto);
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}${id}/guardarProducto/`, {idProducto});
   }
   deleteFavProduct(id: string, idProducto: string): Observable<void>{

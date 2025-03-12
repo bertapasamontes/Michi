@@ -12,6 +12,6 @@ export class ProductoFavComponent {
   @Input() usuarioLogueado!: User;
 
   ngOnInit(){
-    console.log(this.usuarioLogueado);
+    console.log("user logueado desde producto fav:  ",this.usuarioLogueado);
   }
 }

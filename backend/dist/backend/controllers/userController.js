@@ -156,13 +156,14 @@ exports.updateUser = updateUser;
 //guardar fav
 const saveFav = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params; //id del usuario logueado
-        const { productId } = req.body; //id del producto
-        const user = yield users_js_1.default.findById({ id });
+        const { idUser } = req.params; //id del usuario logueado
+        const { idProducto } = req.body; //id del producto
+        console.log("id desde backend: ", idUser);
+        const user = yield users_js_1.default.findById(idUser);
         if (!user)
             return res.status(404).json({ message: 'Usuario no encontrado' });
-        if (!user.misFavs.includes(productId)) {
-            user.misFavs.push(productId);
+        if (!user.misFavs.includes(idProducto)) {
+            user.misFavs.push(idProducto);
             yield user.save();
         }
         return res.json({ message: 'Producto guardado', misFavs: user.misFavs });
