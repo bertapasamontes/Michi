@@ -27,6 +27,12 @@ body {
   overflow: hidden;
 }
 
+@media (min-width: 500px){
+  body{
+    overflow: auto;
+  }
+}
+
 p{
   font-size: 14px !important;
   margin: 0px !important;

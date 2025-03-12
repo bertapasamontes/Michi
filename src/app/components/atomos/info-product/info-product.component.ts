@@ -16,7 +16,7 @@ import { ComentarioComponent } from '../comentario/comentario.component';
   styleUrl: './info-product.component.scss'
 })
 export class InfoProductComponent {
-  @Input() producto!: {_id: string, imgProduct: string, name: string, rate: number, price: number, comments:Comentario, site: placeGlobal, category:string[]};
+  @Input() producto!: {_id: string, imgProduct: string, name: string, rate: number, price: number, comments:Comentario[], site: placeGlobal, category:string[]};
 
   usuarioLogueado:any;
 

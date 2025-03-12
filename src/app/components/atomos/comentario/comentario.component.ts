@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { placeGlobal } from '../../../interfaces/places/placeGlobal';
 import { Comentario } from '../../../interfaces/comments';
 import { User } from '../../../interfaces/users';
@@ -12,6 +12,15 @@ import { User } from '../../../interfaces/users';
 })
 export class ComentarioComponent {
   @Input() comentario!: {text: string, user: User, rating: number};
-  
+
+  constructor(
+    private cdr: ChangeDetectorRef
+  ){
+  }
+
+  ngOnInit(){
+    console.log("comentario",this.comentario);
+
+  }
 
 }

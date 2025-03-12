@@ -31,15 +31,15 @@
                 <h4 class="text-center">¿Qué piensan los usuarios?</h4>
                 <p class="puntuacion text-center">⭐{{producto.rate}}/5</p>
                 <div class="comments">
-                    @if(producto.comments){
-                        @for(comentario of [producto.comments]; track comentario){
+                    @if(producto.comments.length > 0){
+                        @for(comentario of producto.comments; track comentario){
                             <app-comentario [comentario]="comentario"></app-comentario>
                         }
                     } @else {
-                        <p>Todavía no hay comentarios. ¡Añade tú uno!</p>
+                        <p class="text-center">Todavía no hay comentarios. ¡Añade tú uno!</p>
                     }
                 </div>
-                <div class="comentario-personalizado">
+                <div class="comentario-personalizado" >
                     <app-comentario-nuevo (comentarioNuevo)="enviarComentario($event)"></app-comentario-nuevo>
                 </div>
             </div>
