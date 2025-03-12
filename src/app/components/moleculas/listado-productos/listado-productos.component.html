@@ -9,7 +9,7 @@
         <h3 class="tag-name mx-2" >{{ categoria }}</h3>
         <div class="productos d-flex justify-content-start align-items-center">
             @for(producto of productosPorCategoria[categoria]; track producto){
-            <app-card-product [producto]="producto" class="m-1"></app-card-product>
+            <app-card-product [producto]="producto" class="m-1" (productoId)="onGuardarProducto($event)"></app-card-product>
             }
             <br>
         </div>

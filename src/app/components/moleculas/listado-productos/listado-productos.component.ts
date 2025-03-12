@@ -2,6 +2,8 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, signal, Signal, SimpleChanges
 import { CardProductComponent } from '../../atomos/card-product/card-product.component';
 import { Product } from '../../../interfaces/product';
 import { FiltrosProductosComponent } from '../../atomos/filtros-productos/filtros-productos.component';
+import { UserService } from '../../../services/user/user.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-listado-productos',
@@ -18,6 +20,23 @@ export class ListadoProductosComponent {
    
   productosFiltrados = signal<Product[]>([]); //signal para los porductos filtrados
   productosPorCategoria: { [key: string]: Product[] } = {};
+
+  usuarioLogueado:any;
+
+  constructor(
+    private _userService: UserService,
+    private _authService: AuthService,
+  ){
+    const user = this._authService.getUserFromToken();
+    console.log(user.email);
+
+     _userService.getUserByEmail(user.email).subscribe((user)=>{
+      this.usuarioLogueado = user
+      console.log(Object.keys(this.usuarioLogueado))
+
+      
+    });   
+  }
 
     ngOnInit(){
       // Esperamos un poco antes de ejecutar updateFilteredProducts()
@@ -94,5 +113,13 @@ export class ListadoProductosComponent {
     this.categoriasDeProductos = categorias;
     this.updateFilteredProducts();  // actualiza los productos filtrados
 
+  }
+
+  onGuardarProducto(idProducto: string) {
+    console.log('Producto guardado con ID:', idProducto);
+    // Aquí puedes llamar a tu servicio para guardar el producto favorito
+    this._userService.addFavProduct(this.usuarioLogueado._idProducto, idProducto).subscribe(response => {
+      console.log('Producto agregado a favoritos:', response);
+    });
   }
 }

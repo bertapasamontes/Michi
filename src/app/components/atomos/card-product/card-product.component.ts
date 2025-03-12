@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { placeGlobal } from '../../../interfaces/places/placeGlobal';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Product } from '../../../interfaces/product';
+
 
 
 @Component({
@@ -17,5 +18,11 @@ export class CardProductComponent {
   // ngOnInit(){
   //   console.log("producto en card",this.producto)
   // }
+
+  @Output() productoId = new EventEmitter<string>;
+
+  guardarProducto(productoID: string){
+    this.productoId.emit(productoID);
+  }
     
 }
