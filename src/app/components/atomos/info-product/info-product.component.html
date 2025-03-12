@@ -33,10 +33,10 @@
                 <div class="comments">
                     @if(producto.comments){
                         @for(comentario of [producto.comments]; track comentario){
-                            
+                            <app-comentario [comentario]="comentario"></app-comentario>
                         }
                     } @else {
-                        <p>Todavía no hay comentarios. ¡Añadu tú uno!</p>
+                        <p>Todavía no hay comentarios. ¡Añade tú uno!</p>
                     }
                 </div>
                 <div class="comentario-personalizado">

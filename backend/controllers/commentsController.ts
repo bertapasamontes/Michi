@@ -22,6 +22,11 @@ export const getOneComment = async (req:Request, res: Response)=>{
     const {id} = req.params;
     comentarioNuevo
         .findById(id)
+        .populate({
+            path: 'user',
+            model: 'UsersDeMichi',
+            select: '-_v',
+        })
         .then((data)=> res.json(data))
         .catch((error)=> res.json({mensaje: error}))
 }

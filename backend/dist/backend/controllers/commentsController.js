@@ -33,6 +33,11 @@ const getOneComment = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const { id } = req.params;
     comments_js_1.default
         .findById(id)
+        .populate({
+        path: 'user',
+        model: 'UsersDeMichi',
+        select: '-_v',
+    })
         .then((data) => res.json(data))
         .catch((error) => res.json({ mensaje: error }));
 });

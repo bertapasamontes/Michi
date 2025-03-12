@@ -1,8 +1,13 @@
 <div class="comentario-nuevo">
-    <div class="row">
+    @if(!usuarioLogueado){
+        <p>Los datos del user no están cargados</p>
+    }
+    @else {
+        <div class="row">
         <div class="col-2 image-container">
             <img src="{{usuarioLogueado.imgProfile}}"
                 alt="img-perfil" class="img-perfil img-fluid">
+            
         </div>
         <div class="col-8">
             <!-- <label for="comentarioNuevo" class="form-label">Example textarea</label> -->
@@ -13,4 +18,6 @@
             </form>
         </div>
     </div>
+    }
+    
 </div>

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { placeGlobal } from '../../../interfaces/places/placeGlobal';
 import { Comentario } from '../../../interfaces/comments';
+import { User } from '../../../interfaces/users';
 
 
 @Component({
@@ -10,5 +11,7 @@ import { Comentario } from '../../../interfaces/comments';
   styleUrl: './comentario.component.scss'
 })
 export class ComentarioComponent {
-   @Input() producto!: {imgProduct: string, name: string, rate: number, price: number, comments: Comentario, site: placeGlobal, category:string[]};
+  @Input() comentario!: {text: string, user: User, rating: number};
+  
+
 }

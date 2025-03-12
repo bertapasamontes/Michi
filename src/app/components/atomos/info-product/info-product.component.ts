@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 import { placeGlobal } from '../../../interfaces/places/placeGlobal';
@@ -7,10 +7,11 @@ import { ComentarioNuevoComponent } from "../comentario-nuevo/comentario-nuevo.c
 import { ComentarioNuevoService } from '../../../services/comentarioNuevoService/comentario-nuevo.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/user/user.service';
+import { ComentarioComponent } from '../comentario/comentario.component';
 
 @Component({
   selector: 'app-info-product',
-  imports: [MatIcon, ComentarioNuevoComponent],
+  imports: [MatIcon, ComentarioNuevoComponent, ComentarioComponent],
   templateUrl: './info-product.component.html',
   styleUrl: './info-product.component.scss'
 })
@@ -23,7 +24,7 @@ export class InfoProductComponent {
     private _comentarioService: ComentarioNuevoService,
     private _authService: AuthService,
     private _userService: UserService,
-
+    private cdr: ChangeDetectorRef
   ){
     
   }
@@ -33,7 +34,14 @@ export class InfoProductComponent {
     console.log(user.email);
 
     this._userService.getUserByEmail(user.email).subscribe((user)=>{
-      this.usuarioLogueado = user      
+      try{
+      this.usuarioLogueado = user;
+      console.log("user como userLogueado")
+      this.cdr.detectChanges();
+      }
+      catch(error){
+        console.log('error al asignar el user como el userloguedo')
+      }
     });   
   }
 

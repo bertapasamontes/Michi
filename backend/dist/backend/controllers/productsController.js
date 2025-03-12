@@ -114,11 +114,11 @@ const getOneProductWithTotalInfo = (req, res) => __awaiter(void 0, void 0, void 
             .populate({
             path: 'comments',
             model: 'comentarios',
-            select: '-_v',
+            select: 'text user rating createdAt',
             populate: {
                 path: 'user',
                 model: 'UsersDeMichi',
-                select: 'username'
+                select: 'username imgProfile'
             }
         });
         if (!producto) {

@@ -115,11 +115,11 @@ export const getOneProductWithTotalInfo = async (req:Request, res: Response)=>{
         .populate({
             path: 'comments',
             model: 'comentarios',
-            select: '-_v',
+            select: 'text user rating createdAt',
             populate: {
                 path: 'user',
                 model: 'UsersDeMichi',
-                select: 'username'
+                select: 'username imgProfile'
             }
         });
         if (!producto) {
