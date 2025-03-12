@@ -1,1 +1,17 @@
-<p>profile-big-info works!</p>
+<div class="info-perfil container">
+    @if(usuarioLogueado){
+        <div class="row">
+        <div class="col">
+            <div class="image-container">
+                <img src="{{usuarioLogueado.imgProfile}}" alt="img-profile" class="img-fluid img-profile">
+            </div>
+            <div class="info-text">
+                <p><span class="nombre-user">{{usuarioLogueado.name}}</span></p>
+                <p><span class="username">&#64;{{usuarioLogueado.username}}</span> | {{usuarioLogueado.email}}</p>
+            </div>
+            
+        </div>
+    </div>
+    }
+    
+</div>

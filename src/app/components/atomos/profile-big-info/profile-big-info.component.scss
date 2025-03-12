@@ -1,0 +1,33 @@
+$primary: #F17A12;
+$secondary: #686665;
+$light: #FBD8B8;
+$golden: #B67B0F;
+
+.info-perfil{
+    background-color: $light;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+}
+.image-container{
+    max-width: 400px;
+    max-height: 400px;
+    min-height: 200px;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    overflow: hidden;
+}
+img{
+    width: 100%;
+
+}
+.img-profile{
+    object-fit: cover;
+}
+.nombre-user{
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
