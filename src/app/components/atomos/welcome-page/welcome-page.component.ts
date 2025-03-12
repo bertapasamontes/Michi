@@ -27,7 +27,7 @@ export class WelcomePageComponent {
     this._userService.getUserByEmail(user.email).subscribe((user)=>{
       try{
       this.usuarioLogueado = user;
-      console.log("user como userLogueado")
+      console.log("user como userLogueado welcome")
       }
       catch(error){
         console.log('error al asignar el user como el userloguedo')

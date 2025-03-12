@@ -1,53 +1,59 @@
 <div class="row carta-product">
-    <div class="col container">
+    <div class="col container contenedor-info">
         @if(producto && usuarioLogueado){
-            <div class="row header-container">
-                <img class="img-fluid imagen-producto" src="{{producto.imgProduct}}" alt="img-{{producto.name}}">
-                <h3 class="name-producto">{{producto.name}}</h3>
-            </div>
-            <div class="row m-2">
-                <div class="col-lg-10">
-                    <div class="row">
-                        <p>⭐ {{producto.rate}}</p>
+        <div class="row info">
+            <div class="col">
+                <div class="row header-container">
+                    <img class="img-fluid imagen-producto" src="{{producto.imgProduct}}" alt="img-{{producto.name}}">
+                    <h3 class="name-producto">{{producto.name}}</h3>
+                </div>
+                <div class="row m-2">
+                    <div class="col-lg-10">
+                        <div class="row">
+                            <p>⭐ {{producto.rate}}</p>
+                        </div>
+                        <div class="row">
+                            <p><a class="product-name"
+                                    href="https://www.google.com/maps/search/{{producto.site.name}}{{producto.site.short_direction}}/">📍
+                                    {{producto.site.name}}, {{producto.site.short_direction}}</a></p>
+                        </div>
                     </div>
-                    <div class="row">
-                        <p><a class="product-name" href="https://www.google.com/maps/search/{{producto.site.name}}{{producto.site.short_direction}}/">📍 {{producto.site.name}}, {{producto.site.short_direction}}</a></p>
+                    <div class="col-lg-2 container-precio">
+                        <span class="precio-producto">{{producto.price}}€</span>
                     </div>
                 </div>
-                <div class="col-lg-2 container-precio">
-                    <span class="precio-producto">{{producto.price}}€</span>
-                </div>
+                <div class="row categorias"></div>
             </div>
-            <div class="row categorias">
-                <div class="d-flex flex-row centradoHorizontal">
-                    <mat-icon>sell</mat-icon>
-                    @for(categoria of producto.category; track categoria){
-                        <span class="categoria">{{categoria}}</span>
-                    }
-                </div>
-                
+
+            <div class="d-flex flex-row centradoHorizontal">
+                <mat-icon>sell</mat-icon>
+                @for(categoria of producto.category; track categoria){
+                <span class="categoria">{{categoria}}</span>
+                }
             </div>
-            <div class="row comentarios">
-                <h4 class="text-center">¿Qué piensan los usuarios?</h4>
-                <p class="puntuacion text-center">⭐{{producto.rate}}/5</p>
-                <div class="comments">
-                    @if(producto.comments.length > 0){
-                        @for(comentario of producto.comments; track comentario){
-                            <app-comentario [comentario]="comentario" (productoId)="producto._id"></app-comentario>
-                        }
-                    } @else {
-                        <p class="text-center">Todavía no hay comentarios. ¡Añade tú uno!</p>
-                    }
-                </div>
-                <div class="comentario-personalizado" >
-                    <app-comentario-nuevo (comentarioNuevo)="enviarComentario($event)"></app-comentario-nuevo>
-                </div>
+
+        </div>
+        <div class="row comentarios">
+            <h4 class="text-center">¿Qué piensan los usuarios?</h4>
+            <p class="puntuacion text-center">⭐{{producto.rate}}/5</p>
+            <div class="comments">
+                @if(producto.comments.length > 0){
+                @for(comentario of producto.comments; track comentario){
+                <app-comentario [comentario]="comentario" (productoId)="producto._id"></app-comentario>
+                }
+                } @else {
+                <p class="text-center">Todavía no hay comentarios. ¡Añade tú uno!</p>
+                }
             </div>
+            <div class="comentario-personalizado">
+                <app-comentario-nuevo (comentarioNuevo)="enviarComentario($event)"></app-comentario-nuevo>
+            </div>
+        </div>
         }
         @else {
-            <h3>Esperando datos...</h3>
+        <h3>Esperando datos...</h3>
         }
-        
+
 
     </div>
 </div>

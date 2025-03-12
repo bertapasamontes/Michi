@@ -18,8 +18,9 @@ export const AuthGuard: CanActivateFn = (route:ActivatedRouteSnapshot, state:Rou
     console.log("🔹 Redirigiendo a: ", state.url);
     console.log("🛑 Intentando acceder a la ruta:", route.url);
 
-     // 🔥 Si el usuario es admin, puede acceder a todo
-    if (rol === rolEsperado) {
+     // Si el usuario es admin, puede acceder a todo
+     
+    if ((Array.isArray(rolEsperado)&&rolEsperado.includes(rol)) || (rol === rolEsperado)) {
       console.log("tienes el rol correcto")
       return true;
     }

@@ -1,9 +1,10 @@
-<div class="container">
+@if(usuarioLogueado){
+    <div class="container">
     <div class="row d-flex align-content-center justify-content-center align-items-center mb-4">
         <div class="col p-5">
             <h2 class="titulo">Hola, <span class="username">{{usuarioLogueado.name}}</span></h2>
             <h3 class="titulo2">Acabas de entrar en <b class="grueso">Michi</b>, la web para encontrar <b class="grueso">chollos de comida</b>.</h3>
-            <button class="btn mt-3 btn-cta" routerLink="descubrir" routerLinkActive="active">Encontrar chollos</button>
+            <a class="btn mt-3 btn-cta" routerLink="/user/descubrir" routerLinkActive="active">Encontrar chollos</a>
         </div>
         <div class="col d-flex justify-content-center">
             <img src="../../../../assets/img/profile-images/michi-cook.png" alt="michi-creativo" class="img-fluid img-michi">
@@ -15,7 +16,7 @@
         </div>
         <div class="col p-5">
             <h3 class="subtitle">Descubre <b class="grueso">descuentos</b> y <b class="grueso">ofertas</b> en tus locales de comida de confianza y <span class="grueso data-title" data-title="😼 Aquí solo queremos gatos">ahórrate unas perras.</span></h3>
-            <button class="btn mt-3 btn-cta" routerLink="descubrir" routerLinkActive="active">Ver esos chollos sabroros</button>
+            <a class="btn mt-3 btn-cta" routerLink="/user/descubrir" routerLinkActive="active">Ver esos chollos sabroros</a>
 
         </div>
     </div>
@@ -23,10 +24,11 @@
         <div class="col p-5 mt-5">
             <h2 class="titulo">Habla con <span class="username">MichiBot</span></h2>
             <h3 class="titulo2">Nuestro robot te informa de las ofertas más suculentas.</h3>
-            <button class="btn mt-3 btn-cta" routerLink="descubrir" routerLinkActive="active">Ver las ofertas</button>
+            <a class="btn mt-3 btn-cta" routerLink="/user/descubrir" routerLinkActive="active">Ver las ofertas</a>
         </div>
         <div class="col d-flex justify-content-center">
             <img src="../../../../assets/img/profile-images/michi-mobile.png" alt="michi-creativo" class="img-fluid img-michi">
         </div>
     </div>
 </div>
+}

@@ -19,6 +19,19 @@ import { WelcomePageComponent } from './components/atomos/welcome-page/welcome-p
 
 
 export const routes: Routes = [
+    
+    {
+        path: 'user',
+        component: UserLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: ['viewer', 'admin']},
+        children:[
+            {path: 'descubrir', component: DescubrirComponent},
+            {path: 'home', component: WelcomePageComponent},
+            {path: 'descubrir/:id', component: InfoProductoViewComponent},
+            {path: 'mapa', component: MapaMobileComponent},
+            {path: 'michibot', component: MichiBotComponent},
+            {path: 'perfil', component: MobilePerfilComponent},
+        ] //falta
+    },
     {
         path: 'admin', 
         component: AdminLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: 'admin' }, 
@@ -37,18 +50,6 @@ export const routes: Routes = [
             // ]},
             // {path: 'charts', component: ChartsComponent},
         ]
-    },
-    {
-        path: 'user',
-        component: UserLayoutComponent, canActivate: [AuthGuard], data: { rolEsperado: 'viewer' },
-        children:[
-            {path: 'descubrir', component: DescubrirComponent},
-            {path: 'home', component: WelcomePageComponent},
-            {path: 'descubrir/:id', component: InfoProductoViewComponent},
-            {path: 'mapa', component: MapaMobileComponent},
-            {path: 'michibot', component: MichiBotComponent},
-            {path: 'perfil', component: MobilePerfilComponent},
-        ] //falta
     },
     { path: 'login', pathMatch:'full', component:InicioSesionComponent},
     { path: '', redirectTo: 'user/home', pathMatch: 'full'}, //hay que cambiarlo a que se vaya la app. pero que apse antes por un inicio de sesión

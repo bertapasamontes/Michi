@@ -61,12 +61,15 @@ export class UserService {
           localStorage.setItem("role",respuesta.usuario.role);
           console.log("rol desde userService login(): ",localStorage.getItem('role'))
 
-          if(respuesta.usuario.role == 'admin'){
-            this.router.navigate(['admin/data']);
-          } 
-          if(respuesta.usuario.role == 'viewer'){
-            this.router.navigate(['user/descubrir'])
-          }
+          // if(respuesta.usuario.role == 'admin'){
+          //   this.router.navigate(['admin/data']);
+          // } 
+          // if(respuesta.usuario.role == 'viewer'){
+          //   this.router.navigate(['user/descubrir'])
+          // }
+          if(respuesta.usuario.role){
+              this.router.navigate(['user/home'])
+            }
         }
       })
     )
