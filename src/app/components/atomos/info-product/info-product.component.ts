@@ -17,7 +17,7 @@ import { UserService } from '../../../services/user/user.service';
 export class InfoProductComponent {
   @Input() producto!: {_id: string, imgProduct: string, name: string, rate: number, price: number, comments:Comentario, site: placeGlobal, category:string[]};
 
-  usuarioLogueado:any = null
+  usuarioLogueado:any;
 
   constructor(
     private _comentarioService: ComentarioNuevoService,
@@ -25,10 +25,14 @@ export class InfoProductComponent {
     private _userService: UserService,
 
   ){
+    
+  }
+
+  ngOnInit(){
     const user = this._authService.getUserFromToken();
     console.log(user.email);
 
-    _userService.getUserByEmail(user.email).subscribe((user)=>{
+    this._userService.getUserByEmail(user.email).subscribe((user)=>{
       this.usuarioLogueado = user      
     });   
   }
@@ -40,12 +44,13 @@ export class InfoProductComponent {
       user: this.usuarioLogueado._id,
       rating: 0
     };
+    console.log(nuevoComentario)
 
     this._comentarioService.saveComentario(nuevoComentario).subscribe(
       response => {
         console.log("Comentario guardado:", response);
       }, error => {
-        console.error("Error al guardar el comentario", error);
+        console.log("Error al guardar el comentario", error);
       }
     );
   }

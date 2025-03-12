@@ -30,7 +30,7 @@ export class ComentarioNuevoService {
   }
 
   saveComentario(Comentario: Comentario): Observable<void>{
-    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}`, Comentario)
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}${Comentario.product}`, Comentario)
   }
 
   getComentario(id:string): Observable<Comentario>{

@@ -11,10 +11,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class ComentarioNuevoComponent {
 
-  usuarioLogueado:any = null
+  usuarioLogueado:any = {}
   formComentario: FormGroup;
 
-  @Output() comentarioNuevo = new EventEmitter<{ comentario: string}>();
+  @Output() comentarioNuevo = new EventEmitter<string>();
   
   constructor(
     private _authService: AuthService,
@@ -25,7 +25,7 @@ export class ComentarioNuevoComponent {
     console.log(user.email);
 
     _userService.getUserByEmail(user.email).subscribe((user)=>{
-    // console.log("user desde dashboard: ", user)
+    console.log("user desde comentario: ", user)
     this.usuarioLogueado = user      
     });   
 
@@ -38,6 +38,12 @@ export class ComentarioNuevoComponent {
   
   enviarComment(){
     const comentario = this.formComentario.value.comentario;
+    console.log("comentario: ", comentario)
+
+    if (!comentario) {
+      console.warn("El comentario está vacío");
+      return;
+    }
 
     this.comentarioNuevo.emit(comentario); //enviamos los datos al compontente padre
   }
