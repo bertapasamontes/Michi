@@ -12,7 +12,7 @@ import { InicioSesionComponent } from './components/moleculas/inicio-sesion/inic
 import { MobilePerfilComponent } from './components/organismos/mobile-perfil/mobile-perfil.component';
 
 import { AuthGuard } from './_helpers/authGuard/auth.guard';
-import { InfoProductoViewComponent } from './components/moleculas/info-producto-view/info-producto-view.component';
+import { InfoProductoViewComponent } from './components/organismos/info-producto-view/info-producto-view.component';
 
 
 

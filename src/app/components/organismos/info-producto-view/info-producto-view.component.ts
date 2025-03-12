@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../services/products/products.service';
-import { InfoProductComponent } from "../../atomos/info-product/info-product.component";
+import { InfoProductComponent } from '../../moleculas/info-product/info-product.component';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-info-producto-view',
@@ -16,7 +18,9 @@ export class InfoProductoViewComponent {
 
   constructor(
     private ruta: ActivatedRoute,
-    private _productoService: ProductsService
+    private _productoService: ProductsService,
+    private toastr: ToastrService,
+    private cdr: ChangeDetectorRef 
   ){}
 
   ngOnInit(){
@@ -41,6 +45,18 @@ export class InfoProductoViewComponent {
     catch(error){
       return console.log('Error al buscar el produto por id')
     }
+  }
+
+  actualiza(valor: boolean){
+    if(valor){
+      this._productoService.getProduct(this.productoRecibido._id).subscribe((product)=>{
+        this.productoRecibido = product;
+        console.log("Producto actualizado:", this.productoRecibido);
+        this.cdr.detectChanges(); 
+      this.toastr.success(`Comentario añadido exitosamente`, 'Comentario nuevo');
+    })
+    }
+    
   }
 
   

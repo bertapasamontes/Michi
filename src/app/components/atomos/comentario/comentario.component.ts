@@ -27,7 +27,7 @@ export class ComentarioComponent {
 
     const comentarioNuevo = new ComentarioNuevo ({
       text : this.comentario.text,
-      user: this.comentario.user._id,
+      user: this.comentario.user,
       rating: nuevoRating,
       createdAt: this.comentario.createdAt
     })

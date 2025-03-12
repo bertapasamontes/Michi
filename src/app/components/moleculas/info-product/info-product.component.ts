@@ -1,13 +1,13 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 import { placeGlobal } from '../../../interfaces/places/placeGlobal';
 import { Comentario } from '../../../interfaces/comments';
-import { ComentarioNuevoComponent } from "../comentario-nuevo/comentario-nuevo.component";
 import { ComentarioNuevoService } from '../../../services/comentarioNuevoService/comentario-nuevo.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/user/user.service';
-import { ComentarioComponent } from '../comentario/comentario.component';
+import { ComentarioNuevoComponent } from '../../atomos/comentario-nuevo/comentario-nuevo.component';
+import { ComentarioComponent } from '../../atomos/comentario/comentario.component';
 
 @Component({
   selector: 'app-info-product',
@@ -17,6 +17,8 @@ import { ComentarioComponent } from '../comentario/comentario.component';
 })
 export class InfoProductComponent {
   @Input() producto!: {_id: string, imgProduct: string, name: string, rate: number, price: number, comments:Comentario[], site: placeGlobal, category:string[]};
+
+  @Output() actualizaComments = new EventEmitter<boolean>;
 
   usuarioLogueado:any;
 
@@ -61,5 +63,7 @@ export class InfoProductComponent {
         console.log("Error al guardar el comentario", error);
       }
     );
+
+    this.actualizaComments.emit(true);
   }
 }
