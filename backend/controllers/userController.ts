@@ -86,6 +86,11 @@ const getOneUser = async (req:Request, res: Response)=>{
     const {id} = req.params;
     UserNuevo
         .findById(id)
+        .populate({
+            path: 'misFavs',
+            model: 'productos',
+            select: '_v'
+        })
         .then((data)=> res.json(data))
         .catch((error)=> res.json({mensaje: error}))
 }
@@ -129,8 +134,38 @@ const updateUser = (req:Request, res: Response)=>{
         }))
 }
 
+//guardar fav
+const saveFav = async (req: Request, res: Response): Promise<any> => {
+    try {
+      const {id} = req.params;  //id del usuario logueado
+      const { productId } = req.body; //id del producto
+  
+      const user = await UserNuevo.findById({id});
+      if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
+  
+      if (!user.misFavs.includes(productId)) {
+        user.misFavs.push(productId);
+        await user.save();
+      }
+  
+      return res.json({ message: 'Producto guardado', misFavs: user.misFavs });
+    } catch (error) {
+      return res.status(500).json({ message: 'Error al guardar producto', error });
+    }
+};
+
+const deleteOneFav = (req: Request, res: Response) => {
+    const { idUser, idProducto } = req.params; //obtenemos id del user y del producto
+
+    UserNuevo.updateOne(
+        { _id: idUser }, //buscamos el user por su id
+        { $pull: { misFavs: idProducto } } //$pull elimina solo un item especifico de un doc. le pasamos el id del producto dentro de misFavs.
+    )
+    .then((data) => res.json({ mensaje: "Producto eliminado de favoritos", data }))
+    .catch((error) => res.status(500).json({ mensaje: error }));
+};
 
 
 export {
-    updateUser, getOneUser, deleteOneUser, postUser, getUsers, getOneUserByEmail, getUserByEmail
+    updateUser, getOneUser, deleteOneUser, postUser, getUsers, getOneUserByEmail, getUserByEmail, saveFav, deleteOneFav
 }

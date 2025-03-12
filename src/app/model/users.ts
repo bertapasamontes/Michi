@@ -8,7 +8,7 @@ const defaultImages = [
   '../../assets/img/profile-images/michi-default.png',
   // '../../assets/img/profile-images/michi-cook.png',
   '../../assets/img/profile-images/michi-gold.png',
-  '../../assets/img/profile-images/michi-idea.png',
+  '../../assets/img/profile-images/michi-idea2.png',
   '../../assets/img/profile-images/michi-suerte.png',
 ];
 
@@ -23,6 +23,7 @@ const userSchema = new Schema({
   role: {type: String, required: true},
   imgProfile: {type: String, default: () => defaultImages[Math.floor(Math.random() * defaultImages.length)]},
   comments: {type: {type: String}},
+  misFavs: [{ type: mongoose.Schema.Types.ObjectId, ref: "productos" }],
   createdAt: Date,
   updatedAt: Date,
     

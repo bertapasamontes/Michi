@@ -78,4 +78,12 @@ export class UserService {
   updateUser(id:string, user: User): Observable<void>{
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, user);
   }
+
+  //favs
+  addFavProduct(id: string, idProducto: string): Observable<void>{
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}${id}/guardarProducto/`, {idProducto});
+  }
+  deleteFavProduct(id: string, idProducto: string): Observable<void>{
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}${id}/eliminarProducto/${idProducto}`, {idProducto});
+  }
 }

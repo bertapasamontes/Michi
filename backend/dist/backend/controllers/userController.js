@@ -35,7 +35,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserByEmail = exports.getOneUserByEmail = exports.getUsers = exports.postUser = exports.deleteOneUser = exports.getOneUser = exports.updateUser = void 0;
+exports.deleteOneFav = exports.saveFav = exports.getUserByEmail = exports.getOneUserByEmail = exports.getUsers = exports.postUser = exports.deleteOneUser = exports.getOneUser = exports.updateUser = void 0;
 const users_js_1 = __importDefault(require("../../src/app/model/users.js"));
 const bcrypt = __importStar(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
@@ -105,6 +105,11 @@ const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const { id } = req.params;
     users_js_1.default
         .findById(id)
+        .populate({
+        path: 'misFavs',
+        model: 'productos',
+        select: '_v'
+    })
         .then((data) => res.json(data))
         .catch((error) => res.json({ mensaje: error }));
 });
@@ -148,3 +153,31 @@ const updateUser = (req, res) => {
     }));
 };
 exports.updateUser = updateUser;
+//guardar fav
+const saveFav = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params; //id del usuario logueado
+        const { productId } = req.body; //id del producto
+        const user = yield users_js_1.default.findById({ id });
+        if (!user)
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        if (!user.misFavs.includes(productId)) {
+            user.misFavs.push(productId);
+            yield user.save();
+        }
+        return res.json({ message: 'Producto guardado', misFavs: user.misFavs });
+    }
+    catch (error) {
+        return res.status(500).json({ message: 'Error al guardar producto', error });
+    }
+});
+exports.saveFav = saveFav;
+const deleteOneFav = (req, res) => {
+    const { idUser, idProducto } = req.params; //obtenemos id del user y del producto
+    users_js_1.default.updateOne({ _id: idUser }, //buscamos el user por su id
+    { $pull: { misFavs: idProducto } } //$pull elimina solo un item especifico de un doc. le pasamos el id del producto dentro de misFavs.
+    )
+        .then((data) => res.json({ mensaje: "Producto eliminado de favoritos", data }))
+        .catch((error) => res.status(500).json({ mensaje: error }));
+};
+exports.deleteOneFav = deleteOneFav;
