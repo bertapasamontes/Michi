@@ -56,7 +56,7 @@ export class InfoProductoViewComponent {
       this.toastr.success(`Comentario añadido exitosamente`, 'Comentario nuevo');
     })
     }
-    
+    window.location.reload();
   }
 
   

@@ -13,10 +13,9 @@
 }
 .name-producto{
     position: relative;
-    bottom: 290px;
+    bottom: 100px;
     left: 12px;
     // color: white;
-    
     
     background: rgba(255, 255, 255, 0.434);
     border-radius: 5px;
@@ -24,6 +23,32 @@
     backdrop-filter: blur(11.2px);
     -webkit-backdrop-filter: blur(11.2px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (min-width: 495px){
+    .name-producto{
+    bottom: 250px;
+
+    }
+}
+
+@media (min-width: 990px){
+    .name-producto{
+    bottom: 415px;
+
+    }
+}
+@media (min-width: 1200px){
+    .name-producto{
+    bottom: 535px;
+
+    }
+}
+@media (min-width: 1400px){
+    .name-producto{
+    bottom: 655px;
+
+    }
 }
 
 .categorias{
