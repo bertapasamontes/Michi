@@ -86,7 +86,7 @@
             <td>
                 <div class="d-flex justify-content-center">
                     @if (tipo === 'usuarios' && row['id'] !== undefined) {
-                <app-btn-editar [item]="row['id']" (updateData)="refreshData()"></app-btn-editar>
+                <app-btn-editar [tipo] = 'tipo' [item]="row['id']" (updateData)="refreshData()"></app-btn-editar>
                 }
                 @if (tipo === 'locales' && row['id'] !== undefined) {
                     <app-btn-clipboard [id]="row['id']"></app-btn-clipboard>
