@@ -65,5 +65,6 @@ export class InfoProductComponent {
     );
 
     this.actualizaComments.emit(true);
+      window.location.reload();
   }
 }

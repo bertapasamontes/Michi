@@ -4,6 +4,7 @@ import { User } from '../../../interfaces/users';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/user/user.service';
 import { ProductoFavComponent } from "../../moleculas/producto-fav/producto-fav.component";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-mobile-perfil',
@@ -15,6 +16,8 @@ export class MobilePerfilComponent {
 constructor(
     private _authService: AuthService,
     private _userService: UserService,
+    //toast
+    private toastr: ToastrService
   ){}
 
   usuarioLogueado:any;
@@ -50,11 +53,14 @@ constructor(
       console.log('producto ya guardado, eliminando.');
       this._userService.deleteFavProduct(this.usuarioLogueado._id, idProducto).subscribe(response => {
         console.log('Producto eliminado de favoritos:', response);
+        this.toastr.warning(`Producto eliminado de favoritos`, 'Producto eliminado');
+        // window.location.reload();
       });
     } else {
       console.log('no está. agregando');
       this._userService.addFavProduct(this.usuarioLogueado._id, idProducto).subscribe(response => {
         console.log('producto agregado a misfavs:', response);
+        this.toastr.success(`Producto agregado de favoritos`, 'Producto guardado');
       });
     }
   }

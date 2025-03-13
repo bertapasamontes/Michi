@@ -4,6 +4,7 @@ import { Product } from '../../../interfaces/product';
 import { FiltrosProductosComponent } from '../../atomos/filtros-productos/filtros-productos.component';
 import { UserService } from '../../../services/user/user.service';
 import { AuthService } from '../../../services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-listado-productos',
@@ -27,6 +28,8 @@ export class ListadoProductosComponent {
   constructor(
     private _userService: UserService,
     private _authService: AuthService,
+    //toast
+    private toastr: ToastrService
   ){
     const user = this._authService.getUserFromToken();
     console.log(user.email);
@@ -114,11 +117,14 @@ export class ListadoProductosComponent {
       console.log('producto ya guardado, eliminando.');
       this._userService.deleteFavProduct(this.usuarioLogueado._id, idProducto).subscribe(response => {
         console.log('Producto eliminado de favoritos:', response);
+        this.toastr.warning(`Producto eliminado de favoritos`, 'Producto eliminado');
       });
     } else {
       console.log('no está. agregando');
       this._userService.addFavProduct(this.usuarioLogueado._id, idProducto).subscribe(response => {
         console.log('producto agregado a misfavs:', response);
+        this.toastr.success(`Producto agregado de favoritos`, 'Producto guardado');
+
       });
     }
   }

@@ -5,7 +5,7 @@
             <div class="col">
                 <div class="row card-header">
                     @if(producto._id){
-                    <button class="btn" (click)="guardarProducto(producto._id)"><mat-icon class="btn-guardar" >bookmark</mat-icon></button>
+                    <button class="btn"><mat-icon class="btn-guardar" (click)="guardarProducto(producto._id)">bookmark</mat-icon></button>
                     <img src="{{producto.imgProduct}}" alt="img-{{producto.name.trim()}}" class="img-fluid card-img">
                     <p class="product-name">{{producto.name}}</p>
                     }

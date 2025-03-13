@@ -66,12 +66,12 @@ $light-secondary: #e4e4e4;
 
 
 // --- categorias locales -----
-.tag-café {
+.tag-café, .tag-cafetería {
   background-color: #d1ada0;
   color: #795548;
   // border: 1px solid #795548;
 }
-span.tag-café::before {
+span.tag-café::before, span.tag-cafetería::before {
   content: "☕";
 }
 

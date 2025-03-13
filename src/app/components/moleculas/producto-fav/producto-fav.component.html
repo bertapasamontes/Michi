@@ -3,7 +3,6 @@
         <h3>Productos guardados:</h3>
         @if(usuarioLogueado.misFavs){
             @if(usuarioLogueado.misFavs.length > 0){
-            mas de 0 favs
             @for(fav of usuarioLogueado.misFavs; track fav){
                 <app-card-product [producto]="fav" (productoId)="onGuardarProductoFav($event)"></app-card-product>
             }
