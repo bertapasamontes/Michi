@@ -5,10 +5,18 @@
             <div class="image-container">
                 <img src="{{usuarioLogueado.imgProfile}}" alt="img-profile" class="img-fluid img-profile">
             </div>
-            <div class="info-text">
+            <div class="info-text mt-2">
                 <p><span class="nombre-user">{{usuarioLogueado.name}}</span></p>
                 <p><span class="username">&#64;{{usuarioLogueado.username}}</span> | {{usuarioLogueado.email}}</p>
             </div>
+            @if(usuarioLogueado.role == 'admin'){
+                <div class="my-2">
+                    <a href="" routerLink="/admin/data" target="_blank" title="michi's dashboard">Administrar Michi</a>
+                </div>
+            }
+            
+            <app-link-cerrar-sesion class="log-out"></app-link-cerrar-sesion>
+            
             
         </div>
     </div>

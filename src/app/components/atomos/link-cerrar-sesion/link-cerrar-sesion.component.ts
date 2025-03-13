@@ -64,6 +64,7 @@ cerrarSesion() {
   alert("Cerrando sesión...");
   this._authService.logOut();
   this.cerrarPopover();
+  window.location.reload();
 }
 
 cerrarPopover() {
