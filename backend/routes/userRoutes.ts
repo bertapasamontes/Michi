@@ -14,8 +14,8 @@ router.post('/', postUser);
 router.put('/:id', updateUser);
 
 //favs
-router.post('/:idUser/guardarProducto/', saveFav);
-router.delete("/:idUser/eliminarProducto/:idProducto", deleteOneFav);
+router.post('/:idUser/guardarProducto/:idProducto', saveFav);
+router.post("/:idUser/eliminarProducto/:idProducto", deleteOneFav);
 
 
 export default router;

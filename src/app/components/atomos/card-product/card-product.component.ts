@@ -19,10 +19,10 @@ export class CardProductComponent {
   //   console.log("producto en card",this.producto)
   // }
 
-  @Output() productoId = new EventEmitter<string>;
+  @Output() productoId = new EventEmitter<string>();
 
   guardarProducto(productoID: string){
     this.productoId.emit(productoID);
-  }
-    
+    console.log("enviado id", productoID);
+  }    
 }

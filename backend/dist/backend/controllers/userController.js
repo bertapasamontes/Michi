@@ -36,6 +36,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteOneFav = exports.saveFav = exports.getUserByEmail = exports.getOneUserByEmail = exports.getUsers = exports.postUser = exports.deleteOneUser = exports.getOneUser = exports.updateUser = void 0;
+const mongoose_1 = __importDefault(require("mongoose"));
 const users_js_1 = __importDefault(require("../../src/app/model/users.js"));
 const bcrypt = __importStar(require("bcrypt"));
 const jwt = __importStar(require("jsonwebtoken"));
@@ -108,7 +109,7 @@ const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         .populate({
         path: 'misFavs',
         model: 'productos',
-        select: '_v'
+        select: '-_v'
     })
         .then((data) => res.json(data))
         .catch((error) => res.json({ mensaje: error }));
@@ -118,6 +119,11 @@ const getUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const { email } = req.params;
     users_js_1.default
         .findOne({ email })
+        .populate({
+        path: 'misFavs',
+        model: 'productos',
+        select: '-_v'
+    })
         .then((data) => res.json(data))
         .catch((error) => res.json({ mensaje: error }));
 });
@@ -156,14 +162,15 @@ exports.updateUser = updateUser;
 //guardar fav
 const saveFav = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { idUser } = req.params; //id del usuario logueado
-        const { idProducto } = req.body; //id del producto
-        console.log("id desde backend: ", idUser);
+        const { idUser, idProducto } = req.params; // ID del usuario y del producto
+        console.log("ID desde backend: ", idUser);
         const user = yield users_js_1.default.findById(idUser);
         if (!user)
             return res.status(404).json({ message: 'Usuario no encontrado' });
-        if (!user.misFavs.includes(idProducto)) {
-            user.misFavs.push(idProducto);
+        // Convertir idProducto a ObjectId antes de añadirlo a misFavs
+        const productoId = new mongoose_1.default.Types.ObjectId(idProducto);
+        if (!user.misFavs.includes(productoId)) {
+            user.misFavs.push(productoId);
             yield user.save();
         }
         return res.json({ message: 'Producto guardado', misFavs: user.misFavs });

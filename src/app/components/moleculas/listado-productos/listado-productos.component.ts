@@ -23,6 +23,7 @@ export class ListadoProductosComponent {
 
   usuarioLogueado:any;
 
+
   constructor(
     private _userService: UserService,
     private _authService: AuthService,
@@ -32,38 +33,28 @@ export class ListadoProductosComponent {
 
      _userService.getUserByEmail(user.email).subscribe((user)=>{
       this.usuarioLogueado = user
-      console.log(Object.keys(this.usuarioLogueado))
-
-      
+      console.log(Object.keys(this.usuarioLogueado))   
     });   
   }
 
     ngOnInit(){
-      // Esperamos un poco antes de ejecutar updateFilteredProducts()
+      // esperamos
     setTimeout(() => {
       if (this.datos()) {
-        console.log("✅ [ngOnInit] Datos recibidos:", this.datos());
         this.updateFilteredProducts();
-        console.log("productos por cat: ", this.productosPorCategoria);
 
       } else {
-        console.log("⚠️ [ngOnInit] No hay datos disponibles aún.");
+        console.log("no hay datos disponibles aún.");
       }
     }, 500);
-
-
-    // if(!this.datos()){
-    //   console.log("los datos no hasn sido inicializados correctamente");
-    //   return
-    // }
-    // console.log("productos datos: ", this.datos());
-    // console.log("productos por cat:", this.productosPorCategoria);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['datos'] && this.datos()) {
-      console.log("🚀 datos cambiaron:", this.datos());
       this.updateFilteredProducts();
+    }
+    if (changes['usuarioLogueado']) {
+      console.log("Usuario actualizado:", this.usuarioLogueado);
     }
   }
 
@@ -73,11 +64,7 @@ export class ListadoProductosComponent {
     const productos = this.datos();
 
     if (this.categoriaSeleccionada === 'Todas') {
-
-
-      console.log("datos dentro: ", this.datos())
       this.productosPorCategoria = this.groupByCategory(productos);
-      console.log("productos por cat:", this.productosPorCategoria);
 
       this.productosFiltrados.set(productos);  // si no hay filtro, dame todos los productos
     } else { // si sí hay, dame los de esa categoria
@@ -115,12 +102,24 @@ export class ListadoProductosComponent {
 
   }
 
-  onGuardarProducto(idProducto: string) {
-    console.log('Producto guardado con ID:', idProducto);
-    console.log('ID:', this.usuarioLogueado._id);
-    // Aquí puedes llamar a tu servicio para guardar el producto favorito
-    this._userService.addFavProduct(this.usuarioLogueado._id, idProducto).subscribe(response => {
-      console.log('Producto agregado a favoritos:', response);
-    });
+  onGuardarProductoFav(idProducto: string) {
+    console.log('Producto recibido:', idProducto);
+    console.log('id user:', this.usuarioLogueado._id);
+    console.log('favs:', this.usuarioLogueado.misFavs);
+
+    // comprueba si el producto esta ya en favs
+    const productoYaGuardado = this.usuarioLogueado.misFavs?.some((fav: { _id: string; }) => fav._id === idProducto);
+
+    if (productoYaGuardado) {
+      console.log('producto ya guardado, eliminando.');
+      this._userService.deleteFavProduct(this.usuarioLogueado._id, idProducto).subscribe(response => {
+        console.log('Producto eliminado de favoritos:', response);
+      });
+    } else {
+      console.log('no está. agregando');
+      this._userService.addFavProduct(this.usuarioLogueado._id, idProducto).subscribe(response => {
+        console.log('producto agregado a misfavs:', response);
+      });
+    }
   }
 }

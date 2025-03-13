@@ -1,3 +1,5 @@
+import { Product } from "./product";
+
 export interface User {
     _id?: string;
     name: string;
@@ -8,5 +10,5 @@ export interface User {
     role: string;
     imgProfile?: string;
     comments?:{};
-    misFavs?:[]; 
+    misFavs?:Product[]; 
 }

@@ -1,15 +1,17 @@
-@if(producto._id){
-    <div href="" routerLink='{{producto._id}}' routerLinkActive="active">
+@if(producto){
+    <div href="" >
     <div class="card-product">
         <div class="row d-inline-flex">
             <div class="col">
                 <div class="row card-header">
-                    <mat-icon class="btn-guardar" (click)="guardarProducto(producto._id)">bookmark</mat-icon>
+                    @if(producto._id){
+                    <button class="btn" (click)="guardarProducto(producto._id)"><mat-icon class="btn-guardar" >bookmark</mat-icon></button>
                     <img src="{{producto.imgProduct}}" alt="img-{{producto.name.trim()}}" class="img-fluid card-img">
                     <p class="product-name">{{producto.name}}</p>
+                    }
                 </div>
                 
-                <div class="row card-description">
+                <div class="row card-description" routerLink='/user/descubrir/{{producto._id}}' routerLinkActive="active">
                     <div class="col-2">
                         <div class="rate">{{producto.rate}}⭐</div>
                     </div>
@@ -25,4 +27,7 @@
         </div>
     </div>
 </div>
+}
+@else {
+    no va
 }

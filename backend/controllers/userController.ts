@@ -89,7 +89,7 @@ const getOneUser = async (req:Request, res: Response)=>{
         .populate({
             path: 'misFavs',
             model: 'productos',
-            select: '_v'
+            select: '-_v'
         })
         .then((data)=> res.json(data))
         .catch((error)=> res.json({mensaje: error}))
@@ -99,6 +99,11 @@ const getUserByEmail = async (req:Request, res: Response)=>{
     const {email} = req.params;
     UserNuevo
         .findOne({email})
+        .populate({
+            path: 'misFavs',
+            model: 'productos',
+            select: '-_v'
+        })
         .then((data)=> res.json(data))
         .catch((error)=> res.json({mensaje: error}))
 }
@@ -137,22 +142,23 @@ const updateUser = (req:Request, res: Response)=>{
 //guardar fav
 const saveFav = async (req: Request, res: Response): Promise<any> => {
     try {
-      const {idUser} = req.params;  //id del usuario logueado
-      const { idProducto } = req.body; //id del producto
+        const { idUser, idProducto } = req.params; // ID del usuario y del producto
+        console.log("ID desde backend: ", idUser);
 
-      console.log("id desde backend: ",idUser);
-  
-      const user = await UserNuevo.findById(idUser);
-      if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
-  
-      if (!user.misFavs.includes(idProducto)) {
-        user.misFavs.push(idProducto);
-        await user.save();
-      }
-  
-      return res.json({ message: 'Producto guardado', misFavs: user.misFavs });
+        const user = await UserNuevo.findById(idUser);
+        if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
+
+        // Convertir idProducto a ObjectId antes de añadirlo a misFavs
+        const productoId = new mongoose.Types.ObjectId(idProducto);
+
+        if (!user.misFavs.includes(productoId)) {
+            user.misFavs.push(productoId);
+            await user.save();
+        }
+
+        return res.json({ message: 'Producto guardado', misFavs: user.misFavs });
     } catch (error) {
-      return res.status(500).json({ message: 'Error al guardar producto', error });
+        return res.status(500).json({ message: 'Error al guardar producto', error });
     }
 };
 

@@ -12,6 +12,6 @@ router.delete('/:id', userController_1.deleteOneUser);
 router.post('/', userController_1.postUser);
 router.put('/:id', userController_1.updateUser);
 //favs
-router.post('/:idUser/guardarProducto/', userController_1.saveFav);
-router.delete("/:idUser/eliminarProducto/:idProducto", userController_1.deleteOneFav);
+router.post('/:idUser/guardarProducto/:idProducto', userController_1.saveFav);
+router.post("/:idUser/eliminarProducto/:idProducto", userController_1.deleteOneFav);
 exports.default = router;

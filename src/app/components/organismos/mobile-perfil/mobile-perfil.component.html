@@ -3,6 +3,6 @@
         <app-profile-big-info [usuarioLogueado] = 'usuarioLogueado'></app-profile-big-info>
     </div>
     <div class="col-8 m-2 columna">
-        <app-producto-fav [usuarioLogueado] = 'usuarioLogueado'></app-producto-fav>
+        <app-producto-fav [usuarioLogueado] = 'usuarioLogueado' (productoId)="onGuardarProductoFav($event)"></app-producto-fav>
     </div>
 </div>
