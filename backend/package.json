@@ -5,6 +5,7 @@
   "main": "dist/backend/index.js",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "start": "node dist/backend/index.js",
     "dev": "tsc --watch & nodemon dist/backend/index.js"
   },
@@ -16,5 +17,11 @@
     "jsonwebtoken": "^9.0.2",
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.5.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "@types/node": "^22.13.2",
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.9"
   }
 }
