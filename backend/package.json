@@ -1,0 +1,20 @@
+{
+  "name": "michi-backend",
+  "version": "1.0.0",
+  "description": "Backend del proyecto 9.michi",
+  "main": "dist/backend/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node dist/backend/index.js",
+    "dev": "tsc --watch & nodemon dist/backend/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1",
+    "dotenv": "^16.4.7",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1"
+  }
+}

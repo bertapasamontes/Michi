@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // import { Feature, PlacesResponse } from '../../../interfaces/places';
 import { MapService } from '../map/map.service';
-import { environment } from '../../../../../backend/env';
+import { environment } from '../../../../env/environment';
 import { Suggestion, SuggestResponse } from '../../../interfaces/places/placesSuggestion';
 import { Feature, Features } from '../../../interfaces/places/placesRetrieve';
 import { lastValueFrom } from 'rxjs';
