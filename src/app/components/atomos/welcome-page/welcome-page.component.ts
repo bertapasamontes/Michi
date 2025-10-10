@@ -22,16 +22,23 @@ export class WelcomePageComponent {
 
   ngOnInit(){
     const user = this._authService.getUserFromToken();
-    console.log(user.email);
 
-    this._userService.getUserByEmail(user.email).subscribe((user)=>{
-      try{
-      this.usuarioLogueado = user;
-      console.log("user como userLogueado welcome")
-      }
-      catch(error){
-        console.log('error al asignar el user como el userloguedo')
-      }
-    });   
+    if(user && user.email) {
+
+      console.log(user.email);
+
+      this._userService.getUserByEmail(user.email).subscribe((user)=>{
+        try{
+        this.usuarioLogueado = user;
+        console.log("user como userLogueado welcome")
+        }
+        catch(error){
+          console.log('error al asignar el user como el userloguedo')
+        }
+      });  
+    } 
+    else {
+      console.warn("No hay usuario en el token o el token ha expirado. Loc: welcome-page")
+    }
   }
 }

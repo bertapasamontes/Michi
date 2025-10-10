@@ -13,13 +13,15 @@
         [paginaActualSignal]="getPaginaActualSignal('usuarios')" 
         (paginaActual)="cambiarPagina($event.pagina, $event.tipo)"></app-paginacion-datos>
     </div>
-    <div class="locales mt-5">
+    <div class="locales my-5">
         <h2>Locales guardados:</h2>
         <app-tabla-datos [datos]="dataPlaces" tipo="locales" (deleteItem)="deleteItem($event)"></app-tabla-datos>
     </div>
     <div class="locales mt-5">
+        <div class="d-flex justify-content-between">
         <h2>Productos guardados:</h2>
         <app-btn-add tipo="productos" (updateData)="refreshUsers(getPaginaActualSignal('productos') )"></app-btn-add>
+    </div>
 
         <app-tabla-datos [datos]="dataProducts" tipo="productos" (deleteItem)="deleteItem($event)"></app-tabla-datos>
 

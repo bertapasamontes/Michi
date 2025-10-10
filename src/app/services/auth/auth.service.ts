@@ -11,7 +11,7 @@ export class AuthService {
     localStorage.getItem('tokenDelUser');
     localStorage.getItem('role');
 
-    if(localStorage.getItem('tokenDelUser') != null || localStorage.getItem('role') != null){
+    if(localStorage.getItem('tokenDelUser') != null && localStorage.getItem('role') != null){
       return true;
     }
     else return false    

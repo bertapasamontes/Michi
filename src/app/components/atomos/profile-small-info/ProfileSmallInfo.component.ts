@@ -17,14 +17,22 @@ export class ProfileSmallInfo {
     private _userService: UserService
   ){
     const user = this._authService.getUserFromToken();
-    console.log(user.email);
+
+    if(user && user.email) {
+      console.log(user.email);
 
      _userService.getUserByEmail(user.email).subscribe((user)=>{
       this.usuarioLogueado = user
       console.log(Object.keys(this.usuarioLogueado))
+      }); 
+    }
+    else {
+      console.warn("No hay usuario en el token o el token ha expirado.Loc: profile-small-info")
+    }
+    
 
       
-    });   
+      
   }
 
  
