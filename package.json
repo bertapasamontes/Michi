@@ -1,5 +1,5 @@
 {
-  "name": "8.inprocode",
+  "name": "8.michi",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -77,13 +77,13 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bertapasamontes/8.inprocode.git"
+    "url": "git+https://github.com/bertapasamontes/8.michi.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bertapasamontes/8.inprocode/issues"
+    "url": "https://github.com/bertapasamontes/8.michi/issues"
   },
-  "homepage": "https://github.com/bertapasamontes/8.inprocode#readme"
+  "homepage": "https://github.com/bertapasamontes/8.michi#readme"
 }
