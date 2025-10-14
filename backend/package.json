@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Backend del proyecto 9.michi",
   "main": "dist/backend/index.js",
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node dist/backend/index.js",

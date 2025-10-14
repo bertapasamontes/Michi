@@ -18,7 +18,7 @@ export class UserService {
     private router: Router
   ) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'api/usuario/';
+    this.myApiUrl = 'api/usuario';
   }
 
   // Método para obtener la lista de usuarios desde el backend
