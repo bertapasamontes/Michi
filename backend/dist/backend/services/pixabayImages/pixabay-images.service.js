@@ -26,7 +26,6 @@ class PixabayImagesService {
             var _a;
             try {
                 console.log("api key: ", this.pixabayAPIKey);
-                //cogemos la imagen de pixabay segun el nombre del producto
                 const response = yield axios_1.default.get(`${this.pixabayEstructura}${this.pixabayAPIKey}&q=${nameProduct}&image_type=photo&pretty=true`);
                 const imgURL = ((_a = response.data.hits[0]) === null || _a === void 0 ? void 0 : _a.webformatURL) || ''; // Devuelve la URL de la primera imagen
                 if (imgURL) {
