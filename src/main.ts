@@ -5,7 +5,7 @@ import { AppComponent } from './app/app.component';
 
 //mapa NO TOCAR!!
 import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
-import { environment } from '../backend/env';
+import { environment } from './env/environment';
 mapboxgl.accessToken = environment.mapBoxToken;
 
 bootstrapApplication(AppComponent, appConfig)
