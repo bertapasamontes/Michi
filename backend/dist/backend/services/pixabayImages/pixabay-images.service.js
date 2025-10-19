@@ -14,12 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PixabayImagesService = void 0;
 const cloudinary_config_1 = __importDefault(require("../../config/cloudinary/cloudinary.config"));
-const env_1 = require("../../env");
 const axios_1 = __importDefault(require("axios"));
 class PixabayImagesService {
     constructor() {
-        this.pixabayEstructura = env_1.environment.pixabayEstructura;
-        this.pixabayAPIKey = env_1.environment.pixabayAPIKEY;
+        this.pixabayEstructura = process.env.pixabayEstructura || "someURL";
+        this.pixabayAPIKey = process.env.pixabayAPIKEY || "someKey";
         this.cloudinaryFolder = 'productos';
     }
     getImageFromPixabay(nameProduct) {

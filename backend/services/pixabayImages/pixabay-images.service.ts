@@ -1,5 +1,4 @@
 import cloudinary from '../../config/cloudinary/cloudinary.config';
-import { environment } from '../../env';
 import axios from 'axios';
 
 export class PixabayImagesService {
@@ -11,8 +10,8 @@ export class PixabayImagesService {
 
   constructor(
   ) {
-    this.pixabayEstructura = environment.pixabayEstructura;
-    this.pixabayAPIKey = environment.pixabayAPIKEY;
+    this.pixabayEstructura = process.env.pixabayEstructura || "someURL";
+    this.pixabayAPIKey = process.env.pixabayAPIKEY || "someKey";
     this.cloudinaryFolder = 'productos'; 
    }
 
