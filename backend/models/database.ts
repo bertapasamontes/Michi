@@ -2,7 +2,6 @@ import * as dotenv from "dotenv";
 import express, { Application } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import { environment } from "../env";
 
 //importamos la ruta de usuarios
 import routeUsers from '../routes/userRoutes'
